@@ -43,19 +43,19 @@ const cidadesDosEstados = [
     { uf: "MA", cidades: ["São Luís"] },
     { uf: "MT", cidades: ["Cuiabá"] },
     { uf: "MS", cidades: ["Campo Grande"] },
-    { uf: "MG", cidades: ["Belo Horizonte"] },
+    { uf: "MG", cidades: ["Belo Horizonte", "Uberlândia"] },
     { uf: "PA", cidades: ["Belém"] },
     { uf: "PB", cidades: ["João Pessoa"] },
     { uf: "PR", cidades: ["Curitiba"] },
-    { uf: "PE", cidades: ["Recife"] },
+    { uf: "PE", cidades: ["Jaboatão dos Guararapes", "Recife"] },
     { uf: "PI", cidades: ["Teresina"] },
-    { uf: "RJ", cidades: ["Rio de Janeiro"] },
+    { uf: "RJ", cidades: ["Duque de Caxias", "Nova Iguaçu", "Rio de Janeiro", "São Gonçalo"] },
     { uf: "RN", cidades: ["Natal"] },
     { uf: "RS", cidades: ["Porto Alegre"] },
     { uf: "RO", cidades: ["Porto Velho"] },
     { uf: "RR", cidades: ["Boa Vista"] },
-    { uf: "SC", cidades: ["Florianópolis"] },
-    { uf: "SP", cidades: ["Campinas", "São Paulo"] },
+    { uf: "SC", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Joinville"] },
+    { uf: "SP", cidades: ["Barueri", "Campinas", "Guarulhos", "Osasco", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São José dos Campos", "São Paulo"] },
     { uf: "SE", cidades: ["Aracaju"] },
     { uf: "TO", cidades: ["Palmas"] }
 ];
@@ -257,16 +257,38 @@ function obterFeriadosEstaduais(ano, uf) {
 }
 
 function obterFeriadosMunicipais(ano, uf, municipio) {
+    // feriados mais comuns
+    const diaDeSaoSebastiao = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" };
+    };
+    const diaDeCorpusChristi = function () {
+        return { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" };
+    };
+    const diaDeSantoAntonio = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 13), descricao: "Dia de Santo Antônio" };
+    };
+    const diaDeSaoJoao = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" };
+    };
+    const diaDeSaoPedro = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 29), descricao: "Dia de São Pedro" };
+    };
+    const diaDeNossaSenhoraDaConceicao = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" };
+    };
+    const diaDaConscienciaNegra = function () {
+        return { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" };
+    };
+
     var ufMunicipio = uf + "/" + municipio;
     switch (ufMunicipio) {
         case "AC/Rio Branco": return [
             { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 28), descricao: "Aniversário de Rio Branco" },
         ];
         case "AL/Maceió": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 27), descricao: "Dia de Nossa Senhora dos Prazeres" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "AP/Macapá": return [
             { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 4), descricao: "Aniversário de Macapá" },
@@ -276,16 +298,13 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 24), descricao: "Aniversário de Manaus" },
         ];
         case "BA/Salvador": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeCorpusChristi(),
+            diaDeSaoJoao(),
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "CE/Fortaleza": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            // Dia de São José é feriado estadual e municipal
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 13), descricao: "Aniversário de Fortaleza" },
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Assunção" },
         ];
         case "DF/Brasília": return [
@@ -293,117 +312,167 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // além disso, Brasília não possui municípios, por ser um distrito federal.
         ];
         case "ES/Vitória": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Dia de Nossa Senhora da Vitória" },
         ];
         case "GO/Goiânia": return [
-            // Sexta-feira Santa é feriado nacional e municipal
             { tipo: "MUNICIPAL", data: new Date(ano, MAIO, 24), descricao: "Dia de Nossa Senhora Auxiliadora" },
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 24), descricao: "Aniversário de Goiânia" },
         ];
         case "MA/São Luís": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 29), descricao: "Dia de São Pedro" },
+            diaDeSaoPedro(),
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Natividade de Nossa Senhora" },
             { tipo: "MUNICIPAL", data: calcularDiaDoComercio(ano), descricao: "Dia do Comércio (apenas para comerciantes)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "MT/Cuiabá": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário de Cuiabá" },
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeCorpusChristi(),
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "MS/Campo Grande": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 13), descricao: "Dia de Santo Antônio" },
+            diaDeCorpusChristi(),
+            diaDeSantoAntonio(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 26), descricao: "Aniversário de Campo Grande" },
         ];
         case "MG/Belo Horizonte": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Assunção" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
+        ];
+        case "MG/Uberlândia": return [
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Abadia" },
+            { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 31), descricao: "Dia de São Raimundo" }
         ];
         case "PA/Belém": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 12), descricao: "Aniversário de Belém" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "PB/João Pessoa": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" },
+            diaDeSaoJoao(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 5), descricao: "Aniversário de João Pessoa" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "PR/Curitiba": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Dia de Nossa Senhora da Luz dos Pinhais" },
         ];
+        case "PE/Jaboatão dos Guararapes": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 15), descricao: "Dia de Santo Amaro" },
+            { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 17), descricao: "Dia de Nossa Senhora dos Prazeres" },
+            { tipo: "MUNICIPAL", data: new Date(ano, MAIO, 4), descricao: "Aniversário da cidade" },
+        ];
         case "PE/Recife": return [
-            // Sexta-feira Santa é feriado nacional e municipal
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 16), descricao: "Dia de Nossa Senhora do Carmo" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "PI/Teresina": return [
-            // Sexta-feira Santa e Finados são feriados nacionais e municipais
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 16), descricao: "Aniversário de Teresina" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
+        ];
+        case "RJ/Duque de Caxias": return [
+            diaDeCorpusChristi(),
+            diaDeSantoAntonio(),
+        ];
+        case "RJ/Nova Iguaçu": return [
+            diaDeSantoAntonio(),
         ];
         case "RJ/Rio de Janeiro": return [
-            // Dia de São Jorge é feriado estadual e municipal
-            { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" }
+            diaDeSaoSebastiao(),
+        ];
+        case "RJ/São Gonçalo": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 10), descricao: "Dia de São Gonçalo" },
+            { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 22), descricao: "Emancipação de São Gonçalo" },
         ];
         case "RN/Natal": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 6), descricao: "Dia de Santos Reis" },
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 21), descricao: "Dia de Nossa Senhora da Apresentação" },
         ];
         case "RS/Porto Alegre": return [
             { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 2), descricao: "Dia de Nossa Senhora dos Navegantes" },
-            // Sexta-feira Santa, Corpus Christi e Finados são feriados nacionais e municipais
         ];
         case "RO/Porto Velho": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 24), descricao: "Dia de São Francisco de Sales" },
-            // Sexta-feira Santa é feriado nacional e municipal
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 2), descricao: "Aniversário de Porto Velho" },
         ];
         case "RR/Boa Vista": return [
-            { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" },
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 29), descricao: "Dia de São Pedro" },
+            diaDeSaoSebastiao(),
+            diaDeSaoPedro(),
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 9), descricao: "Aniversário de Boa Vista" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeNossaSenhoraDaConceicao(),
         ];
+        case "SC/Balneário Camboriú": return [
+            { tipo: "MUNICIPAL", data: calcularTercaFeiraDeCarnaval(ano), descricao: "Terça-feira de Carnaval" },
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 20), descricao: "Aniversário da cidade" },
+        ];    
+        case "SC/Blumenau": return [
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 2), descricao: "Aniversário da cidade" },
+        ];     
         case "SC/Florianópolis": return [
-            // Sexta-feira Santa e Finados são feriados nacionais e municipais
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
+            diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 23), descricao: "Aniversário de Florianópolis" },
         ];
+        case "SC/Joinville": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 9), descricao: "Aniversário da cidade" },
+            diaDeCorpusChristi(),
+        ]; 
+        case "SP/Barueri": return [
+            diaDeSaoJoao(),
+            diaDeCorpusChristi(),
+            diaDaConscienciaNegra(),
+        ];
         case "SP/Campinas": return [
-            // Sexta-feira Santa é feriado nacional e municipal
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeCorpusChristi(),
+            diaDaConscienciaNegra(),
+            diaDeNossaSenhoraDaConceicao(),
+        ];
+        case "SP/Guarulhos": return [
+            diaDeNossaSenhoraDaConceicao()
+        ];
+        case "SP/Osasco": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 19), descricao: "Emancipação de Osasco" },
+            diaDeCorpusChristi(),
+            diaDeSantoAntonio(),
+        ];
+        case "SP/Ribeirão Preto": return [
+            diaDeSaoSebastiao(),
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 19), descricao: "Dia de Santa Juliana Falconieri" },
+        ];
+        case "SP/Santo André": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário da cidade" },
+            diaDeCorpusChristi(),
+            diaDaConscienciaNegra(),
+        ];
+        case "SP/São Bernardo do Campo": return [
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 20), descricao: "Aniversário da cidade" },
+            diaDaConscienciaNegra(),
+        ];
+        case "SP/São José dos Campos": return [
+            { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 13), descricao: "Dia de São José" },
+            diaDeCorpusChristi(),
+            { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 27), descricao: "Aniversário da cidade" },
         ];
         case "SP/São Paulo": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 25), descricao: "Aniversário de São Paulo" },
-            // Sexta-feira Santa e Finados são feriados nacionais e municipais
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            diaDeCorpusChristi(),
+            diaDaConscienciaNegra(),
         ];
         case "SE/Aracaju": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 17), descricao: "Aniversário de Aracaju" },
-            { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" },
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
+            diaDeCorpusChristi(),
+            diaDeSaoJoao(),
+            diaDeNossaSenhoraDaConceicao(),
         ];
         case "TO/Palmas": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 19), descricao: "Dia de São José" },
-            // Sexta-feira Santa e Finados são feriados nacionais e municipais
             { tipo: "MUNICIPAL", data: new Date(ano, MAIO, 20), descricao: "Aniversário de Palmas" },
         ];
         default: return [];
