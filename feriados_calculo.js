@@ -454,6 +454,15 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio) {
     var feriadosEstaduais = obterFeriadosEstaduais(ano, uf);
     var feriadosMunicipais = obterFeriadosMunicipais(ano, uf, municipio);
 
+    // Gambiarra para tratar Carnaval repetido, por exemplo, no Rio de Janeiro e em Manaus
+    var feriadoCarnavalEstadual = feriadosEstaduais.find(x => x.descricao.includes("Carnaval"));
+    var feriadoCarnavalMunicipal = feriadosMunicipais.find(x => x.descricao.includes("Carnaval"));
+
+    if (feriadoCarnavalEstadual != undefined || feriadoCarnavalMunicipal != undefined) {
+        // se houver feriado municipal ou estadual de Carnaval, vamos sobrepôr estes ao feriado nacional.
+        feriadosNacionais = feriadosNacionais.filter(x => x.descricao.includes("Carnaval") == false);
+    }
+
     return feriadosNacionais
         .concat(feriadosEstaduais)
         .concat(feriadosMunicipais)

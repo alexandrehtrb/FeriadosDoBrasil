@@ -24,7 +24,11 @@ Date.prototype.addDays = function (days) {
     return new Date(this.valueOf() + 1000 * 60 * 60 * 24 * days);
 }
 
-Date.prototype.getNextWeekday = function(nextDayOfWeek) {
+Date.prototype.isEqualTo = function (otherDate) {
+    return this.getTime() === otherDate.getTime();
+}
+
+Date.prototype.getNextWeekday = function (nextDayOfWeek) {
     var thisDayOfWeek = this.getDay();
     if (thisDayOfWeek == nextDayOfWeek) {
         return this;
