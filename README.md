@@ -11,4 +11,4 @@ Todo o cálculo de feriados é feito no próprio frontend.
 
 ## Contribuindo
 
-Sinta-se livre para abrir pull requests e issues!
+Sinta-se livre para abrir pull requests e issues, por exemplo incluindo feriados municipais da sua cidade!

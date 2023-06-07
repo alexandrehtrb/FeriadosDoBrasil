@@ -25,7 +25,7 @@ const estados = [
     { acronimo: "RO", nome: "Rondônia", cidades: ["Porto Velho"] },
     { acronimo: "RR", nome: "Roraima", cidades: ["Boa Vista"] },
     { acronimo: "SC", nome: "Santa Catarina", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Joinville"] },
-    { acronimo: "SP", nome: "São Paulo", cidades: ["Barueri", "Campinas", "Guarulhos", "Osasco", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São José dos Campos", "São Paulo"] },
+    { acronimo: "SP", nome: "São Paulo", cidades: ["Barueri", "Campinas", "Guarulhos", "Osasco", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo"] },
     { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju"] },
     { acronimo: "TO", nome: "Tocantins", cidades: ["Palmas"] }
 ];
@@ -424,6 +424,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 20), descricao: "Aniversário da cidade" },
             diaDaConscienciaNegra(),
+        ];
+        case "SP/São Carlos": return [
+          { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
+          { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 15), descricao: "Dia do Professor (somente para os professores da rede municipal de ensino)" },
+          { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 4), descricao: "Aniversário de São Carlos" },
+          diaDeCorpusChristi(),
         ];
         case "SP/São José dos Campos": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 13), descricao: "Dia de São José" },
