@@ -25,7 +25,7 @@ const estados = [
     { acronimo: "RO", nome: "Rondônia", cidades: ["Porto Velho"] },
     { acronimo: "RR", nome: "Roraima", cidades: ["Boa Vista"] },
     { acronimo: "SC", nome: "Santa Catarina", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Joinville"] },
-    { acronimo: "SP", nome: "São Paulo", cidades: ["Barueri", "Campinas", "Guarulhos", "Osasco", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São José dos Campos", "São Paulo", "São Carlos"] },
+    { acronimo: "SP", nome: "São Paulo", cidades: ["Barueri", "Campinas", "Guarulhos", "Osasco", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo"] },
     { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju"] },
     { acronimo: "TO", nome: "Tocantins", cidades: ["Palmas"] }
 ];
