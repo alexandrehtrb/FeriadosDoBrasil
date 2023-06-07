@@ -436,21 +436,9 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDaConscienciaNegra(),
         ];
         case "SP/São Carlos": return [
-            { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 2), descricao: "(ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 20), descricao: "Carnaval (ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 21), descricao: "Carnaval (ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 22), descricao: "Cinzas (ponto facultativo até as 12 horas)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 7), descricao: "Paixão de Cristo (feriado municipal)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 9), descricao: "(ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 14), descricao: "(ponto facultativo)" },
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia (feriado municipal)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "(ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 13), descricao: "(ponto facultativo)" },
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 15), descricao: "Dia do Professor (feriado municipal, somente para os professores da rede municipal de ensino)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 28), descricao: "Dia do Funcionário Público (ponto facultativo)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 3), descricao: "(ponto facultativo)" },
             { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 4), descricao: "Aniversário de São Carlos (feriado municipal)" },
-            { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 26), descricao: "(ponto facultativo)" },
             diaDeCorpusChristi(),
         ];
         case "SE/Aracaju": return [
