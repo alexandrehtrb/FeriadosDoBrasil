@@ -230,27 +230,13 @@ function obterFeriadosEstaduais(ano, uf) {
 
 function obterFeriadosMunicipais(ano, uf, municipio) {
     // feriados mais comuns
-    const diaDeSaoSebastiao = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" };
-    };
-    const diaDeCorpusChristi = function () {
-        return { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" };
-    };
-    const diaDeSantoAntonio = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 13), descricao: "Dia de Santo Antônio" };
-    };
-    const diaDeSaoJoao = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" };
-    };
-    const diaDeSaoPedro = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 29), descricao: "Dia de São Pedro" };
-    };
-    const diaDeNossaSenhoraDaConceicao = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" };
-    };
-    const diaDaConscienciaNegra = function () {
-        return { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" };
-    };
+    const diaDeSaoSebastiao = { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" };
+    const diaDeCorpusChristi = { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" };
+    const diaDeSantoAntonio = { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 13), descricao: "Dia de Santo Antônio" };
+    const diaDeSaoJoao = { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" };
+    const diaDeSaoPedro = { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 29), descricao: "Dia de São Pedro" };
+    const diaDeNossaSenhoraDaConceicao = { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" };
+    //const diaDaConscienciaNegra = { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" };
 
     var ufMunicipio = uf + "/" + municipio;
     switch (ufMunicipio) {
@@ -258,9 +244,9 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             { tipo: "MUNICIPAL", data: new Date(ano, DEZEMBRO, 28), descricao: "Aniversário de Rio Branco" },
         ];
         case "AL/Maceió": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 27), descricao: "Dia de Nossa Senhora dos Prazeres" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "AP/Macapá": return [
             { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 4), descricao: "Aniversário de Macapá" },
@@ -270,13 +256,13 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 24), descricao: "Aniversário de Manaus" },
         ];
         case "BA/Salvador": return [
-            diaDeCorpusChristi(),
-            diaDeSaoJoao(),
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeCorpusChristi,
+            diaDeSaoJoao,
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "CE/Fortaleza": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 13), descricao: "Aniversário de Fortaleza" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Assunção" },
         ];
         case "DF/Brasília": return [
@@ -284,51 +270,51 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // além disso, Brasília não possui municípios, por ser um distrito federal.
         ];
         case "ES/Vitória": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Dia de Nossa Senhora da Vitória" },
         ];
         case "GO/Goiânia": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MAIO, 24), descricao: "Dia de Nossa Senhora Auxiliadora" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 24), descricao: "Aniversário de Goiânia" },
         ];
         case "MA/São Luís": return [
-            diaDeSaoPedro(),
+            diaDeSaoPedro,
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Natividade de Nossa Senhora" },
             { tipo: "MUNICIPAL", data: calcularDiaDoComercio(ano), descricao: "Dia do Comércio (apenas para comerciantes)" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "MT/Cuiabá": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário de Cuiabá" },
-            diaDeCorpusChristi(),
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeCorpusChristi,
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "MS/Campo Grande": return [
-            diaDeCorpusChristi(),
-            diaDeSantoAntonio(),
+            diaDeCorpusChristi,
+            diaDeSantoAntonio,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 26), descricao: "Aniversário de Campo Grande" },
         ];
         case "MG/Belo Horizonte": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Assunção" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "MG/Uberlândia": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Dia de Nossa Senhora da Abadia" },
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 31), descricao: "Dia de São Raimundo" }
         ];
         case "PA/Belém": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 12), descricao: "Aniversário de Belém" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "PB/João Pessoa": return [
-            diaDeSaoJoao(),
+            diaDeSaoJoao,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 5), descricao: "Aniversário de João Pessoa" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "PR/Curitiba": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 8), descricao: "Dia de Nossa Senhora da Luz dos Pinhais" },
         ];
         case "PE/Jaboatão dos Guararapes": return [
@@ -338,22 +324,22 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         ];
         case "PE/Recife": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 16), descricao: "Dia de Nossa Senhora do Carmo" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "PI/Teresina": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 16), descricao: "Aniversário de Teresina" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "RJ/Duque de Caxias": return [
-            diaDeCorpusChristi(),
-            diaDeSantoAntonio(),
+            diaDeCorpusChristi,
+            diaDeSantoAntonio,
         ];
         case "RJ/Nova Iguaçu": return [
-            diaDeSantoAntonio(),
+            diaDeSantoAntonio,
         ];
         case "RJ/Rio de Janeiro": return [
-            diaDeSaoSebastiao(),
+            diaDeSaoSebastiao,
         ];
         case "RJ/São Gonçalo": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 10), descricao: "Dia de São Gonçalo" },
@@ -361,7 +347,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         ];
         case "RN/Natal": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 6), descricao: "Dia de Santos Reis" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 21), descricao: "Dia de Nossa Senhora da Apresentação" },
         ];
         case "RS/Porto Alegre": return [
@@ -372,82 +358,82 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 2), descricao: "Aniversário de Porto Velho" },
         ];
         case "RR/Boa Vista": return [
-            diaDeSaoSebastiao(),
-            diaDeSaoPedro(),
+            diaDeSaoSebastiao,
+            diaDeSaoPedro,
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 9), descricao: "Aniversário de Boa Vista" },
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "SC/Balneário Camboriú": return [
             { tipo: "MUNICIPAL", data: calcularTercaFeiraDeCarnaval(ano), descricao: "Terça-feira de Carnaval" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 20), descricao: "Aniversário da cidade" },
         ];    
         case "SC/Blumenau": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 2), descricao: "Aniversário da cidade" },
         ];     
         case "SC/Florianópolis": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 23), descricao: "Aniversário de Florianópolis" },
         ];
         case "SC/Joinville": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 9), descricao: "Aniversário da cidade" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
         ]; 
         case "SP/Barueri": return [
-            diaDeSaoJoao(),
-            diaDeCorpusChristi(),
-            //diaDaConscienciaNegra(), // estadual e municipal
+            diaDeSaoJoao,
+            diaDeCorpusChristi,
+            //diaDaConscienciaNegra, // estadual e municipal
         ];
         case "SP/Campinas": return [
-            diaDeCorpusChristi(),
-            //diaDaConscienciaNegra(),  // estadual e municipal
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeCorpusChristi,
+            //diaDaConscienciaNegra,  // estadual e municipal
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "SP/Guarulhos": return [
-            diaDeNossaSenhoraDaConceicao()
+            diaDeNossaSenhoraDaConceicao
         ];
         case "SP/Osasco": return [
             { tipo: "MUNICIPAL", data: new Date(ano, FEVEREIRO, 19), descricao: "Emancipação de Osasco" },
-            diaDeCorpusChristi(),
-            diaDeSantoAntonio(),
+            diaDeCorpusChristi,
+            diaDeSantoAntonio,
         ];
         case "SP/Ribeirão Preto": return [
-            diaDeSaoSebastiao(),
-            diaDeCorpusChristi(),
+            diaDeSaoSebastiao,
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 19), descricao: "Dia de Santa Juliana Falconieri" },
         ];
         case "SP/Santo André": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário da cidade" },
-            diaDeCorpusChristi(),
-            //diaDaConscienciaNegra(), // estadual e municipal
+            diaDeCorpusChristi,
+            //diaDaConscienciaNegra, // estadual e municipal
         ];
         case "SP/São Bernardo do Campo": return [
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 20), descricao: "Aniversário da cidade" },
-            //diaDaConscienciaNegra(), // estadual e municipal
+            //diaDaConscienciaNegra, // estadual e municipal
         ];
         case "SP/São Carlos": return [
           { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
           { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 15), descricao: "Dia do Professor (somente para os professores da rede municipal de ensino)" },
           { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 4), descricao: "Aniversário de São Carlos" },
-          diaDeCorpusChristi(),
+          diaDeCorpusChristi,
         ];
         case "SP/São José dos Campos": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 13), descricao: "Dia de São José" },
-            diaDeCorpusChristi(),
+            diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 27), descricao: "Aniversário da cidade" },
         ];
         case "SP/São Paulo": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 25), descricao: "Aniversário de São Paulo" },
-            diaDeCorpusChristi(),
-            //diaDaConscienciaNegra(), // estadual e municipal
+            diaDeCorpusChristi,
+            //diaDaConscienciaNegra, // estadual e municipal
         ];
         case "SE/Aracaju": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 17), descricao: "Aniversário de Aracaju" },
-            diaDeCorpusChristi(),
-            diaDeSaoJoao(),
-            diaDeNossaSenhoraDaConceicao(),
+            diaDeCorpusChristi,
+            diaDeSaoJoao,
+            diaDeNossaSenhoraDaConceicao,
         ];
         case "TO/Palmas": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 19), descricao: "Dia de São José" },
