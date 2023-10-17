@@ -211,7 +211,9 @@ function obterFeriadosEstaduais(ano, uf) {
             { tipo: "ESTADUAL", data: deslocarFeriadoDeSantaCatarina(new Date(ano, NOVEMBRO, 25)), descricao: "Dia de Santa Catarina de Alexandria" },
         ];
         case "SP": return [
+            // PL 370/2023 torna Dia da Consciência Negra feriado estadual em SP
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 9), descricao: "Revolução Constitucionalista de 1932" },
+            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "SE": return [
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 8), descricao: "Emancipação política de Sergipe" },
@@ -395,11 +397,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/Barueri": return [
             diaDeSaoJoao(),
             diaDeCorpusChristi(),
-            diaDaConscienciaNegra(),
+            //diaDaConscienciaNegra(), // estadual e municipal
         ];
         case "SP/Campinas": return [
             diaDeCorpusChristi(),
-            diaDaConscienciaNegra(),
+            //diaDaConscienciaNegra(),  // estadual e municipal
             diaDeNossaSenhoraDaConceicao(),
         ];
         case "SP/Guarulhos": return [
@@ -418,12 +420,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/Santo André": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário da cidade" },
             diaDeCorpusChristi(),
-            diaDaConscienciaNegra(),
+            //diaDaConscienciaNegra(), // estadual e municipal
         ];
         case "SP/São Bernardo do Campo": return [
             diaDeCorpusChristi(),
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 20), descricao: "Aniversário da cidade" },
-            diaDaConscienciaNegra(),
+            //diaDaConscienciaNegra(), // estadual e municipal
         ];
         case "SP/São Carlos": return [
           { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
@@ -439,7 +441,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/São Paulo": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 25), descricao: "Aniversário de São Paulo" },
             diaDeCorpusChristi(),
-            diaDaConscienciaNegra(),
+            //diaDaConscienciaNegra(), // estadual e municipal
         ];
         case "SE/Aracaju": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 17), descricao: "Aniversário de Aracaju" },
