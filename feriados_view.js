@@ -7,11 +7,14 @@ function setupView(tela) {
         slEstado2 = document.getElementById("slEstado2"),
         slCidade = document.getElementById("slCidade"),
         slCidade2 = document.getElementById("slCidade2"),
+        inpAno = document.getElementById("inpAno"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade");
 
     // setup para ambas as telas: calendário e tabela
     atualizarListaDeEstados(1);
     atualizarListaDeCidades(1);
+    atualizarListaDeEstados(2);
+    atualizarListaDeCidades(2);
     atualizarAnoInicial();
 
     slEstado.addEventListener('change', function () {
@@ -20,33 +23,31 @@ function setupView(tela) {
     slCidade.addEventListener('change', function () {
         validarECalcularFeriados(tela);
     });
-    document.getElementById("inpAno").addEventListener('change', function () {
+    slEstado2.addEventListener('change', function () {
+        atualizarListaDeCidades(2);
+    });
+    slCidade2.addEventListener('change', function () {
+        validarECalcularFeriados(tela);
+    });
+    inpAno.addEventListener('change', function () {
         if (tela == "calendario") {
             atualizarCalendarioComAnoSelecionado();
+        }
+        validarECalcularFeriados(tela);
+    });
+    btnIncluirOutraCidade.addEventListener('click', function () {
+        if (outraCidadeVisivelParaEscolha == false) {
+            btnIncluirOutraCidade.innerText = "Esquecer segunda cidade";
+            outraCidadeVisivelParaEscolha = true;
+        } else  {
+            btnIncluirOutraCidade.innerText = "Incluir outra cidade";
+            outraCidadeVisivelParaEscolha = false;
         }
         validarECalcularFeriados(tela);
     });
 
     // setup exclusivo para tela de calendário
     if (tela == "calendario") {
-        atualizarListaDeEstados(2);
-        atualizarListaDeCidades(2);
-        slEstado2.addEventListener('change', function () {
-            atualizarListaDeCidades(2);
-        });
-        slCidade2.addEventListener('change', function () {
-            validarECalcularFeriados(tela);
-        });
-        btnIncluirOutraCidade.addEventListener('click', function () {
-            if (outraCidadeVisivelParaEscolha == false) {
-                btnIncluirOutraCidade.innerText = "Esquecer segunda cidade";
-                outraCidadeVisivelParaEscolha = true;
-            } else  {
-                btnIncluirOutraCidade.innerText = "Incluir outra cidade";
-                outraCidadeVisivelParaEscolha = false;
-            }
-            validarECalcularFeriados(tela);
-        });
         construirCalendario();
     }
 }
@@ -107,28 +108,32 @@ function validarECalcularFeriados(tela) {
     }
 
     var feriados1 = obterTodosOsFeriadosParaAno(ano, uf1, cidade1);
+    var feriados2;
+    var cidadeEstado1 = uf1 + "/" + cidade1;
+    var cidadeEstado2;
+    if (outraCidadeVisivelParaEscolha) {
+        var uf2 = obterEstadoSelecionado(2);
+        var cidade2 = obterCidadeSelecionada(2);
+        
+        if (uf2 == undefined || uf2 == null || uf2 == "") {
+            return;
+        }
+        if (cidade2 == undefined || cidade2 == null || cidade2 == "") {
+            return;
+        }
+        
+        cidadeEstado2 =  uf2 + "/" + cidade2;
+        feriados2 = obterTodosOsFeriadosParaAno(ano, uf2, cidade2);
+    }
+
+    const mostrarApenasEm1 = (feriados2 == undefined);
+    const feriados = agruparFeriadosComunsOuDistintos(feriados1, feriados2);
 
     if (tela == "calendario") {
-        var feriados2;
-
-        if (outraCidadeVisivelParaEscolha) {
-            var uf2 = obterEstadoSelecionado(2);
-            var cidade2 = obterCidadeSelecionada(2);
-
-            if (uf2 == undefined || uf2 == null || uf2 == "") {
-                return;
-            }
-            if (cidade2 == undefined || cidade2 == null || cidade2 == "") {
-                return;
-            }
-
-            feriados2 = obterTodosOsFeriadosParaAno(ano, uf2, cidade2);
-        }
-
-        atualizarCalendarioComFeriados(feriados1, feriados2);
+        atualizarCalendarioComFeriados(mostrarApenasEm1, feriados);
     }
     else if (tela == "tabela") {
-        montarResumoTabelaDeFeriados(feriados1);
+        montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados, cidadeEstado1, cidadeEstado2);
     }
 }
 
@@ -199,8 +204,17 @@ function atualizarListaDeCidades(numSelecao) {
     }
 }
 
-function montarResumoTabelaDeFeriados(feriados) {
+function montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados, cidadeEstado1, cidadeEstado2) {
     document.getElementById("cardFeriados").style.visibility = "visible";
+
+    const mapearGrupoParaTabela = (grupo) =>
+    {
+        switch (grupo) {
+            case "comum" : return "Ambas";
+            case "apenasEm1" : return cidadeEstado1;
+            case "apenasEm2" : return cidadeEstado2;
+        }
+    }
 
     var bodyTabela = "";
     feriados.forEach(f => {
@@ -208,7 +222,7 @@ function montarResumoTabelaDeFeriados(feriados) {
             + "<td>" + f.data.toLocaleDateString("pt-BR", { month: "long", day: "numeric" }) + "</td>"
             + "<td>" + f.data.toLocaleDateString("pt-BR", { weekday: "long" }) + "</td>"
             + "<td>" + f.descricao + "</td>"
-            + "<td>" + mapearTipoFeriadoPorExtenso(f.tipo) + "</td>"
+            + "<td>" + (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(f.tipo) : mapearGrupoParaTabela(f.grupo)) + "</td>"
             + "<tr/>";
     });
     document.getElementById("tbodyTabelaFeriados").innerHTML = bodyTabela;
@@ -218,11 +232,8 @@ function atualizarCalendarioComAnoSelecionado() {
     calendar.setYear(obterAnoSelecionado());
 }
 
-function atualizarCalendarioComFeriados(feriados1, feriados2) {
+function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
     document.getElementById("cardCalendario").style.visibility = "visible";
-
-    const mostrarApenasEm1 = (feriados2 == undefined);
-    const feriados = agruparFeriadosComunsOuDistintos(feriados1, feriados2);
 
     const escolherCorDoFeriado = function (x) {
         switch (x.grupo) {
@@ -295,7 +306,10 @@ function agruparFeriadosComunsOuDistintos(feriados1, feriados2) {
         }
     }
 
-    return feriadosComuns.concat(feriadosApenasEm1).concat(feriadosApenasEm2);
+    return feriadosComuns
+            .concat(feriadosApenasEm1)
+            .concat(feriadosApenasEm2)
+            .sort((a, b) => a.data - b.data);
 }
 
 function obterAnoSelecionado() {

@@ -84,6 +84,24 @@
         <input type="number" id="inpAno" class="form-control" style="max-width: 120px;" placeholder="Ano" />
       </div>
     </div>
+
+    <div class="row row-cols-lg-auto g-3 align-items-center" style="margin-top:4px;">
+      <div class="col-12">
+        <button id="btnIncluirOutraCidade" class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEstadoCidade2" aria-expanded="false" aria-controls="collapseEstadoCidade2">
+          Incluir outra cidade
+        </button>
+      </div>
+      <div class="row row-cols-lg-auto g-2 align-items-center collapse collapse-horizontal" id="collapseEstadoCidade2">
+        <div class="col-12">
+          <label class="visually-hidden" for="slEstado2">Estado</label>
+          <select class="form-select" style="max-width: 240px;" id="slEstado2"></select>
+        </div>
+        <div class="col-12">
+          <label class="visually-hidden" for="slCidade2">Cidade</label>
+          <select class="form-select" style="max-width: 240px;" id="slCidade2"></select>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="cardFeriados" class="card text-center" style="margin-top:24px;margin-bottom:48px;visibility:hidden;">
@@ -93,7 +111,7 @@
           <th scope="col">Data</th>
           <th scope="col">Dia da semana</th>
           <th scope="col">Nome</th>
-          <th scope="col">Tipo</th>
+          <th scope="col">Abrangência</th>
         </tr>
       </thead>
       <tbody id="tbodyTabelaFeriados"></tbody>
