@@ -9,8 +9,9 @@ function setupView(tela) {
         slCidade2 = document.getElementById("slCidade2"),
         inpAno = document.getElementById("inpAno"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
-        btnExportarParaJson = document.getElementById("btnExportarParaJson");
-        btnExportarParaCsv = document.getElementById("btnExportarParaCsv");
+        btnExportarParaJson = document.getElementById("btnExportarParaJson"),
+        btnExportarParaCsv = document.getElementById("btnExportarParaCsv"),
+        divPeriodoSelecionado = document.getElementById("divPeriodoSelecionado");
 
     // setup para ambas as telas: calendário e tabela
     atualizarListaDeEstados(1);
@@ -51,6 +52,9 @@ function setupView(tela) {
     // setup exclusivo para tela de calendário
     if (tela == "calendario") {
         construirCalendario();
+        divPeriodoSelecionado.addEventListener('click', function () {
+            divPeriodoSelecionado.style.visibility = "collapse";
+        });
     }
     if (tela == "tabela") {
         btnExportarParaJson.addEventListener('click', function () {
@@ -106,10 +110,7 @@ function construirCalendario() {
             const totalDias = p.startDate.countDaysUpTo(p.endDate);
             const txt = totalDias + " dias: de " + dataInicialStr + " a " + dataFinalStr;
             divPeriodoSelecionado.innerText = txt;
-            divPeriodoSelecionado.style.visibility = "visible";
-            divPeriodoSelecionado.addEventListener('click', function () {
-                divPeriodoSelecionado.style.visibility = "collapse";
-            });
+            divPeriodoSelecionado.style.visibility = "visible";            
         }
     });
 }
