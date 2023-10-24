@@ -98,6 +98,18 @@ function construirCalendario() {
                 tooltip.destroy();
                 tooltip = null;
             }
+        },
+        selectRange: function (p) {
+            const divPeriodoSelecionado = document.getElementById("divPeriodoSelecionado");
+            const dataInicialStr = p.startDate.toLocaleDateString().slice(0, 5);
+            const dataFinalStr = p.endDate.toLocaleDateString().slice(0, 5);
+            const totalDias = p.startDate.countDaysUpTo(p.endDate);
+            const txt = totalDias + " dias: de " + dataInicialStr + " a " + dataFinalStr;
+            divPeriodoSelecionado.innerText = txt;
+            divPeriodoSelecionado.style.visibility = "visible";
+            divPeriodoSelecionado.addEventListener('click', function () {
+                divPeriodoSelecionado.style.visibility = "collapse";
+            });
         }
     });
 }

@@ -38,3 +38,8 @@ Date.prototype.getNextWeekday = function (nextDayOfWeek) {
         return this.addDays(daysToAdd);
     }
 }
+
+Date.prototype.countDaysUpTo = function (endDate) {
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    return Math.round(Math.abs((endDate - this) / oneDay)) + 1;
+}
