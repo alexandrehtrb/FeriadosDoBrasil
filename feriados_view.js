@@ -1,6 +1,9 @@
 let tooltip = null;
 let calendar = null;
 let outraCidadeVisivelParaEscolha = false;
+let periodo1 = null;
+let periodo2 = null;
+let periodo3 = null;
 
 function setupView(tela) {
     const slEstado = document.getElementById("slEstado"),
@@ -11,7 +14,7 @@ function setupView(tela) {
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
         btnExportarParaJson = document.getElementById("btnExportarParaJson"),
         btnExportarParaCsv = document.getElementById("btnExportarParaCsv"),
-        divPeriodoSelecionado = document.getElementById("divPeriodoSelecionado");
+        divPeriodoSelecionado1 = document.getElementById("divPeriodoSelecionado1");
 
     // setup para ambas as telas: calendário e tabela
     atualizarListaDeEstados(1);
@@ -52,8 +55,20 @@ function setupView(tela) {
     // setup exclusivo para tela de calendário
     if (tela == "calendario") {
         construirCalendario();
-        divPeriodoSelecionado.addEventListener('click', function () {
-            divPeriodoSelecionado.style.visibility = "collapse";
+        divPeriodoSelecionado1.addEventListener('click', function () {
+            divPeriodoSelecionado1.style.visibility = "collapse";
+            periodo1 = null;
+            validarECalcularFeriados(tela);
+        });
+        divPeriodoSelecionado2.addEventListener('click', function () {
+            divPeriodoSelecionado2.style.visibility = "collapse";
+            periodo2 = null;
+            validarECalcularFeriados(tela);
+        });
+        divPeriodoSelecionado3.addEventListener('click', function () {
+            divPeriodoSelecionado3.style.visibility = "collapse";
+            periodo3 = null;
+            validarECalcularFeriados(tela);
         });
     }
     if (tela == "tabela") {
@@ -104,13 +119,7 @@ function construirCalendario() {
             }
         },
         selectRange: function (p) {
-            const divPeriodoSelecionado = document.getElementById("divPeriodoSelecionado");
-            const dataInicialStr = p.startDate.toLocaleDateString().slice(0, 5);
-            const dataFinalStr = p.endDate.toLocaleDateString().slice(0, 5);
-            const totalDias = p.startDate.countDaysUpTo(p.endDate);
-            const txt = totalDias + " dias: de " + dataInicialStr + " a " + dataFinalStr;
-            divPeriodoSelecionado.innerText = txt;
-            divPeriodoSelecionado.style.visibility = "visible";            
+            marcarPeriodoSelecionadoNoCalendario(p);
         }
     });
 }
@@ -260,6 +269,56 @@ function atualizarCalendarioComAnoSelecionado() {
     calendar.setYear(obterAnoSelecionado());
 }
 
+function marcarPeriodoSelecionadoNoCalendario(p) {
+    const dataInicialStr = p.startDate.toLocaleDateString().slice(0, 5);
+    const dataFinalStr = p.endDate.toLocaleDateString().slice(0, 5);
+    const totalDias = p.startDate.countDaysUpTo(p.endDate);
+    const txt = totalDias + " dias: de " + dataInicialStr + " a " + dataFinalStr;
+    const periodo = { qtdDias: totalDias, descricao: ("de " + dataInicialStr + " a " + dataFinalStr), startDate: p.startDate, endDate: p.endDate };
+
+    var div = null;
+    if (periodo1 == null) {
+        periodo1 = periodo;
+        div = document.getElementById("divPeriodoSelecionado1");
+    }
+    else if (periodo2 == null) {
+        periodo2 = periodo;
+        div = document.getElementById("divPeriodoSelecionado2");
+    }
+    else if (periodo3 == null) {
+        periodo3 = periodo;
+        div = document.getElementById("divPeriodoSelecionado3");
+    }
+
+    div.innerText = txt;
+    div.style.visibility = "visible";
+    validarECalcularFeriados("calendario");
+}
+
+function obterPeriodosSelecionadosParaCalendario() {
+    var periodos = [];
+
+    if (periodo1 != null && periodo1 != undefined) {
+        periodos.push(periodo1);
+    }
+    if (periodo2 != null && periodo2 != undefined) {
+        periodos.push(periodo2);
+    }
+    if (periodo3 != null && periodo3 != undefined) {
+        periodos.push(periodo3);
+    }
+
+    return periodos.map(function (x) {
+        return {
+            name: "" + x.qtdDias + " dias",
+            details: x.descricao,
+            color: "#ffe566",
+            startDate: x.startDate,
+            endDate: x.endDate
+        };
+    });
+}
+
 function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
     document.getElementById("cardCalendario").style.visibility = "visible";
 
@@ -271,7 +330,9 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
         }
     };
 
-    var feriadosCalendario = feriados.map(function (x) {
+    var periodos = obterPeriodosSelecionadosParaCalendario();
+
+    periodos = periodos.concat(feriados.map(function (x) {
         return {
             name: (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(x.tipo) : x.cidadeBarraEstado.join(", ")),
             details: x.descricao.join(", "),
@@ -279,9 +340,9 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
             startDate: x.data,
             endDate: x.data
         };
-    });
+    }));
 
-    calendar.setDataSource(feriadosCalendario);
+    calendar.setDataSource(periodos);
 }
 
 function agruparFeriadosComunsOuDistintos(feriados1, feriados2) {
@@ -432,10 +493,10 @@ function exportarFeriadosParaArquivoCsv(feriados, ano, cidadeEstado1, cidadeEsta
 
 function converterJsonFeriadosParaCsv(feriados) {
     var csv = "\"tipo\",\"grupo\",\"data\",\"descricao\",\"cidadeEstado1\",\"cidadeEstado2\"\n";
-    
+
     const converterDataParaString = (data) => {
         const offset = data.getTimezoneOffset();
-        data = new Date(data.getTime() - (offset*60*1000));
+        data = new Date(data.getTime() - (offset * 60 * 1000));
         return data.toISOString().split('T')[0];
     };
 
