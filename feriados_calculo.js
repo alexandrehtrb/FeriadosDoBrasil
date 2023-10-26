@@ -72,7 +72,7 @@ function calcularDiaDoComercio(ano) {
     return terceiraSegundaFeiraOutubro;
 }
 
-function deslocarFeriadoDoAcre(dataOriginal) {
+function deslocarFeriadoEstadualDoAcre(dataOriginal) {
     /*
     Por meio da lei estadual nº 2.247/2009, os feriados estaduais que caírem entre as terças e quintas-feiras
     são comemorados, por adiamento, nas sextas-feiras, à exceção do feriado alusivo ao aniversário do estado do Acre.
@@ -87,7 +87,7 @@ function deslocarFeriadoDoAcre(dataOriginal) {
     }
 }
 
-function deslocarFeriadoDeSantaCatarina(dataOriginal) {
+function deslocarFeriadoEstadualDeSantaCatarina(dataOriginal) {
     /*
     Caso o dia 11 de agosto e o 25 de novembro coincidirem com dias úteis da semana,
     os feriados e os eventos alusivos às datas são transferidos para o domingo subsequente.
@@ -117,11 +117,11 @@ function obterFeriadosNacionais(ano) {
 function obterFeriadosEstaduais(ano, uf) {
     switch (uf) {
         case "AC": return [
-            { tipo: "ESTADUAL", data: deslocarFeriadoDoAcre(new Date(ano, JANEIRO, 23)), descricao: "Dia do evangélico" },
-            { tipo: "ESTADUAL", data: deslocarFeriadoDoAcre(new Date(ano, MARCO, 8)), descricao: "Dia Internacional da Mulher" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDoAcre(new Date(ano, JANEIRO, 23)), descricao: "Dia do evangélico" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDoAcre(new Date(ano, MARCO, 8)), descricao: "Dia Internacional da Mulher" },
             { tipo: "ESTADUAL", data: new Date(ano, JUNHO, 15), descricao: "Aniversário do estado" },
-            { tipo: "ESTADUAL", data: deslocarFeriadoDoAcre(new Date(ano, SETEMBRO, 5)), descricao: "Dia da Amazônia" },
-            { tipo: "ESTADUAL", data: deslocarFeriadoDoAcre(new Date(ano, NOVEMBRO, 17)), descricao: "Assinatura do Tratado de Petrópolis" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDoAcre(new Date(ano, SETEMBRO, 5)), descricao: "Dia da Amazônia" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDoAcre(new Date(ano, NOVEMBRO, 17)), descricao: "Assinatura do Tratado de Petrópolis" },
         ];
         case "AL": return [
             { tipo: "ESTADUAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" },
@@ -207,8 +207,8 @@ function obterFeriadosEstaduais(ano, uf) {
             { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "SC": return [
-            { tipo: "ESTADUAL", data: deslocarFeriadoDeSantaCatarina(new Date(ano, AGOSTO, 11)), descricao: "Dia de Santa Catarina (criação da capitania, separando-se de São Paulo)" },
-            { tipo: "ESTADUAL", data: deslocarFeriadoDeSantaCatarina(new Date(ano, NOVEMBRO, 25)), descricao: "Dia de Santa Catarina de Alexandria" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDeSantaCatarina(new Date(ano, AGOSTO, 11)), descricao: "Dia de Santa Catarina (criação da capitania, separando-se de São Paulo)" },
+            { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDeSantaCatarina(new Date(ano, NOVEMBRO, 25)), descricao: "Dia de Santa Catarina de Alexandria" },
         ];
         case "SP": return [
             // PL 370/2023 torna Dia da Consciência Negra feriado estadual em SP
@@ -231,6 +231,7 @@ function obterFeriadosEstaduais(ano, uf) {
 function obterFeriadosMunicipais(ano, uf, municipio) {
     // feriados mais comuns
     const diaDeSaoSebastiao = { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 20), descricao: "Dia de São Sebastião" };
+    const diaDeSaoJose = { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 19), descricao: "Dia de São José" };
     const diaDeCorpusChristi = { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" };
     const diaDeSantoAntonio = { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 13), descricao: "Dia de Santo Antônio" };
     const diaDeSaoJoao = { tipo: "MUNICIPAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" };
@@ -420,7 +421,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
           diaDeCorpusChristi,
         ];
         case "SP/São José dos Campos": return [
-            { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 13), descricao: "Dia de São José" },
+            diaDeSaoJose,
             diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 27), descricao: "Aniversário da cidade" },
         ];
@@ -436,7 +437,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeNossaSenhoraDaConceicao,
         ];
         case "TO/Palmas": return [
-            { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 19), descricao: "Dia de São José" },
+            diaDeSaoJose,
             { tipo: "MUNICIPAL", data: new Date(ano, MAIO, 20), descricao: "Aniversário de Palmas" },
         ];
         default: return [];
