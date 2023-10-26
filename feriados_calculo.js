@@ -463,3 +463,15 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio) {
         .concat(feriadosMunicipais)
         .sort((a, b) => a.data - b.data);
 }
+
+function obterFinaisDeSemanaParaAno(ano) {
+    const finaisDeSemana = [];
+    var x = new Date(ano, JANEIRO, 1);
+    while (x.getFullYear() == ano) {
+        if (x.getDay() == SABADO || x.getDay() == DOMINGO) {
+            finaisDeSemana.push(x);
+        }
+        x = x.addDays(1);
+    }
+    return finaisDeSemana;
+}

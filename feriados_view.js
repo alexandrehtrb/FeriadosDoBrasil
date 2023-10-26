@@ -330,7 +330,17 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
         }
     };
 
-    var periodos = obterPeriodosSelecionadosParaCalendario();
+    var periodos = obterFinaisDeSemanaParaAno(obterAnoSelecionado()).map(function(x) {
+        return {
+            name: "Fim de semana",
+            details: x.getDay() == SABADO ? "Sábado" : "Domingo",
+            color: "#e6ffcc",
+            startDate: x,
+            endDate: x
+        };
+    });
+
+    periodos = periodos.concat(obterPeriodosSelecionadosParaCalendario());
 
     periodos = periodos.concat(feriados.map(function (x) {
         return {
