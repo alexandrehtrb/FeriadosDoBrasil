@@ -11,6 +11,7 @@ function setupView(tela) {
         slCidade = document.getElementById("slCidade"),
         slCidade2 = document.getElementById("slCidade2"),
         inpAno = document.getElementById("inpAno"),
+        inpMarcarEmendas = document.getElementById("inpMarcarEmendas"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
         btnExportarParaJson = document.getElementById("btnExportarParaJson"),
         btnExportarParaCsv = document.getElementById("btnExportarParaCsv"),
@@ -39,6 +40,9 @@ function setupView(tela) {
         if (tela == "calendario") {
             atualizarCalendarioComAnoSelecionado();
         }
+        validarECalcularFeriados(tela);
+    });
+    inpMarcarEmendas.addEventListener('change', function () {
         validarECalcularFeriados(tela);
     });
     btnIncluirOutraCidade.addEventListener('click', function () {
@@ -139,11 +143,13 @@ function validarECalcularFeriados(saida) {
         return;
     }
 
-    var feriados1 = obterTodosOsFeriadosParaAno(ano, uf1, cidade1);
+    var deveMarcarEmendas = outraCidadeVisivelParaEscolha ? false : obterMarcarEmendas();
+    var feriados1 = obterTodosOsFeriadosParaAno(ano, uf1, cidade1, deveMarcarEmendas);
     var feriados2;
     var cidadeEstado1 = obterCidadeBarraEstadoSelecionados(1);
     var cidadeEstado2;
     if (outraCidadeVisivelParaEscolha) {
+
         var uf2 = obterEstadoSelecionado(2);
         var cidade2 = obterCidadeSelecionada(2);
 
@@ -155,7 +161,7 @@ function validarECalcularFeriados(saida) {
         }
 
         cidadeEstado2 = obterCidadeBarraEstadoSelecionados(2);
-        feriados2 = obterTodosOsFeriadosParaAno(ano, uf2, cidade2);
+        feriados2 = obterTodosOsFeriadosParaAno(ano, uf2, cidade2, false);
     }
 
     const mostrarApenasEm1 = (feriados2 == undefined);
@@ -323,6 +329,8 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
     document.getElementById("cardCalendario").style.visibility = "visible";
 
     const escolherCorDoFeriado = function (x) {
+        if (x.ehEmenda) return "#e6ffcc";
+
         switch (x.grupo) {
             case "comum": return "#9AB8FE";
             case "apenasEm1": return "#00CC4E";
@@ -415,6 +423,10 @@ function agruparFeriadosComunsOuDistintos(feriados1, feriados2) {
         .concat(feriadosApenasEm1)
         .concat(feriadosApenasEm2)
         .sort((a, b) => a.data - b.data);
+}
+
+function obterMarcarEmendas() {
+    return document.getElementById("inpMarcarEmendas").checked;
 }
 
 function obterAnoSelecionado() {

@@ -368,11 +368,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             { tipo: "MUNICIPAL", data: calcularTercaFeiraDeCarnaval(ano), descricao: "Terça-feira de Carnaval" },
             diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, JULHO, 20), descricao: "Aniversário da cidade" },
-        ];    
+        ];
         case "SC/Blumenau": return [
             diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, SETEMBRO, 2), descricao: "Aniversário da cidade" },
-        ];     
+        ];
         case "SC/Florianópolis": return [
             diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 23), descricao: "Aniversário de Florianópolis" },
@@ -380,7 +380,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SC/Joinville": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 9), descricao: "Aniversário da cidade" },
             diaDeCorpusChristi,
-        ]; 
+        ];
         case "SP/Barueri": return [
             diaDeSaoJoao,
             diaDeCorpusChristi,
@@ -415,10 +415,10 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             //diaDaConscienciaNegra, // estadual e municipal
         ];
         case "SP/São Carlos": return [
-          { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
-          { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 15), descricao: "Dia do Professor (somente para os professores da rede municipal de ensino)" },
-          { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 4), descricao: "Aniversário de São Carlos" },
-          diaDeCorpusChristi,
+            { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
+            { tipo: "MUNICIPAL", data: new Date(ano, OUTUBRO, 15), descricao: "Dia do Professor (somente para os professores da rede municipal de ensino)" },
+            { tipo: "MUNICIPAL", data: new Date(ano, NOVEMBRO, 4), descricao: "Aniversário de São Carlos" },
+            diaDeCorpusChristi,
         ];
         case "SP/São José dos Campos": return [
             diaDeSaoJose,
@@ -444,7 +444,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
     }
 }
 
-function obterTodosOsFeriadosParaAno(ano, uf, municipio) {
+function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
     var feriadosNacionais = obterFeriadosNacionais(ano);
     var feriadosEstaduais = obterFeriadosEstaduais(ano, uf);
     var feriadosMunicipais = obterFeriadosMunicipais(ano, uf, municipio);
@@ -458,10 +458,16 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio) {
         feriadosNacionais = feriadosNacionais.filter(x => x.descricao.includes("Carnaval") == false);
     }
 
-    return feriadosNacionais
+    var feriados = feriadosNacionais
         .concat(feriadosEstaduais)
-        .concat(feriadosMunicipais)
-        .sort((a, b) => a.data - b.data);
+        .concat(feriadosMunicipais);
+
+    if (deveMarcarEmendas)
+    {
+        feriados = feriados.concat(obterEmendasDeFeriados(feriados));
+    }
+    
+    return feriados.sort((a, b) => a.data - b.data);
 }
 
 function obterFinaisDeSemanaParaAno(ano) {
@@ -474,4 +480,19 @@ function obterFinaisDeSemanaParaAno(ano) {
         x = x.addDays(1);
     }
     return finaisDeSemana;
+}
+
+function obterEmendasDeFeriados(feriados) {
+    var emendasDeFeriado = [];
+    for (var i = 0; i < feriados.length; i++) {
+        var d = feriados[i].data;
+        // TODO: Considerar emendas entre feriados com 2 dias de diferença entre um e outro
+        if (d.getDay() == TERCA_FEIRA) {
+            emendasDeFeriado.push({ ehEmenda: true, tipo: feriados[i].tipo, data: d.addDays(-1), descricao: "Emenda de feriado" });
+        }
+        else if (d.getDay() == QUINTA_FEIRA) {
+            emendasDeFeriado.push({ ehEmenda: true, tipo: feriados[i].tipo, data: d.addDays(1), descricao: "Emenda de feriado" });
+        }
+    }
+    return emendasDeFeriado;
 }
