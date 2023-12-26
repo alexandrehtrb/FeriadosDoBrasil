@@ -111,6 +111,8 @@ function obterFeriadosNacionais(ano) {
         { tipo: "NACIONAL", data: new Date(ano, OUTUBRO, 28), descricao: "Dia do Servidor Público (ponto facultativo para eles)" },
         { tipo: "NACIONAL", data: new Date(ano, NOVEMBRO, 2), descricao: "Finados" },
         { tipo: "NACIONAL", data: new Date(ano, NOVEMBRO, 15), descricao: "Proclamação da República" },
+        // Dia da Consciência Negra agora é feriado nacional, PL 3268 / 2021
+        { tipo: "NACIONAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         { tipo: "NACIONAL", data: new Date(ano, DEZEMBRO, 25), descricao: "Natal" }
     ];
 }
@@ -135,7 +137,7 @@ function obterFeriadosEstaduais(ano, uf) {
         ];
         case "AM": return [
             { tipo: "ESTADUAL", data: new Date(ano, SETEMBRO, 5), descricao: "Elevação do Amazonas à categoria de província" },
-            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            //{ tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
             { tipo: "ESTADUAL", data: new Date(ano, DEZEMBRO, 8), descricao: "Dia de Nossa Senhora da Conceição" },
         ];
         case "BA": return [
@@ -161,7 +163,7 @@ function obterFeriadosEstaduais(ano, uf) {
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 28), descricao: "Adesão do Maranhão à independência do Brasil" },
         ];
         case "MT": return [
-            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            //{ tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "MS": return [
             { tipo: "ESTADUAL", data: new Date(ano, OUTUBRO, 11), descricao: "Criação do estado" },
@@ -189,7 +191,7 @@ function obterFeriadosEstaduais(ano, uf) {
             { tipo: "ESTADUAL", data: calcularTercaFeiraDeCarnaval(ano), descricao: "Terça-feira de Carnaval" },
             { tipo: "ESTADUAL", data: new Date(ano, ABRIL, 23), descricao: "Dia de São Jorge" },
             { tipo: "ESTADUAL", data: calcularDiaDoComercio(ano), descricao: "Dia do Comércio (apenas para comerciantes e trabalhadores da construção civil)" },
-            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            //{ tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "RN": return [
             { tipo: "ESTADUAL", data: new Date(ano, AGOSTO, 7), descricao: "Dia do Rio Grande do Norte" },
@@ -204,7 +206,7 @@ function obterFeriadosEstaduais(ano, uf) {
         ];
         case "RR": return [
             { tipo: "ESTADUAL", data: new Date(ano, OUTUBRO, 5), descricao: "Criação do estado" },
-            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            //{ tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "SC": return [
             { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDeSantaCatarina(new Date(ano, AGOSTO, 11)), descricao: "Dia de Santa Catarina (criação da capitania, separando-se de São Paulo)" },
@@ -213,7 +215,7 @@ function obterFeriadosEstaduais(ano, uf) {
         case "SP": return [
             // PL 370/2023 torna Dia da Consciência Negra feriado estadual em SP
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 9), descricao: "Revolução Constitucionalista de 1932" },
-            { tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
+            //{ tipo: "ESTADUAL", data: new Date(ano, NOVEMBRO, 20), descricao: "Dia da Consciência Negra" },
         ];
         case "SE": return [
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 8), descricao: "Emancipação política de Sergipe" },
@@ -384,11 +386,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/Barueri": return [
             diaDeSaoJoao,
             diaDeCorpusChristi,
-            //diaDaConscienciaNegra, // estadual e municipal
+            //diaDaConscienciaNegra,
         ];
         case "SP/Campinas": return [
             diaDeCorpusChristi,
-            //diaDaConscienciaNegra,  // estadual e municipal
+            //diaDaConscienciaNegra,
             diaDeNossaSenhoraDaConceicao,
         ];
         case "SP/Guarulhos": return [
@@ -407,12 +409,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/Santo André": return [
             { tipo: "MUNICIPAL", data: new Date(ano, ABRIL, 8), descricao: "Aniversário da cidade" },
             diaDeCorpusChristi,
-            //diaDaConscienciaNegra, // estadual e municipal
+            //diaDaConscienciaNegra,
         ];
         case "SP/São Bernardo do Campo": return [
             diaDeCorpusChristi,
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 20), descricao: "Aniversário da cidade" },
-            //diaDaConscienciaNegra, // estadual e municipal
+            //diaDaConscienciaNegra,
         ];
         case "SP/São Carlos": return [
             { tipo: "MUNICIPAL", data: new Date(ano, AGOSTO, 15), descricao: "Nossa Senhora da Babilônia" },
@@ -428,7 +430,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/São Paulo": return [
             { tipo: "MUNICIPAL", data: new Date(ano, JANEIRO, 25), descricao: "Aniversário de São Paulo" },
             diaDeCorpusChristi,
-            //diaDaConscienciaNegra, // estadual e municipal
+            //diaDaConscienciaNegra,
         ];
         case "SE/Aracaju": return [
             { tipo: "MUNICIPAL", data: new Date(ano, MARCO, 17), descricao: "Aniversário de Aracaju" },
