@@ -1,33 +1,33 @@
 // os estados estão em ordem alfabética considerando o nome por extenso
 
 const estados = [
-    { acronimo: "AC", nome: "Acre", cidades: ["Rio Branco", "Sena Madureira"] },
-    { acronimo: "AL", nome: "Alagoas", cidades: ["Maceió"] },
-    { acronimo: "AP", nome: "Amapá", cidades: ["Macapá", "Oiapoque"] },
-    { acronimo: "AM", nome: "Amazonas", cidades: ["Manaus", "São Gabriel da Cachoeira"] },
+    { acronimo: "AC", nome: "Acre", cidades: ["Cruzeiro do Sul", "Rio Branco", "Sena Madureira"] },
+    { acronimo: "AL", nome: "Alagoas", cidades: ["Arapiraca", "Maceió"] },
+    { acronimo: "AP", nome: "Amapá", cidades: ["Macapá", "Oiapoque", "Santana"] },
+    { acronimo: "AM", nome: "Amazonas", cidades: ["Itacoatiara", "Manaus", "Parintins", "São Gabriel da Cachoeira"] },
     { acronimo: "BA", nome: "Bahia", cidades: ["Feira de Santana", "Luís Eduardo Magalhães", "Salvador", "Xique-Xique"] },
-    { acronimo: "CE", nome: "Ceará", cidades: ["Fortaleza"] },
+    { acronimo: "CE", nome: "Ceará", cidades: ["Caucaia", "Fortaleza", "Juazeiro do Norte"] },
     { acronimo: "DF", nome: "Distrito Federal", cidades: ["Brasília"] },
-    { acronimo: "ES", nome: "Espírito Santo", cidades: ["Vitória"] },
-    { acronimo: "GO", nome: "Goiás", cidades: ["Goiânia"] },
-    { acronimo: "MA", nome: "Maranhão", cidades: ["Imperatriz", "São Luís"] },
+    { acronimo: "ES", nome: "Espírito Santo", cidades: ["Cariacica", "Serra", "Vila Velha", "Vitória"] },
+    { acronimo: "GO", nome: "Goiás", cidades: ["Anápolis", "Aparecida de Goiânia", "Goiânia"] },
+    { acronimo: "MA", nome: "Maranhão", cidades: ["Imperatriz", "São José de Ribamar", "São Luís"] },
     { acronimo: "MT", nome: "Mato Grosso", cidades: ["Cuiabá", "Lucas do Rio Verde", "Sinop", "Sorriso"] },
-    { acronimo: "MS", nome: "Mato Grosso do Sul", cidades: ["Campo Grande"] },
+    { acronimo: "MS", nome: "Mato Grosso do Sul", cidades: ["Campo Grande", "Dourados", "Ponta Porã", "Três Lagoas"] },
     { acronimo: "MG", nome: "Minas Gerais", cidades: ["Belo Horizonte", "Governador Valadares", "Itajubá", "Nova Lima", "Uberaba", "Uberlândia"] },
-    { acronimo: "PA", nome: "Pará", cidades: ["Belém"] },
-    { acronimo: "PB", nome: "Paraíba", cidades: ["Campina Grande", "João Pessoa"] },
+    { acronimo: "PA", nome: "Pará", cidades: ["Ananindeua", "Belém", "Santarém"] },
+    { acronimo: "PB", nome: "Paraíba", cidades: ["Campina Grande", "João Pessoa", "Patos"] },
     { acronimo: "PR", nome: "Paraná", cidades: ["Curitiba", "Foz do Iguaçu", "Londrina", "Maringá"] },
     { acronimo: "PE", nome: "Pernambuco", cidades: ["Garanhuns", "Jaboatão dos Guararapes", "Olinda", "Petrolina", "Recife"] },
-    { acronimo: "PI", nome: "Piauí", cidades: ["Teresina"] },
+    { acronimo: "PI", nome: "Piauí", cidades: ["Parnaíba", "Teresina"] },
     { acronimo: "RJ", nome: "Rio de Janeiro", cidades: ["Duque de Caxias", "Nova Iguaçu", "Rio de Janeiro", "São Gonçalo"] },
     { acronimo: "RN", nome: "Rio Grande do Norte", cidades: ["Caicó", "Mossoró", "Natal"] },
     { acronimo: "RS", nome: "Rio Grande do Sul", cidades: ["Chuí", "Porto Alegre", "Santa Maria", "Uruguaiana"] },
-    { acronimo: "RO", nome: "Rondônia", cidades: ["Porto Velho"] },
+    { acronimo: "RO", nome: "Rondônia", cidades: ["Ji-Paraná", "Porto Velho"] },
     { acronimo: "RR", nome: "Roraima", cidades: ["Boa Vista", "Pacaraima"] },
     { acronimo: "SC", nome: "Santa Catarina", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Itajaí", "Joinville"] },
     { acronimo: "SP", nome: "São Paulo", cidades: ["Araraquara", "Barueri", "Campinas", "Guarulhos", "Osasco", "Paulínia", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo", "Sumaré", "Valinhos", "Vinhedo"] },
-    { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju"] },
-    { acronimo: "TO", nome: "Tocantins", cidades: ["Palmas"] }
+    { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju", "Nossa Senhora do Socorro"] },
+    { acronimo: "TO", nome: "Tocantins", cidades: ["Araguaína", "Palmas"] }
 ];
 
 /**
@@ -130,6 +130,7 @@ function obterFeriadosNacionais(ano) {
         { tipo: "NACIONAL", data: new Date(ano, DEZEMBRO, 25), descricao: "Natal" }
     ];
 }
+
 function obterFeriadosEstaduais(ano, uf) {
     switch (uf) {
         case "AC": return [
@@ -198,7 +199,7 @@ function obterFeriadosEstaduais(ano, uf) {
         ];
         case "PE": return [
             { tipo: "ESTADUAL", data: new Date(ano, MARCO, 6), descricao: "Revolução Pernambucana de 1817" },
-            { tipo: "ESTADUAL", data: new Date(ano, JUNHO, 24), descricao: "Festa de São João (Festa Junina)" },
+            { tipo: "ESTADUAL", data: new Date(ano, JUNHO, 24), descricao: "Dia de São João" },
         ];
         case "PI": return [
             { tipo: "ESTADUAL", data: new Date(ano, OUTUBRO, 19), descricao: "Dia do Piauí" },
@@ -226,8 +227,7 @@ function obterFeriadosEstaduais(ano, uf) {
             { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDeSantaCatarina(new Date(ano, AGOSTO, 11)), descricao: "Dia de Santa Catarina (criação da capitania, separando-se de São Paulo)" },
             { tipo: "ESTADUAL", data: deslocarFeriadoEstadualDeSantaCatarina(new Date(ano, NOVEMBRO, 25)), descricao: "Dia de Santa Catarina de Alexandria" },
         ];
-        case "SP": return [
-            
+        case "SP": return [            
             { tipo: "ESTADUAL", data: new Date(ano, JULHO, 9), descricao: "Revolução Constitucionalista de 1932" },
         ];
         case "SE": return [
@@ -252,7 +252,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
     const diaDeSaoSebastiao = fm(JANEIRO, 20, "Dia de São Sebastião");
     const diaDeSaoJose = fm(MARCO, 19, "Dia de São José");
     const diaDeCorpusChristi = { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano), descricao: "Quinta-feira de Corpus-Christi" };
-    const diaDoSagradoCoracaoDeJesus = { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano).addDays(8), descricao: "Dia do Sagrado Coração de Jesus" };
+    const diaDoSagradoCoracaoDeJesus = { tipo: "MUNICIPAL", data: calcularQuintaFeiraDeCorpusChristi(ano).addDays(8), descricao: "Sagrado Coração de Jesus" };
     const diaDeSantoAntonio = fm(JUNHO, 13, "Dia de Santo Antônio");
     const diaDeSaoJoao = fm(JUNHO, 24, "Dia de São João");
     const diaDeSaoPedro = fm(JUNHO, 29, "Dia de São Pedro");
@@ -265,6 +265,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
 
     var ufMunicipio = uf + "/" + municipio;
     switch (ufMunicipio) {
+        case "AC/Cruzeiro do Sul": return [
+            // https://www.cruzeirodosul.ac.gov.br/paginas/feriados-2025
+            diaDeAssuncaoDeNossaSenhora,
+            fm(SETEMBRO, 27, "Dia da Marcha para Jesus"),
+            aniversarioDaCidade(SETEMBRO, 28)
+        ];
         case "AC/Rio Branco": return [
             aniversarioDaCidade(DEZEMBRO, 28)
         ];
@@ -273,6 +279,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             fm(ABRIL, 8, "Dia da Morte do Padre Paolino Maria Baldassari"),
             aniversarioDaCidade(SETEMBRO, 25),
             diaDeNossaSenhoraDaConceicao
+        ];
+        case "AL/Arapiraca": return [
+            fm(FEVEREIRO, 2, "Dia de Nossa Senhora do Bom Conselho"),
+            diaDeCorpusChristi,
+            fm(OUTUBRO, 30, "Emancipação Política de Arapiraca")
         ];
         case "AL/Maceió": return [
             diaDeCorpusChristi,
@@ -291,9 +302,26 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeAssuncaoDeNossaSenhora,
             fm(DEZEMBRO, 1, "Dia do Laudo Suíço")
         ];
+        case "AP/Santana": return [
+            // https://portal.mpap.mp.br/calendario/
+            diaDeSantAnna,
+            aniversarioDaCidade(DEZEMBRO, 17)
+        ];     
+        case "AM/Itacoatiara": return [
+            // https://www.instagram.com/p/DFIPbnJqAxm/?img_index=3
+            aniversarioDaCidade(ABRIL, 25),
+            diaDeSaoPedro,
+            fm(NOVEMBRO, 1, "Dia de Nossa Senhora do Rosário"),
+        ];
         case "AM/Manaus": return [
             { tipo: "MUNICIPAL", data: calcularTercaFeiraDeCarnaval(ano), descricao: "Terça-feira de Carnaval" },
             aniversarioDaCidade(OUTUBRO, 24)
+        ];
+        case "AM/Parintins": return [
+            // https://www.calendariox.com.br/feriados-parintins-am.html
+            fm(MAIO, 14, "Sagração do Primeiro Bispo de Parintins"),
+            fm(JULHO, 16, "Dia de Nossa Senhora do Carmo"),
+            aniversarioDaCidade(OUTUBRO, 15)
         ];
         case "AM/São Gabriel da Cachoeira": return [
             // https://www.saogabrieldacachoeira.am.leg.br/leis/lei-organica-municipal/Lei%20Organica%20APROVADA.pdf/at_download/file
@@ -326,18 +354,55 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             fm(JULHO, 6, "Emancipação Política de Xique-Xique"),
             diaDeNossaSenhoraDaConceicao
         ];
+        case "CE/Caucaia": return [
+            // https://www.caucaia.ce.gov.br/arquivos/1172/2209.pdf
+            diaDeAssuncaoDeNossaSenhora,
+            aniversarioDaCidade(OUTUBRO, 15)
+        ];        
         case "CE/Fortaleza": return [
             aniversarioDaCidade(ABRIL, 13),
             diaDeCorpusChristi,
             diaDeAssuncaoDeNossaSenhora
         ];
+        case "CE/Juazeiro do Norte": return [
+            // https://www.calendariox.com.br/feriados-juazeiro-do-norte-ce.html
+            fm(MARCO, 24, "Aniversário de Padre Cícero"),
+            aniversarioDaCidade(JULHO, 22),
+            aniversarioDaCidade(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
+        ];
         case "DF/Brasília": return [
             // O aniversário de Brasília cai no dia de Tiradentes,
             // além disso, Brasília não possui municípios, por ser um distrito federal.
+        ];        
+        case "ES/Cariacica": return [
+            // https://www.cariacica.es.gov.br/noticia/ler/89845/-/popup
+            diaDeCorpusChristi,
+            diaDeSaoJoao
         ];
+        case "ES/Serra": return [
+            // https://www.serra.es.gov.br/noticias/serra-divulga-calendario-de-feriados-e-pontos-facultativos-para-2025
+            diaDeSaoPedro,
+            diaDeNossaSenhoraDaConceicao,
+            fm(DEZEMBRO, 26, "Dia do Serrano")
+        ];
+        case "ES/Vila Velha": return [
+            // https://legislacao.vilavelha.es.gov.br/Arquivo/Documents/legislacao/html/D72025.html?identificador=340039003600310039003A004C00
+            diaDeCorpusChristi,
+            fm(MAIO, 23, "Colonização do Solo Espírito-Santense")
+        ];        
         case "ES/Vitória": return [
             diaDeCorpusChristi,
             fm(SETEMBRO, 8, "Dia de Nossa Senhora da Vitória"),
+        ];
+        case "GO/Anápolis": return [
+            // https://sapl.anapolis.go.leg.br/media/sapl/public/normajuridica/1968/3929/3929_texto_integral.pdf
+            diaDeCorpusChristi,
+            aniversarioDaCidade(JULHO, 31)
+        ];
+        case "GO/Aparecida de Goiânia": return [
+            // https://www.calendariox.com.br/feriados-aparecida-de-goiania-go.html
+            aniversarioDaCidade(MAIO, 11),
+            fm(NOVEMBRO, 14, "Emacipação de Aparecida de Goiânia")
         ];
         case "GO/Goiânia": return [
             fm(MAIO, 24, "Dia de Nossa Senhora Auxiliadora"),
@@ -349,6 +414,13 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeCorpusChristi,
             aniversarioDaCidade(JULHO, 16),
             fm(OUTUBRO, 15, "Dia de Santa Tereza D'Ávila"),
+        ];
+        case "MA/São José de Ribamar": return [
+            // https://www.saojosederibamar.ma.gov.br/arquivo/legislacao/decreto_1127_2016
+            diaDeSaoJose,
+            diaDeCorpusChristi,
+            fm(SETEMBRO, 24, "Emancipação Política do Município"),
+            aniversarioDaCidade(DEZEMBRO, 16)
         ];
         case "MA/São Luís": return [
             diaDeSaoPedro,
@@ -380,6 +452,21 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeCorpusChristi,
             diaDeSantoAntonio,
             aniversarioDaCidade(AGOSTO, 26),
+        ];
+        case "MS/Dourados": return [
+            // https://www.calendariox.com.br/feriados-dourados-ms.html
+            diaDeNossaSenhoraDaConceicao,
+            aniversarioDaCidade(DEZEMBRO, 20)
+        ];
+        case "MS/Ponta Porã": return [
+            // https://www.mpms.mp.br/feriados/2025
+            diaDeSaoJose,
+            aniversarioDaCidade(JULHO, 18)
+        ];
+        case "MS/Três Lagoas": return [
+            // https://www.calendariox.com.br/feriados-tres-lagoas-ms.html
+            diaDeSantoAntonio,
+            aniversarioDaCidade(JUNHO, 15)
         ];
         case "MG/Governador Valadares": return [
             // https://www.valadares.mg.gov.br/detalhe-da-legislacao/info/lei-ordinaria-3831-1993/2389
@@ -415,9 +502,20 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeAssuncaoDeNossaSenhora,
             fm(AGOSTO, 31, "Dia de São Raimundo")
         ];
+        case "PA/Ananindeua": return [
+            // https://www.ananindeua.pa.gov.br/midias/legislacao/2193_decreto_n_2_740_de_24_de_fevereiro_de_2025_.pdf
+            aniversarioDaCidade(JANEIRO, 3),
+            diaDeCorpusChristi,
+            diaDeNossaSenhoraDaConceicao
+        ];
         case "PA/Belém": return [
             aniversarioDaCidade(JANEIRO, 12),
             diaDeNossaSenhoraDaConceicao,
+        ];
+        case "PA/Santarém": return [
+            // https://santarem.pa.gov.br/notas/governo-e-administracao/prefeitura-divulga-datas-de-feriados-nacionais-estadual-e-municipais-vgjyz7
+            aniversarioDaCidade(JUNHO, 22),
+            diaDeNossaSenhoraDaConceicao
         ];
         case "PB/Campina Grande": return [
             // https://sapl.campinagrande.pb.leg.br/media/sapl/public/normajuridica/2019/7960/lei_no_7197.pdf
@@ -429,6 +527,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeSaoJoao,
             aniversarioDaCidade(AGOSTO, 5),
             diaDeNossaSenhoraDaConceicao,
+        ];
+        case "PB/Patos": return [
+            // https://www.ifpb.edu.br/patos/ensino/calendarios-2020/calendario-2025/tecnicos-integrados/integ2025.pdf
+            fm(SETEMBRO, 24, "Dia de Nossa Senhora da Guia"),
+            fm(OUTUBRO, 24, "Emancipação Política de Patos")
         ];
         case "PR/Curitiba": return [
             diaDeCorpusChristi,
@@ -481,6 +584,13 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             fm(JULHO, 16, "Dia de Nossa Senhora do Carmo"),
             diaDeNossaSenhoraDaConceicao,
         ];
+        case "PI/Parnaíba": return [
+            // https://www.parnaiba.pi.leg.br/wp-content/uploads/2023/09/PROJETO-DE-LEI-No-82-2023-PODER-EXECUTIVO.pdf
+            diaDeCorpusChristi,
+            aniversarioDaCidade(AGOSTO, 14),
+            fm(SETEMBRO, 8, "Dia de Nossa Senhora Mãe da Divina Graça"),
+            fm(OUTUBRO, 4, "Dia de São Francisco")
+        ];
         case "PI/Teresina": return [
             diaDeCorpusChristi,
             aniversarioDaCidade(AGOSTO, 16),
@@ -532,6 +642,11 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // https://www.uruguaiana.rs.gov.br/portal/servicos/1269/feriados/
             diaDeCorpusChristi,
             diaDeSantAnna
+        ];
+        case "RO/Ji-Paraná": return [
+            // https://rondonia.ro.gov.br/decreto-regulamenta-calendario-de-feriados-e-pontos-facultativos-para-2025-em-rondonia/
+            fm(AGOSTO, 16, "Dia de São João Bosco"),
+            aniversarioDaCidade(NOVEMBRO, 22)
         ];
         case "RO/Porto Velho": return [
             fm(JANEIRO, 24, "Dia de São Francisco de Sales"),
@@ -646,6 +761,18 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeCorpusChristi,
             diaDeSaoJoao,
             diaDeNossaSenhoraDaConceicao,
+        ];
+        case "SE/Nossa Senhora do Socorro": return [
+            // https://www.socorro.se.gov.br/feriados-municipais
+            fm(FEVEREIRO, 2, "Dia de Nossa Senhora do Socorro"),
+            diaDeCorpusChristi,
+            fm(JULHO, 7, "Emancipação Política do Município"),
+            diaDeAssuncaoDeNossaSenhora
+        ];
+        case "TO/Araguaína": return [
+            // https://www.sindmetalurgicos-to.com.br/wp-content/uploads/2025/01/FERIADOS-2025-2.pdf
+            diaDoSagradoCoracaoDeJesus,
+            aniversarioDaCidade(NOVEMBRO, 14)
         ];
         case "TO/Palmas": return [
             diaDeSaoJose,
