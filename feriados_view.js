@@ -514,7 +514,7 @@ function exportarFeriadosParaArquivoCsv(feriados, ano, cidadeEstado1, cidadeEsta
 }
 
 function converterJsonFeriadosParaCsv(feriados) {
-    var csv = "\"tipo\",\"grupo\",\"data\",\"descricao\",\"cidadeEstado1\",\"cidadeEstado2\"\n";
+    var csv = "\"tipo\";\"grupo\";\"data\";\"descricao\";\"cidadeEstado1\";\"cidadeEstado2\";\n";
 
     const converterDataParaString = (data) => {
         const offset = data.getTimezoneOffset();
@@ -526,12 +526,12 @@ function converterJsonFeriadosParaCsv(feriados) {
         var cidadeEstado1 = f.cidadeBarraEstado[0];
         var cidadeEstado2 = f.cidadeBarraEstado.length > 1 ? f.cidadeBarraEstado[1] : "";
 
-        csv += "\"" + (f.tipo || "") + "\",";
-        csv += "\"" + (f.grupo || "") + "\",";
-        csv += "\"" + converterDataParaString(f.data) + "\",";
-        csv += "\"" + f.descricao + "\",";
-        csv += "\"" + (f.grupo == "apenasEm2" ? "" : cidadeEstado1) + "\",";
-        csv += "\"" + (f.grupo == "apenasEm2" ? cidadeEstado1 : cidadeEstado2) + "\",";
+        csv += "\"" + (f.tipo || "") + "\";";
+        csv += "\"" + (f.grupo || "") + "\";";
+        csv += "\"" + converterDataParaString(f.data) + "\";";
+        csv += "\"" + f.descricao + "\";";
+        csv += "\"" + (f.grupo == "apenasEm2" ? "" : cidadeEstado1) + "\";";
+        csv += "\"" + (f.grupo == "apenasEm2" ? cidadeEstado1 : cidadeEstado2) + "\";";
         csv += "\n";
     });
 
@@ -548,7 +548,9 @@ function gerarNomeDoArquivoExportacao(extensaoComPonto, ano, cidadeEstado1, cida
 }
 
 function exportarParaArquivo(nomeArquivo, conteudoStringArquivo, mimeTypeArquivo) {
-    var blob = new Blob([conteudoStringArquivo], { type: mimeTypeArquivo });
+    var blob = new Blob([
+        new Uint8Array([0xEF, 0xBB, 0xBF]), // UTF-8 BOM
+        conteudoStringArquivo], { type: mimeTypeArquivo });
     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
         window.navigator.msSaveOrOpenBlob(blob, nomeArquivo);
     } else {
