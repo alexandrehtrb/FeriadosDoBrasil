@@ -257,8 +257,16 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
     const diaDeSaoJoao = fm(JUNHO, 24, "Dia de São João");
     const diaDeSaoPedro = fm(JUNHO, 29, "Dia de São Pedro");
     const diaDeSantAnna = fm(JULHO, 26, "Dia de Sant'Anna");
-    const diaDeAssuncaoDeNossaSenhora = fm(AGOSTO, 15, "Assunção de Nossa Senhora");
     const diaDeNossaSenhoraDaConceicao = fm(DEZEMBRO, 8, "Dia de Nossa Senhora da Conceição");
+    const diaDeAssuncaoDeNossaSenhora = function(padroeira)
+    {
+        // Várias cidades têm os dias de suas padroeiras 
+        // celebrados no dia de Assunção de Nossa Senhora (15/08).
+        const str = (padroeira == null || padroeira == undefined) ?
+                    "Assunção de Nossa Senhora" :
+                    padroeira;
+        return fm(AGOSTO, 15, str);
+    }
     const aniversarioDaCidade = function(mes, dia) {
         return fm(mes, dia, "Aniversário da cidade");
     }   
@@ -267,7 +275,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
     switch (ufMunicipio) {
         case "AC/Cruzeiro do Sul": return [
             // https://www.cruzeirodosul.ac.gov.br/paginas/feriados-2025
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Glória"),
             fm(SETEMBRO, 27, "Dia da Marcha para Jesus"),
             aniversarioDaCidade(SETEMBRO, 28)
         ];
@@ -299,7 +307,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             fm(ABRIL, 19, "Dia do Índio"),
             aniversarioDaCidade(MAIO, 23),
             fm(JULHO, 28, "Dia do Agricultor"),
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora das Graças"),
             fm(DEZEMBRO, 1, "Dia do Laudo Suíço")
         ];
         case "AP/Santana": return [
@@ -356,13 +364,13 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         ];
         case "CE/Caucaia": return [
             // https://www.caucaia.ce.gov.br/arquivos/1172/2209.pdf
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora dos Prazeres"),
             aniversarioDaCidade(OUTUBRO, 15)
         ];        
         case "CE/Fortaleza": return [
             aniversarioDaCidade(ABRIL, 13),
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora
+            diaDeAssuncaoDeNossaSenhora()
         ];
         case "CE/Juazeiro do Norte": return [
             // https://www.calendariox.com.br/feriados-juazeiro-do-norte-ce.html
@@ -478,28 +486,29 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // https://www.itajuba.mg.gov.br/abrir_arquivo.aspx/Portaria_183_2021?cdLocal=2&arquivo={4764771E-E70C-AA0B-6BAC-CD88BEDDBDD8}.pdf#search=feriados
             diaDeSaoJose,
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Piedade"),
         ];
         case "MG/Nova Lima": return [
             // https://cmnovalima.mg.gov.br/processo-legislativo/arquivos/3cf43abdcb3a0f16dc30f15307ce2879.pdf
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora do Pilar"),
             diaDeNossaSenhoraDaConceicao
         ];
         case "MG/Uberaba": return [
             // http://www.uberaba.mg.gov.br/portal/acervo//legislacao/feriados_municipio/Lei%205545.pdf
             fm(MARCO, 2, "Dia de Uberaba"),
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora(),
         ];
         case "MG/Belo Horizonte": return [
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Boa Viagem"),
             diaDeNossaSenhoraDaConceicao,
         ];
         case "MG/Uberlândia": return [
+            // https://www.uberlandia.mg.gov.br/prefeitura/secretarias/administracao/calendario-de-feriados/
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Abadia"),
             fm(AGOSTO, 31, "Dia de São Raimundo")
         ];
         case "PA/Ananindeua": return [
@@ -553,7 +562,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // https://pt.scribd.com/document/841902321/Decreto-400-Feriados-2025-1
             aniversarioDaCidade(MAIO, 12),
             diaDeCorpusChristi,
-            diaDeAssuncaoDeNossaSenhora
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Abadia")
         ];
         case "PE/Garanhuns": return [
             // https://garanhuns.pe.gov.br/nota-sobre-os-feriados-municipais-de-garanhuns/
@@ -577,7 +586,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // http://www.pe.portaldatransparencia.com.br/prefeitura/petrolina/?pagina=abreDocumento&arquivo=30EB0A5F
             diaDeCorpusChristi,
             diaDeSaoJoao,
-            diaDeAssuncaoDeNossaSenhora,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora Rainha dos Anjos"),
             aniversarioDaCidade(SETEMBRO, 21),
         ];
         case "PE/Recife": return [
@@ -726,7 +735,8 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             aniversarioDaCidade(AGOSTO, 20)
         ];
         case "SP/São Carlos": return [
-            diaDeAssuncaoDeNossaSenhora,
+            // https://saocarlos.sp.gov.br/index.php/conheca-sao-carlos/115443-feriados.html
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Babilônia"),
             fm(OUTUBRO, 15, "Dia do Professor (somente para os professores da rede municipal de ensino)"),
             aniversarioDaCidade(NOVEMBRO, 4),
             diaDeCorpusChristi,
@@ -767,7 +777,7 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             fm(FEVEREIRO, 2, "Dia de Nossa Senhora do Socorro"),
             diaDeCorpusChristi,
             fm(JULHO, 7, "Emancipação Política do Município"),
-            diaDeAssuncaoDeNossaSenhora
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora do Amparo")
         ];
         case "TO/Araguaína": return [
             // https://www.sindmetalurgicos-to.com.br/wp-content/uploads/2025/01/FERIADOS-2025-2.pdf
