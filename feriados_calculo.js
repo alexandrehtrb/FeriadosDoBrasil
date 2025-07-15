@@ -25,7 +25,7 @@ const estados = [
     { acronimo: "RO", nome: "Rondônia", cidades: ["Ji-Paraná", "Porto Velho"] },
     { acronimo: "RR", nome: "Roraima", cidades: ["Boa Vista", "Pacaraima"] },
     { acronimo: "SC", nome: "Santa Catarina", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Itajaí", "Joinville"] },
-    { acronimo: "SP", nome: "São Paulo", cidades: ["Araraquara", "Barueri", "Campinas", "Guarulhos", "Osasco", "Paulínia", "Ribeirão Preto", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo", "Sumaré", "Valinhos", "Vinhedo"] },
+    { acronimo: "SP", nome: "São Paulo", cidades: ["Araraquara", "Barueri", "Campinas", "Guarulhos", "Osasco", "Paulínia", "Ribeirão Preto", "Santos", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo", "Sumaré", "Ubatuba", "Valinhos", "Vinhedo"] },
     { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju", "Nossa Senhora do Socorro"] },
     { acronimo: "TO", nome: "Tocantins", cidades: ["Araguaína", "Palmas"] }
 ];
@@ -726,6 +726,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             diaDeCorpusChristi,
             fm(JUNHO, 19, "Dia de Santa Juliana Falconieri"),
         ];
+        case "SP/Santos": return [
+            // https://www.claudiamendes.com.br/boletim/feriados-e-pontos-facultativos-em-santos-2025-332
+            aniversarioDaCidade(JANEIRO, 26),
+            diaDeCorpusChristi,
+            fm(SETEMBRO, 8, "Dia de Nossa Senhora do Monte Serrat")
+        ];
         case "SP/Santo André": return [
             aniversarioDaCidade(ABRIL, 8),
             diaDeCorpusChristi
@@ -754,6 +760,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
             // https://www.sumare.sp.gov.br/pdfDiario.php?edicao=702&pdf=95a5e82515e74b2c82ed35bb9b27fb8b.pdf
             diaDeCorpusChristi,
             aniversarioDaCidade(JULHO, 26),
+        ];
+        case "SP/Ubatuba": return [
+            // https://www.ubatuba.sp.gov.br/calendarios/calendario-municipal-2024/
+            diaDeSaoPedro,
+            fm(SETEMBRO, 14, "Paz de Iperoig"),
+            aniversarioDaCidade(OUTUBRO, 28)
         ];
         case "SP/Valinhos": return [
             // https://www.valinhos.sp.gov.br/portal/secretarias-paginas/143/feriados-municipaisnacionais/
