@@ -25,7 +25,7 @@ const estados = [
     { acronimo: "RO", nome: "Rondônia", cidades: ["Ji-Paraná", "Porto Velho"] },
     { acronimo: "RR", nome: "Roraima", cidades: ["Boa Vista", "Pacaraima"] },
     { acronimo: "SC", nome: "Santa Catarina", cidades: ["Balneário Camboriú", "Blumenau", "Florianópolis", "Itajaí", "Joinville"] },
-    { acronimo: "SP", nome: "São Paulo", cidades: ["Araraquara", "Barueri", "Campinas", "Guarulhos", "Osasco", "Paulínia", "Ribeirão Preto", "Santos", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo", "Sumaré", "Ubatuba", "Valinhos", "Vinhedo"] },
+    { acronimo: "SP", nome: "São Paulo", cidades: ["Araraquara", "Barueri", "Campinas", "Cubatão", "Guarulhos", "Osasco", "Paulínia", "Ribeirão Preto", "Santos", "Santo André", "São Bernardo do Campo", "São Carlos", "São José dos Campos", "São Paulo", "Sumaré", "Ubatuba", "Valinhos", "Vinhedo"] },
     { acronimo: "SE", nome: "Sergipe", cidades: ["Aracaju", "Nossa Senhora do Socorro"] },
     { acronimo: "TO", nome: "Tocantins", cidades: ["Araguaína", "Palmas"] }
 ];
@@ -707,6 +707,12 @@ function obterFeriadosMunicipais(ano, uf, municipio) {
         case "SP/Campinas": return [
             diaDeCorpusChristi,
             diaDeNossaSenhoraDaConceicao,
+        ];
+        case "SP/Cubatão": return [
+            // https://diariooficial.cubatao.sp.gov.br/search_sres.php?id=MTYzMg==
+            aniversarioDaCidade(ABRIL, 9),
+            diaDeCorpusChristi,
+            diaDeAssuncaoDeNossaSenhora("Dia de Nossa Senhora da Lapa")
         ];
         case "SP/Guarulhos": return [
             diaDeNossaSenhoraDaConceicao
