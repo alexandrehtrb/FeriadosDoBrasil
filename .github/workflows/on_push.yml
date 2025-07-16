@@ -23,4 +23,6 @@ jobs:
         run: gh repo sync feriadosdobrasil/feriadosdobrasil.github.io --source alexandrehtrb/FeriadosDoBrasil
         env:
           # Devemos usar um token emitido pelo usuário feriadosdobrasil.
+          # Esse token deve ter as permissões de Contents (pode fazer merges) 
+          # e Workflows (para quando o repo original alterar workflows).
           GH_TOKEN: ${{ secrets.FERIADOSDOBRASIL_GH_TOKEN }}
