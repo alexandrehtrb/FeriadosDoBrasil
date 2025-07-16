@@ -1,6 +1,9 @@
 # Feriados do Brasil
 
-Este é o repositório de código para o site [Feriados do Brasil](https://feriadosdobrasil.pages.dev).
+Este é o repositório de código para o site Feriados do Brasil.
+
+- Hospedagem GitHub Pages: https://feriadosdobrasil.github.io
+- Hospedagem Cloudflare: https://feriadosdobrasil.pages.dev
 
 ## Tecnologias
 
