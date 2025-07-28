@@ -105,11 +105,15 @@ function construirCalendario() {
                     tooltip.destroy();
                     tooltip = null;
                 }
-
+                
+                // TODO: descobrir como deixar sticky e interactive;
+                // não está funcionando direito, 
+                // talvez por causa do HTML content
                 tooltip = tippy(e.element, {
-                    placement: 'right',
+                    placement: 'top',
                     content: content,
-                    animateFill: false,
+                    allowHTML: true,
+                    interactive: true,
                     animation: 'shift-away',
                     arrow: true
                 });
