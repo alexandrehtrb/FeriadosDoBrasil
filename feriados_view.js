@@ -57,12 +57,16 @@ function setupView(tela) {
             btnIncluirOutraCidade.innerText = "Esquecer segunda cidade";
             outraCidadeVisivelParaEscolha = true;
             divEstado2.style.visibility = "visible";
+            divEstado2.style.display = "initial";
             divCidade2.style.visibility = "visible";
+            divCidade2.style.display = "initial";
         } else {
             btnIncluirOutraCidade.innerText = "Incluir outra cidade";
             outraCidadeVisivelParaEscolha = false;
             divEstado2.style.visibility = "collapse";
+            divEstado2.style.display = "none";
             divCidade2.style.visibility = "collapse";
+            divCidade2.style.display = "none";
         }
         validarECalcularFeriados(tela);
     });
