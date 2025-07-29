@@ -13,7 +13,7 @@
   <link href="https://cdn.jsdelivr.net/npm/tippy.js@6.3.7/dist/tippy.min.css" rel="stylesheet" integrity="sha384-3neXzw7dLmPShvZ4HCpZRSshxuipMGEDqjPhxwUbNV/MAg4PawvnzuMLVHEoOgvG" crossorigin="anonymous">
   <style>
     body {
-      font-family: "Chinese Quotes", "Inter var", "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+      font-family: "Twemoji Country Flags", "Chinese Quotes", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Inter var", "Inter";
     }
 
     .event-tooltip-content {
@@ -29,6 +29,11 @@
     }
   </style>
 </head>
+
+<script type="module" defer>
+  import { polyfillCountryFlagEmojis } from "https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1.8/+esm";
+  polyfillCountryFlagEmojis();
+</script>
 
 <body>
 
@@ -58,6 +63,8 @@
   </nav>
 
   <div class="container" style="margin-top:24px;margin-left:24px;margin-right:24px;">
+    
+
     <h1 style="margin-right:48px;">🇧🇷 Calendário de feriados do Brasil</h1>
 
     <div class="row row-cols-lg-auto g-3 align-items-center" style="margin-top:12px;">
