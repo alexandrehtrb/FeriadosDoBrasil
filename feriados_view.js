@@ -127,7 +127,10 @@ function construirCalendario() {
             }
         },
         selectRange: function (p) {
-            marcarPeriodoSelecionadoNoCalendario(p);
+            const totalDias = p.startDate.countDaysUpTo(p.endDate);
+            if (totalDias > 1) {
+                marcarPeriodoSelecionadoNoCalendario(p);
+            }
         }
     });
 }
