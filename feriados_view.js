@@ -10,12 +10,19 @@ function setupView(tela) {
         slEstado2 = document.getElementById("slEstado2"),
         slCidade = document.getElementById("slCidade"),
         slCidade2 = document.getElementById("slCidade2"),
+        divEstado2 = document.getElementById("divEstado2"),
+        divCidade2 = document.getElementById("divCidade2"),
         inpAno = document.getElementById("inpAno"),
         inpMarcarEmendas = document.getElementById("inpMarcarEmendas"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
         btnExportarParaJson = document.getElementById("btnExportarParaJson"),
         btnExportarParaCsv = document.getElementById("btnExportarParaCsv"),
-        divPeriodoSelecionado1 = document.getElementById("divPeriodoSelecionado1");
+        divPeriodoSelecionado1 = document.getElementById("divPeriodoSelecionado1"),
+        divPeriodoSelecionado2 = document.getElementById("divPeriodoSelecionado2"),
+        divPeriodoSelecionado3 = document.getElementById("divPeriodoSelecionado3"),
+        btPeriodoSelecionado1 = document.getElementById("btPeriodoSelecionado1"),
+        btPeriodoSelecionado2 = document.getElementById("btPeriodoSelecionado2"),
+        btPeriodoSelecionado3 = document.getElementById("btPeriodoSelecionado3");
 
     // setup para ambas as telas: calendário e tabela
     atualizarListaDeEstados(1);
@@ -49,9 +56,13 @@ function setupView(tela) {
         if (outraCidadeVisivelParaEscolha == false) {
             btnIncluirOutraCidade.innerText = "Esquecer segunda cidade";
             outraCidadeVisivelParaEscolha = true;
+            divEstado2.style.visibility = "visible";
+            divCidade2.style.visibility = "visible";
         } else {
             btnIncluirOutraCidade.innerText = "Incluir outra cidade";
             outraCidadeVisivelParaEscolha = false;
+            divEstado2.style.visibility = "collapse";
+            divCidade2.style.visibility = "collapse";
         }
         validarECalcularFeriados(tela);
     });
@@ -59,18 +70,21 @@ function setupView(tela) {
     // setup exclusivo para tela de calendário
     if (tela == "calendario") {
         construirCalendario();
-        divPeriodoSelecionado1.addEventListener('click', function () {
+        btPeriodoSelecionado1.addEventListener('click', function () {
             divPeriodoSelecionado1.style.visibility = "collapse";
+            divPeriodoSelecionado1.style.display = "none"; 
             periodo1 = null;
             validarECalcularFeriados(tela);
         });
-        divPeriodoSelecionado2.addEventListener('click', function () {
+        btPeriodoSelecionado2.addEventListener('click', function () {
             divPeriodoSelecionado2.style.visibility = "collapse";
+            divPeriodoSelecionado2.style.display = "none"; 
             periodo2 = null;
             validarECalcularFeriados(tela);
         });
-        divPeriodoSelecionado3.addEventListener('click', function () {
+        btPeriodoSelecionado3.addEventListener('click', function () {
             divPeriodoSelecionado3.style.visibility = "collapse";
+            divPeriodoSelecionado3.style.display = "none"; 
             periodo3 = null;
             validarECalcularFeriados(tela);
         });
@@ -289,22 +303,26 @@ function marcarPeriodoSelecionadoNoCalendario(p) {
     const txt = totalDias + " dias: de " + dataInicialStr + " a " + dataFinalStr;
     const periodo = { qtdDias: totalDias, descricao: ("de " + dataInicialStr + " a " + dataFinalStr), startDate: p.startDate, endDate: p.endDate };
 
-    var div = null;
+    var div = null, bt = null;
     if (periodo1 == null) {
         periodo1 = periodo;
         div = document.getElementById("divPeriodoSelecionado1");
+        bt = document.getElementById("btPeriodoSelecionado1");
     }
     else if (periodo2 == null) {
         periodo2 = periodo;
         div = document.getElementById("divPeriodoSelecionado2");
+        bt = document.getElementById("btPeriodoSelecionado2");
     }
     else if (periodo3 == null) {
         periodo3 = periodo;
         div = document.getElementById("divPeriodoSelecionado3");
+        bt = document.getElementById("btPeriodoSelecionado3");
     }
 
-    div.innerText = txt;
+    bt.innerText = txt;
     div.style.visibility = "visible";
+    div.style.display = "initial"; 
     validarECalcularFeriados("calendario");
 }
 
@@ -333,7 +351,7 @@ function obterPeriodosSelecionadosParaCalendario() {
 }
 
 function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
-    document.getElementById("cardCalendario").style.visibility = "visible";
+    document.getElementById("calendar").style.visibility = "visible";
 
     const escolherCorDoFeriado = function (x) {
         if (x.ehEmenda) return "#e6ffcc";
