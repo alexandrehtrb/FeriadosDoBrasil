@@ -6,17 +6,17 @@ function calcularDomingoDePascoa(ano) {
   var f = Math.floor,
     // Golden Number - 1
     G = ano % 19,
-    C = ff(ano / 100),
+    C = f(ano / 100),
     // related to Epact
-    H = (C - ff(C / 4) - ff((8 * C + 13) / 25) + 19 * G + 15) % 30,
+    H = (C - f(C / 4) - f((8 * C + 13) / 25) + 19 * G + 15) % 30,
     // number of days from 21 March to the Paschal full moon
-    I = H - ff(H / 28) * (1 - ff(29 / (H + 1)) * ff((21 - G) / 11)),
+    I = H - f(H / 28) * (1 - f(29 / (H + 1)) * f((21 - G) / 11)),
     // weekday for the Paschal full moon
-    J = (ano + ff(ano / 4) + I + 2 - C + ff(C / 4)) % 7,
+    J = (ano + f(ano / 4) + I + 2 - C + f(C / 4)) % 7,
     // number of days from 21 March to the Sunday on or before the Paschal full moon
     L = I - J,
-    mes = 3 + ff((L + 40) / 44),
-    dia = L + 28 - 31 * ff(mes / 4);
+    mes = 3 + f((L + 40) / 44),
+    dia = L + 28 - 31 * f(mes / 4);
 
   return new Date(ano, mes - 1, dia);
 }
