@@ -20,8 +20,8 @@ Sinta-se livre para abrir pull requests e issues, por exemplo, incluindo feriado
 
 1) Fork nosso repo
 2) No seu repo forkado, edite o arquivo `feriados_calculo.js`:
-  - dentro da variável `estados`, inclua seu município;
-  - dentro do método `obterFeriadosMunicipais()`, inclua os feriados *municipais* do seu município
+  - dentro da variável `estados`, encontre seu estado e município, e se não existir, adicione;
+  - inclua apenas os feriados *municipais* da sua cidade;
   - sempre que possível, inclua um comentário com a fonte de referência sobre os feriados municipais (ex.: leis, decretos, site da prefeitura, notícias oficiais)
 3) Commit e push seu código
 4) Abra um pull request no nosso repo com seu código

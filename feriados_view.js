@@ -476,7 +476,7 @@ function obterCidadesDoEstado(uf) {
     for (var i = 0; i < estados.length; i++) {
         var estado = estados[i];
         if (uf == estado.acronimo) {
-            return estado.cidades;
+            return estado.cidades.map(x => x.nome);
         }
     }
     return [];
