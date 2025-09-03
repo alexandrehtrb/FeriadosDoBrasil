@@ -95,9 +95,9 @@ function deslocarFeriadoEstadualDeSantaCatarina(feriado) {
 }
 
 // feriado fixo
-function ff(mes, dia, desc) {
+function ff(mes, dia, desc, anoInicioVigencia) {
   return function (ano) {
-    return { data: new Date(ano, mes, dia), descricao: desc };
+    return { data: new Date(ano, mes, dia), descricao: desc, anoInicioVigencia: anoInicioVigencia };
   }
 }
 // feriado móvel
@@ -134,9 +134,8 @@ const feriadosNacionais = [
   ff(OUTUBRO, 28, "Dia do Servidor Público (ponto facultativo para eles)"),
   ff(NOVEMBRO, 2, "Finados"),
   ff(NOVEMBRO, 15, "Proclamação da República"),
-  // PL 370/2023 torna Dia da Consciência Negra feriado estadual em SP
   // Dia da Consciência Negra agora é feriado nacional, PL 3268 / 2021
-  ff(NOVEMBRO, 20, "Dia da Consciência Negra"),
+  ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2024),
   ff(DEZEMBRO, 25, "Natal")
 ];
 
@@ -183,10 +182,11 @@ const estados = [
     acronimo: "AL",
     nome: "Alagoas",
     feriadosEstaduais: [
+      // Dia da Consciência Negra -> Lei nº 5.724 de 01/08/1995 - Estadual - Alagoas
       ff(JUNHO, 24, "Dia de São João"),
       ff(JUNHO, 29, "Dia de São Pedro"),
       ff(SETEMBRO, 16, "Emancipação política de Alagoas"),
-      ff(NOVEMBRO, 20, "Morte de Zumbi dos Palmares"),
+      ff(NOVEMBRO, 20, "Morte de Zumbi dos Palmares", 1995),
     ],
     cidades: [
       {
@@ -214,9 +214,11 @@ const estados = [
       // https://g1.globo.com/ap/amapa/noticia/2025/01/02/amapa-tera-mais-de-10-feriados-nacionais-e-estaduais-em-2025-veja-lista.ghtml
       // Dia de São Tiago e Dia do Evangélico não são feriados estaduais,
       // apesar de algumas prefeituras mencionarem erroneamente como tal.
+      // Dia da Consciência Negra -> Lei nº 1.169 de 27/12/2007 - Estadual - Amapá
       ff(MARCO, 19, "Dia de São José"),
       ff(MAIO, 15, "Dia de Cabralzinho"),
       ff(SETEMBRO, 13, "Criação do Território Federal"),
+      ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2008)
     ],
     cidades: [
       {
@@ -251,8 +253,10 @@ const estados = [
     acronimo: "AM",
     nome: "Amazonas",
     feriadosEstaduais: [
+      // Dia da Consicência Negra -> Lei Ordinária nº 84, de 08 de julho de 2010 - SAPL
       ff(SETEMBRO, 5, "Elevação do Amazonas à categoria de província"),
       ff(DEZEMBRO, 8, "Dia de Nossa Senhora da Conceição"),
+      ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2010)
     ],
     cidades: [
       {
@@ -505,14 +509,17 @@ const estados = [
   {
     acronimo: "MT",
     nome: "Mato Grosso",
-    feriadosEstaduais: [],
+    feriadosEstaduais: [
+      // Dia da Consciência Negra -> lei de nº 7.879, de 27 de dezembro de 2002
+      ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2003)
+    ],
     cidades: [
       {
         nome: "Cuiabá",
         feriados: [
           aniversarioDaCidade(ABRIL, 8),
           diaDeCorpusChristi,
-          diaDeNossaSenhoraDaConceicao,
+          diaDeNossaSenhoraDaConceicao
         ]
       },
       {
@@ -839,9 +846,11 @@ const estados = [
     acronimo: "RJ",
     nome: "Rio de Janeiro",
     feriadosEstaduais: [
+      // Dia da Consciência Negra -> LEI Nº 1929, DE 26 DE DEZEMBRO DE 1991.
       tercaFeiraDeCarnaval,
       ff(ABRIL, 23, "Dia de São Jorge"),
       fm(calcularDiaDoComercio, "Dia do Comércio (apenas para comerciantes e trabalhadores da construção civil)"),
+      ff(NOVEMBRO, 20, "Dia da Consciência Negra", 1992)
     ],
     cidades: [
       {
@@ -1046,7 +1055,9 @@ const estados = [
     acronimo: "SP",
     nome: "São Paulo",
     feriadosEstaduais: [
+      // Dia da Consciência Negra -> Lei nº 17.746, de 12/09/2023
       ff(JULHO, 9, "Revolução Constitucionalista de 1932"),
+      ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2023)
     ],
     cidades: [
       {
@@ -1069,8 +1080,10 @@ const estados = [
       {
         nome: "Campinas",
         feriados: [
+          // Dia da Consciência Negra -> Lei nº 11128 de 14 de janeiro de 2002
           diaDeCorpusChristi,
           diaDeNossaSenhoraDaConceicao,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2002)
         ]
       },
       {
@@ -1156,8 +1169,10 @@ const estados = [
       {
         nome: "São Paulo",
         feriados: [
+          // Dia da Consciência Negra, lei Nº 13.707 de 7 de Janeiro de 2004
           aniversarioDaCidade(JANEIRO, 25),
-          diaDeCorpusChristi
+          diaDeCorpusChristi,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2004)
         ]
       },
       {
@@ -1257,7 +1272,14 @@ function calcularFeriadosDoAnoParaLista(listaFeriados, tipo, ano) {
   listaFeriados.forEach(feriado => {
     var obj = feriado(ano);
     obj.tipo = tipo;
-    saida.push(obj);
+    if (obj.anoInicioVigencia != undefined && ano < obj.anoInicioVigencia)
+    {
+      // não incluir nesse caso.
+    }
+    else
+    {
+      saida.push(obj);
+    }
   });
   return saida;
 }
@@ -1278,6 +1300,21 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
   if (carnavalEstadual != undefined || carnavalMunicipal != undefined) {
     // se houver feriado municipal ou estadual de Carnaval, vamos sobrepôr estes ao feriado nacional.
     nacionais = nacionais.filter(x => x.descricao.includes("Carnaval") == false);
+  }
+
+  // Gambiarra para tratar Dia da Consciência Negra repetido, por exemplo, em São Paulo e no Rio de Janeiro
+  var conscienciaNegraNacional = nacionais.find(x => x.descricao.includes("Consciência Negra"));
+  var conscienciaNegraEstadual = estaduais.find(x => x.descricao.includes("Consciência Negra"));
+  var conscienciaNegraMunicipal = municipais.find(x => x.descricao.includes("Consciência Negra"));
+
+  if (conscienciaNegraNacional != undefined && (conscienciaNegraEstadual != undefined || conscienciaNegraMunicipal != undefined)) {
+    // feriado nacional sobrepõe feriados estaduais e municipais.
+    estaduais = estaduais.filter(x => x.descricao.includes("Consciência Negra") == false);
+    municipais = municipais.filter(x => x.descricao.includes("Consciência Negra") == false);
+  }
+  else if (conscienciaNegraEstadual != undefined && conscienciaNegraMunicipal != undefined) {
+    // feriado estadual sobrepõe feriados municipais.
+    municipais = municipais.filter(x => x.descricao.includes("Consciência Negra") == false);
   }
 
   var feriados = nacionais
