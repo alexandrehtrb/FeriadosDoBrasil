@@ -983,7 +983,7 @@ const estados = [
     acronimo: "RR",
     nome: "Roraima",
     feriadosEstaduais: [
-      ff(OUTUBRO, 5, "Criação do estado")
+      ff(OUTUBRO, 5, "Criação do estado")      
     ],
     cidades: [
       {
@@ -993,6 +993,7 @@ const estados = [
           diaDeSaoPedro,
           aniversarioDaCidade(JULHO, 9),
           diaDeNossaSenhoraDaConceicao,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2016) // Lei Ordinária nº 1.705, de 14 de junho de 2016 - SAPL
         ]
       },
       {
@@ -1075,6 +1076,7 @@ const estados = [
         feriados: [
           diaDeSaoJoao,
           diaDeCorpusChristi,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2007) // LEI Nº 1639, de 1 de Março de 2007
         ],
         excecoes: [
           {
