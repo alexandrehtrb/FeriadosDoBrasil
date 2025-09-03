@@ -1075,6 +1075,25 @@ const estados = [
         feriados: [
           diaDeSaoJoao,
           diaDeCorpusChristi,
+        ],
+        excecoes: [
+          {
+            // https://peccicaccoadvogados.com.br/?p=10877
+            ano: 2021,
+            adiantados: [
+              ff(MARCO, 29, "Dia de São João"),
+              ff(MARCO, 30, "Dia da Consciência Negra")
+            ],
+            adicionados: [
+              ff(MARCO, 31, "Dia da Consciência Negra (adiantado de 2022)"),
+            ]
+          },
+          {
+            ano: 2022,
+            removidos: [
+              "Dia da Consciência Negra",
+            ]
+          }
         ]
       },
       {
@@ -1084,6 +1103,18 @@ const estados = [
           diaDeCorpusChristi,
           diaDeNossaSenhoraDaConceicao,
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2002)
+        ],
+        excecoes: [
+          {
+            // https://campinas.sp.gov.br/noticias/para-melhorar-isolamento-social-campinas-antecipa-feriados-municipais-87625
+            ano: 2020,
+            adiantados: [
+              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
+              ff(MAIO, 25, "Revolução Constitucionalista de 1932"),
+              ff(MAIO, 26, "Quinta-feira de Corpus-Christi"),
+              ff(MAIO, 27, "Dia da Consciência Negra")
+            ]
+          }
         ]
       },
       {
@@ -1173,6 +1204,41 @@ const estados = [
           aniversarioDaCidade(JANEIRO, 25),
           diaDeCorpusChristi,
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2004)
+        ],
+        excecoes: [
+          {
+            // https://g1.globo.com/sp/sao-paulo/noticia/2020/05/18/camara-de-sp-aprova-antecipacao-de-feriados-municipais-para-aumentar-isolamento-social.ghtml
+            ano: 2020,
+            adiantados: [
+              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
+              ff(MAIO, 20, "Quinta-feira de Corpus-Christi"),
+              ff(MAIO, 21, "Dia da Consciência Negra"),
+              ff(MAIO, 25, "Revolução Constitucionalista de 1932"),
+            ]
+          },
+          {
+            // https://g1.globo.com/sp/sao-paulo/noticia/2021/03/18/prefeitura-de-sp-antecipa-5-feriados-para-conter-avanco-da-covid-veja-como-fica-o-calendario.ghtml
+            // https://peccicaccoadvogados.com.br/?p=10877
+            ano: 2021,
+            adiantados: [
+              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
+              ff(MARCO, 26, "Quinta-feira de Corpus-Christi"),
+              ff(MARCO, 29, "Dia da Consciência Negra")
+            ],
+            adicionados: [
+              ff(MARCO, 30, "Aniversário da cidade de São Paulo (adiantado de 2022)"),
+              ff(MARCO, 31, "Quinta-feira de Corpus-Christi (adiantado de 2022)"),
+              ff(ABRIL, 1, "Dia da Consciência Negra (adiantado de 2022)"),
+            ]
+          },
+          {
+            ano: 2022,
+            removidos: [
+              "Aniversário da cidade",
+              "Quinta-feira de Corpus-Christi",
+              "Dia da Consciência Negra",
+            ]
+          }
         ]
       },
       {
@@ -1272,12 +1338,10 @@ function calcularFeriadosDoAnoParaLista(listaFeriados, tipo, ano) {
   listaFeriados.forEach(feriado => {
     var obj = feriado(ano);
     obj.tipo = tipo;
-    if (obj.anoInicioVigencia != undefined && ano < obj.anoInicioVigencia)
-    {
+    if (obj.anoInicioVigencia != undefined && ano < obj.anoInicioVigencia) {
       // não incluir nesse caso.
     }
-    else
-    {
+    else {
       saida.push(obj);
     }
   });
@@ -1320,6 +1384,33 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
   var feriados = nacionais
     .concat(estaduais)
     .concat(municipais);
+
+  // exceções da época da pandemia
+  if (municipio.excecoes != undefined)
+  {
+    var excecoesAno = municipio.excecoes.find(x => x.ano == ano);
+    if (excecoesAno != undefined && excecoesAno != null)
+    {
+      // tirar feriados removidos
+      if (excecoesAno.removidos != undefined)
+      {
+        feriados = feriados.filter(x => !excecoesAno.removidos.includes(x.descricao));
+      }
+      // colocar feriados adicionados
+      if (excecoesAno.adicionados != undefined)
+      {
+        feriados = feriados.concat(calcularFeriadosDoAnoParaLista(excecoesAno.adicionados, "MUNICIPAL", ano));
+      }
+      // mudar data dos feriados adiantados
+      if (excecoesAno.adiantados != undefined)
+      {
+        var adiantados = calcularFeriadosDoAnoParaLista(excecoesAno.adiantados, "MUNICIPAL", ano);
+        var nomesAdiantados = adiantados.map(x => x.descricao);
+        feriados = feriados.filter(x => !nomesAdiantados.includes(x.descricao));
+        feriados = feriados.concat(adiantados);
+      }
+    }
+  }
 
   if (deveMarcarEmendas) {
     feriados = feriados.concat(obterEmendasDeFeriados(feriados));
