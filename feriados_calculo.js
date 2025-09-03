@@ -983,7 +983,7 @@ const estados = [
     acronimo: "RR",
     nome: "Roraima",
     feriadosEstaduais: [
-      ff(OUTUBRO, 5, "Criação do estado")      
+      ff(OUTUBRO, 5, "Criação do estado")
     ],
     cidades: [
       {
@@ -1104,7 +1104,8 @@ const estados = [
           // Dia da Consciência Negra -> Lei nº 11128 de 14 de janeiro de 2002
           diaDeCorpusChristi,
           diaDeNossaSenhoraDaConceicao,
-          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2002)
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2002),
+          ff(AGOSTO, 12, "Dia do Evangélico", 2026)
         ],
         excecoes: [
           {
@@ -1388,24 +1389,19 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
     .concat(municipais);
 
   // exceções da época da pandemia
-  if (municipio.excecoes != undefined)
-  {
+  if (municipio.excecoes != undefined) {
     var excecoesAno = municipio.excecoes.find(x => x.ano == ano);
-    if (excecoesAno != undefined && excecoesAno != null)
-    {
+    if (excecoesAno != undefined && excecoesAno != null) {
       // tirar feriados removidos
-      if (excecoesAno.removidos != undefined)
-      {
+      if (excecoesAno.removidos != undefined) {
         feriados = feriados.filter(x => !excecoesAno.removidos.includes(x.descricao));
       }
       // colocar feriados adicionados
-      if (excecoesAno.adicionados != undefined)
-      {
+      if (excecoesAno.adicionados != undefined) {
         feriados = feriados.concat(calcularFeriadosDoAnoParaLista(excecoesAno.adicionados, "MUNICIPAL", ano));
       }
       // mudar data dos feriados adiantados
-      if (excecoesAno.adiantados != undefined)
-      {
+      if (excecoesAno.adiantados != undefined) {
         var adiantados = calcularFeriadosDoAnoParaLista(excecoesAno.adiantados, "MUNICIPAL", ano);
         var nomesAdiantados = adiantados.map(x => x.descricao);
         feriados = feriados.filter(x => !nomesAdiantados.includes(x.descricao));
