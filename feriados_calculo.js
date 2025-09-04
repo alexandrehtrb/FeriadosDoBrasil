@@ -1082,12 +1082,14 @@ const estados = [
           {
             // https://peccicaccoadvogados.com.br/?p=10877
             ano: 2021,
-            adiantados: [
-              ff(MARCO, 29, "Dia de São João"),
-              ff(MARCO, 30, "Dia da Consciência Negra")
+            removidos: [
+              "Dia de São João",
+              "Dia da Consciência Negra"
             ],
             adicionados: [
-              ff(MARCO, 31, "Dia da Consciência Negra (adiantado de 2022)"),
+              ff(MARCO, 29, "Dia de São João (adiantado de 2021, pandemia)"),
+              ff(MARCO, 30, "Dia da Consciência Negra (adiantado de 2021, pandemia)"),
+              ff(MARCO, 31, "Dia da Consciência Negra (adiantado de 2022, pandemia)"),
             ]
           },
           {
@@ -1111,11 +1113,16 @@ const estados = [
           {
             // https://campinas.sp.gov.br/noticias/para-melhorar-isolamento-social-campinas-antecipa-feriados-municipais-87625
             ano: 2020,
-            adiantados: [
+            removidos: [
+              "Revolução Constitucionalista de 1932",
+              "Quinta-feira de Corpus-Christi",
+              "Dia da Consciência Negra"
+            ],
+            adicionados: [
               // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
-              ff(MAIO, 25, "Revolução Constitucionalista de 1932"),
-              ff(MAIO, 26, "Quinta-feira de Corpus-Christi"),
-              ff(MAIO, 27, "Dia da Consciência Negra")
+              ff(MAIO, 25, "Revolução Constitucionalista de 1932 (adiantado pela pandemia)"),
+              ff(MAIO, 26, "Quinta-feira de Corpus-Christi (adiantado pela pandemia)"),
+              ff(MAIO, 27, "Dia da Consciência Negra (adiantado pela pandemia)"),
             ]
           }
         ]
@@ -1212,26 +1219,33 @@ const estados = [
           {
             // https://g1.globo.com/sp/sao-paulo/noticia/2020/05/18/camara-de-sp-aprova-antecipacao-de-feriados-municipais-para-aumentar-isolamento-social.ghtml
             ano: 2020,
-            adiantados: [
+            removidos: [
+              "Quinta-feira de Corpus-Christi",
+              "Dia da Consciência Negra",
+              "Revolução Constitucionalista de 1932"
+            ],
+            adicionados: [
               // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
-              ff(MAIO, 20, "Quinta-feira de Corpus-Christi"),
-              ff(MAIO, 21, "Dia da Consciência Negra"),
-              ff(MAIO, 25, "Revolução Constitucionalista de 1932"),
+              ff(MAIO, 20, "Quinta-feira de Corpus-Christi (adiantado pela pandemia)"),
+              ff(MAIO, 21, "Dia da Consciência Negra (adiantado pela pandemia)"),
+              ff(MAIO, 25, "Revolução Constitucionalista de 1932 (adiantado pela pandemia)"),
             ]
           },
           {
             // https://g1.globo.com/sp/sao-paulo/noticia/2021/03/18/prefeitura-de-sp-antecipa-5-feriados-para-conter-avanco-da-covid-veja-como-fica-o-calendario.ghtml
             // https://peccicaccoadvogados.com.br/?p=10877
             ano: 2021,
-            adiantados: [
-              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
-              ff(MARCO, 26, "Quinta-feira de Corpus-Christi"),
-              ff(MARCO, 29, "Dia da Consciência Negra")
+            removidos: [
+              "Quinta-feira de Corpus-Christi",
+              "Dia da Consciência Negra",
             ],
             adicionados: [
-              ff(MARCO, 30, "Aniversário da cidade de São Paulo (adiantado de 2022)"),
-              ff(MARCO, 31, "Quinta-feira de Corpus-Christi (adiantado de 2022)"),
-              ff(ABRIL, 1, "Dia da Consciência Negra (adiantado de 2022)"),
+              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020              
+              ff(MARCO, 26, "Quinta-feira de Corpus-Christi (adiantado de 2021, pandemia)"),
+              ff(MARCO, 29, "Dia da Consciência Negra (adiantado de 2021, pandemia)"),
+              ff(MARCO, 30, "Aniversário da cidade de São Paulo (adiantado de 2022, pandemia)"),
+              ff(MARCO, 31, "Quinta-feira de Corpus-Christi (adiantado de 2022, pandemia)"),
+              ff(ABRIL, 1, "Dia da Consciência Negra (adiantado de 2022, pandemia)"),
             ]
           },
           {
@@ -1399,13 +1413,6 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
       // colocar feriados adicionados
       if (excecoesAno.adicionados != undefined) {
         feriados = feriados.concat(calcularFeriadosDoAnoParaLista(excecoesAno.adicionados, "MUNICIPAL", ano));
-      }
-      // mudar data dos feriados adiantados
-      if (excecoesAno.adiantados != undefined) {
-        var adiantados = calcularFeriadosDoAnoParaLista(excecoesAno.adiantados, "MUNICIPAL", ano);
-        var nomesAdiantados = adiantados.map(x => x.descricao);
-        feriados = feriados.filter(x => !nomesAdiantados.includes(x.descricao));
-        feriados = feriados.concat(adiantados);
       }
     }
   }
