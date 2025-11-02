@@ -1366,13 +1366,26 @@ function calcularFeriadosDoAnoParaLista(listaFeriados, tipo, ano) {
 }
 
 function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
-  var uf = estados.find(x => x.acronimo == uf);
-  var municipio = uf.cidades.find(x => x.nome == municipio);
+  var nacionais = undefined;
+  var estaduais = undefined;
+  var municipais = undefined;
 
   // variável global com mesmo nome: feriadosNacionais
-  var nacionais = calcularFeriadosDoAnoParaLista(feriadosNacionais, "NACIONAL", ano);
-  var estaduais = calcularFeriadosDoAnoParaLista(uf.feriadosEstaduais, "ESTADUAL", ano);
-  var municipais = calcularFeriadosDoAnoParaLista(municipio.feriados, "MUNICIPAL", ano);
+  nacionais = calcularFeriadosDoAnoParaLista(feriadosNacionais, "NACIONAL", ano);
+
+  if (uf == undefined || uf == null || uf == "") {
+    estaduais = [];
+  } else {
+    var uf = estados.find(x => x.acronimo == uf);
+    estaduais = calcularFeriadosDoAnoParaLista(uf.feriadosEstaduais, "ESTADUAL", ano);
+  }
+
+  if (municipio == undefined || municipio == null || municipio == "") {
+    municipais = [];
+  } else {
+    var municipio = uf.cidades.find(x => x.nome == municipio);
+    municipais = calcularFeriadosDoAnoParaLista(municipio.feriados, "MUNICIPAL", ano);
+  }
 
   // Gambiarra para tratar Carnaval repetido, por exemplo, no Rio de Janeiro e em Manaus
   var carnavalEstadual = estaduais.find(x => x.descricao.includes("Carnaval"));
@@ -1384,18 +1397,19 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
   }
 
   // Gambiarra para tratar Dia da Consciência Negra repetido, por exemplo, em São Paulo e no Rio de Janeiro
-  var conscienciaNegraNacional = nacionais.find(x => x.descricao.includes("Consciência Negra"));
-  var conscienciaNegraEstadual = estaduais.find(x => x.descricao.includes("Consciência Negra"));
-  var conscienciaNegraMunicipal = municipais.find(x => x.descricao.includes("Consciência Negra"));
+  const conscienciaNegraStr = "Consciência Negra";
+  var conscienciaNegraNacional = nacionais.find(x => x.descricao.includes(conscienciaNegraStr));
+  var conscienciaNegraEstadual = estaduais.find(x => x.descricao.includes(conscienciaNegraStr));
+  var conscienciaNegraMunicipal = municipais.find(x => x.descricao.includes(conscienciaNegraStr));
 
   if (conscienciaNegraNacional != undefined && (conscienciaNegraEstadual != undefined || conscienciaNegraMunicipal != undefined)) {
     // feriado nacional sobrepõe feriados estaduais e municipais.
-    estaduais = estaduais.filter(x => x.descricao.includes("Consciência Negra") == false);
-    municipais = municipais.filter(x => x.descricao.includes("Consciência Negra") == false);
+    estaduais = estaduais.filter(x => x.descricao.includes(conscienciaNegraStr) == false);
+    municipais = municipais.filter(x => x.descricao.includes(conscienciaNegraStr) == false);
   }
   else if (conscienciaNegraEstadual != undefined && conscienciaNegraMunicipal != undefined) {
     // feriado estadual sobrepõe feriados municipais.
-    municipais = municipais.filter(x => x.descricao.includes("Consciência Negra") == false);
+    municipais = municipais.filter(x => x.descricao.includes(conscienciaNegraStr) == false);
   }
 
   var feriados = nacionais

@@ -33,6 +33,7 @@ function setupView(tela) {
 
     slEstado.addEventListener('change', function () {
         atualizarListaDeCidades(1);
+        validarECalcularFeriados(tela);
     });
     slCidade.addEventListener('change', function () {
         validarECalcularFeriados(tela);
@@ -101,6 +102,8 @@ function setupView(tela) {
             validarECalcularFeriados("exportarParaCsv");
         });
     }
+
+    validarECalcularFeriados(tela);
 }
 
 function construirCalendario() {
@@ -161,12 +164,12 @@ function validarECalcularFeriados(saida) {
     if (ano == undefined || ano == null) {
         return;
     }
-    if (uf1 == undefined || uf1 == null || uf1 == "") {
+    /*if (uf1 == undefined || uf1 == null || uf1 == "") {
         return;
     }
     if (cidade1 == undefined || cidade1 == null || cidade1 == "") {
         return;
-    }
+    }*/
 
     var deveMarcarEmendas = outraCidadeVisivelParaEscolha ? false : obterMarcarEmendas();
     var feriados1 = obterTodosOsFeriadosParaAno(ano, uf1, cidade1, deveMarcarEmendas);
@@ -178,6 +181,12 @@ function validarECalcularFeriados(saida) {
         var uf2 = obterEstadoSelecionado(2);
         var cidade2 = obterCidadeSelecionada(2);
 
+        if (uf1 == undefined || uf1 == null || uf1 == "") {
+            return;
+        }
+        if (cidade1 == undefined || cidade1 == null || cidade1 == "") {
+            return;
+        }
         if (uf2 == undefined || uf2 == null || uf2 == "") {
             return;
         }
