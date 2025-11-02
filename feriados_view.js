@@ -468,7 +468,7 @@ function obterMarcarEmendas() {
 }
 
 function obterAnoSelecionado() {
-    return document.getElementById("inpAno").value;
+    return parseInt(document.getElementById("inpAno").value, 10);
 }
 
 function obterEstadoSelecionado(numSelecao) {
