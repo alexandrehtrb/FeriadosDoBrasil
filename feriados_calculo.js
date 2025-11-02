@@ -1417,7 +1417,7 @@ function obterTodosOsFeriadosParaAno(ano, uf, municipio, deveMarcarEmendas) {
     .concat(municipais);
 
   // exceções da época da pandemia
-  if (municipio.excecoes != undefined) {
+  if (municipio != undefined && municipio.excecoes != undefined) {
     var excecoesAno = municipio.excecoes.find(x => x.ano == ano);
     if (excecoesAno != undefined && excecoesAno != null) {
       // tirar feriados removidos
