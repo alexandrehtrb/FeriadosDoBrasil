@@ -531,6 +531,16 @@ const estados = [
         ]
       },
       {
+        nome: "Primavera do Leste",
+        feriados: [
+          // DECRETO Nº 2.538, DE 07 DE FEVEREIRO DE 2025
+          tercaFeiraDeCarnaval,
+          ff(MAIO, 13, "Emancipação de Primavera do Leste"),
+          diaDeCorpusChristi,
+          ff(JULHO, 25, "Dia de São Cristóvão")
+        ]
+      },
+      {
         nome: "Sinop",
         feriados: [
           // https://www.sonoticias.com.br/geral/prefeito-oficializa-lista-de-feriados-e-pontos-facultativos-em-sinop/
@@ -1041,6 +1051,14 @@ const estados = [
         feriados: [
           // https://leismunicipais.com.br/a/sc/i/itajai/decreto/2025/1347/13479/decreto-n-13479-2025-fixa-o-calendario-dos-pontos-facultativos-para-os-orgaos-da-administracao-direta-autarquias-e-fundacoes-publicas-do-poder-executivo-municipal
           // nenhum mesmo
+        ]
+      },
+      {
+        nome: "Jaraguá do Sul",
+        feriados: [
+          // https://senhas.jaraguadosul.sc.gov.br/calendario-feriados-e-pontos-facultativos?snow/BmRSdlFy/qoRZbeDe
+          diaDeCorpusChristi,
+          aniversarioDaCidade(JULHO, 25),
         ]
       },
       {
