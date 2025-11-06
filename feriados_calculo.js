@@ -302,6 +302,15 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Camaçari",
+        feriados: [
+          // https://arquivos.camacari.ba.gov.br/legislacao/Lei%202809.pdf
+          ff(JANEIRO, 7, "Dia de São Tomaz da Cantuária", 1995),
+          diaDeSaoJoao,
+          ff(SETEMBRO, 28, "Emancipação do município")
+        ]
+      },
+      {
         nome: "Feira de Santana",
         feriados: [
           // https://www.feiradesantana.ba.gov.br/servico.asp?id=2&link=segov/feriados.asp
