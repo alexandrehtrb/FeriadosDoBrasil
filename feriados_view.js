@@ -15,8 +15,8 @@ function setupView(tela) {
         inpAno = document.getElementById("inpAno"),
         inpMarcarEmendas = document.getElementById("inpMarcarEmendas"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
-        btnExportarParaJson = document.getElementById("btnExportarParaJson"),
-        btnExportarParaCsv = document.getElementById("btnExportarParaCsv"),
+        btnExportar = document.getElementById("btnExportar"),
+        slFormatoExportacao = document.getElementById("slFormatoExportacao"),
         divPeriodoSelecionado1 = document.getElementById("divPeriodoSelecionado1"),
         divPeriodoSelecionado2 = document.getElementById("divPeriodoSelecionado2"),
         divPeriodoSelecionado3 = document.getElementById("divPeriodoSelecionado3"),
@@ -77,29 +77,34 @@ function setupView(tela) {
         construirCalendario();
         btPeriodoSelecionado1.addEventListener('click', function () {
             divPeriodoSelecionado1.style.visibility = "collapse";
-            divPeriodoSelecionado1.style.display = "none"; 
+            divPeriodoSelecionado1.style.display = "none";
             periodo1 = null;
             validarECalcularFeriados(tela);
         });
         btPeriodoSelecionado2.addEventListener('click', function () {
             divPeriodoSelecionado2.style.visibility = "collapse";
-            divPeriodoSelecionado2.style.display = "none"; 
+            divPeriodoSelecionado2.style.display = "none";
             periodo2 = null;
             validarECalcularFeriados(tela);
         });
         btPeriodoSelecionado3.addEventListener('click', function () {
             divPeriodoSelecionado3.style.visibility = "collapse";
-            divPeriodoSelecionado3.style.display = "none"; 
+            divPeriodoSelecionado3.style.display = "none";
             periodo3 = null;
             validarECalcularFeriados(tela);
         });
     }
     if (tela == "tabela") {
-        btnExportarParaJson.addEventListener('click', function () {
-            validarECalcularFeriados("exportarParaJson");
-        });
-        btnExportarParaCsv.addEventListener('click', function () {
-            validarECalcularFeriados("exportarParaCsv");
+        atualizarListaDeFormatosDeExportacao();
+        btnExportar.addEventListener('click', function () {
+            const formatoExportacao = obterFormatoExportacaoSelecionado();
+            if (formatoExportacao != undefined && formatoExportacao != null && formatoExportacao != "") {
+                slFormatoExportacao.classList.remove("is-invalid")
+                validarECalcularFeriados("exportarPara" + formatoExportacao);
+            } else {
+                slFormatoExportacao.classList.add("is-invalid")
+            }
+
         });
     }
 
@@ -126,7 +131,7 @@ function construirCalendario() {
                     tooltip.destroy();
                     tooltip = null;
                 }
-                
+
                 // TODO: descobrir como deixar sticky e interactive;
                 // não está funcionando direito, 
                 // talvez por causa do HTML content
@@ -199,24 +204,67 @@ function validarECalcularFeriados(saida) {
     }
 
     const mostrarApenasEm1 = (feriados2 == undefined);
-    const feriados = agruparFeriadosComunsOuDistintos(feriados1, feriados2);
+    const nomearLocalComoAmbas =
+           saida == "calendario"
+        || saida == "tabela"
+        || saida == "exportarParaJson"
+        || saida == "exportarParaCsvExcel";
+    const feriados = agruparFeriadosComunsOuDistintos(feriados1, feriados2, nomearLocalComoAmbas);
 
     if (saida == "calendario") {
         atualizarCalendarioComFeriados(mostrarApenasEm1, feriados);
     }
     else if (saida == "tabela") {
-        montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados, cidadeEstado1, cidadeEstado2);
+        montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados);
     }
     else if (saida == "exportarParaJson") {
         exportarFeriadosParaArquivoJson(feriados, ano, cidadeEstado1, cidadeEstado2);
     }
-    else if (saida == "exportarParaCsv") {
-        exportarFeriadosParaArquivoCsv(feriados, ano, cidadeEstado1, cidadeEstado2);
+    else if (saida == "exportarParaCsvExcel") {
+        exportarFeriadosParaArquivoCsvExcel(feriados, ano, cidadeEstado1, cidadeEstado2);
+    }
+    else if (saida == "exportarParaICalendar") {
+        exportarFeriadosParaArquivoICalendar(feriados, ano, cidadeEstado1, cidadeEstado2);
+    }
+    else if (saida == "exportarParaCsvGoogleCalendar") {
+        exportarFeriadosParaArquivoCsvGoogleCalendar(feriados, ano, cidadeEstado1, cidadeEstado2);
     }
 }
 
 function atualizarAnoInicial() {
     document.getElementById("inpAno").value = new Date().getFullYear();
+}
+
+function atualizarListaDeFormatosDeExportacao() {
+    const slFormatoExportacao = document.getElementById("slFormatoExportacao");
+
+    const opSelecionarFormato = document.createElement("option");
+    opSelecionarFormato.disabled = true;
+    opSelecionarFormato.selected = true;
+    opSelecionarFormato.innerHTML = "Selecione um formato";
+    opSelecionarFormato.value = "";
+
+    const opJson = document.createElement("option");
+    opJson.innerHTML = "JSON";
+    opJson.value = "Json";
+
+    const opCsvExcel = document.createElement("option");
+    opCsvExcel.innerHTML = "CSV para Microsoft Excel";
+    opCsvExcel.value = "CsvExcel";
+
+    const opICalendar = document.createElement("option");
+    opICalendar.innerHTML = "iCalendar (.ics)";
+    opICalendar.value = "ICalendar";
+
+    const opCsvGoogleCalendar = document.createElement("option");
+    opCsvGoogleCalendar.innerHTML = "CSV para Google Calendar";
+    opCsvGoogleCalendar.value = "CsvGoogleCalendar";
+
+    slFormatoExportacao.appendChild(opSelecionarFormato);
+    slFormatoExportacao.appendChild(opJson);
+    slFormatoExportacao.appendChild(opCsvExcel);
+    slFormatoExportacao.appendChild(opICalendar);
+    slFormatoExportacao.appendChild(opCsvGoogleCalendar);
 }
 
 function atualizarListaDeEstados(numSelecao) {
@@ -282,24 +330,16 @@ function atualizarListaDeCidades(numSelecao) {
     }
 }
 
-function montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados, cidadeEstado1, cidadeEstado2) {
+function montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados) {
     document.getElementById("cardFeriados").style.visibility = "visible";
-
-    const mapearGrupoParaTabela = (grupo) => {
-        switch (grupo) {
-            case "comum": return "Ambas";
-            case "apenasEm1": return cidadeEstado1;
-            case "apenasEm2": return cidadeEstado2;
-        }
-    }
 
     var bodyTabela = "";
     feriados.forEach(f => {
         bodyTabela += "<tr>"
             + "<td>" + f.data.toLocaleDateString("pt-BR", { month: "long", day: "numeric" }) + "</td>"
             + "<td>" + f.data.toLocaleDateString("pt-BR", { weekday: "long" }) + "</td>"
-            + "<td>" + f.descricao.join(", ") + "</td>"
-            + "<td>" + (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(f.tipo) : mapearGrupoParaTabela(f.grupo)) + "</td>"
+            + "<td>" + f.descricao + "</td>"
+            + "<td>" + (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(f.tipo) : f.local) + "</td>"
             + "<tr/>";
     });
     document.getElementById("tbodyTabelaFeriados").innerHTML = bodyTabela;
@@ -335,7 +375,7 @@ function marcarPeriodoSelecionadoNoCalendario(p) {
 
     bt.innerText = txt;
     div.style.visibility = "visible";
-    div.style.display = "initial"; 
+    div.style.display = "initial";
     validarECalcularFeriados("calendario");
 }
 
@@ -376,7 +416,7 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
         }
     };
 
-    var periodos = obterFinaisDeSemanaParaAno(obterAnoSelecionado()).map(function(x) {
+    var periodos = obterFinaisDeSemanaParaAno(obterAnoSelecionado()).map(function (x) {
         return {
             name: "Fim de semana",
             details: x.getDay() == SABADO ? "Sábado" : "Domingo",
@@ -390,8 +430,8 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
 
     periodos = periodos.concat(feriados.map(function (x) {
         return {
-            name: (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(x.tipo) : x.cidadeBarraEstado.join(", ")),
-            details: x.descricao.join(", "),
+            name: (mostrarApenasEm1 ? mapearTipoFeriadoPorExtenso(x.tipo) : x.local),
+            details: x.descricao,
             color: escolherCorDoFeriado(x),
             startDate: x.data,
             endDate: x.data
@@ -401,59 +441,56 @@ function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
     calendar.setDataSource(periodos);
 }
 
-function agruparFeriadosComunsOuDistintos(feriados1, feriados2) {
+function agruparFeriadosComunsOuDistintos(feriados1, feriados2, nomearLocalComoAmbas) {
     if (feriados2 == undefined || feriados2 == null) {
         feriados2 = [];
     }
 
     var feriadosComuns = [], feriadosApenasEm1 = [], feriadosApenasEm2 = [];
 
-    var cidadeEstado1 = obterCidadeBarraEstadoSelecionados(1);
-    var cidadeEstado2 = obterCidadeBarraEstadoSelecionados(2);
+    var municipio1 = obterCidadeBarraEstadoSelecionados(1);
+    var municipio2 = obterCidadeBarraEstadoSelecionados(2);
 
-    var datasFeriados1 = feriados1.map(x => x.data);
-    var datasFeriados2 = feriados2.map(x => x.data);
-    var datasFeriadosComuns = filtrarApenasDatasDistintas(datasFeriados1.filter(x => datasFeriados2.find(y => y.isEqualTo(x)) != undefined));
+    var f1 = undefined;
+    var f2 = undefined;
 
-    var cidadeEstado1 = obterCidadeBarraEstadoSelecionados(1);
-    var cidadeEstado2 = obterCidadeBarraEstadoSelecionados(2);
+    for (var i = 0; i < feriados1.length; i++) {
+        f1 = feriados1[i];
+        for (var j = 0; j < feriados2.length; j++) {
+            f2 = feriados2[j];
+            if (f1.data.isEqualTo(f2.data)) {
 
-    for (var i = 0; i < datasFeriadosComuns.length; i++) {
-        var data = datasFeriadosComuns[i];
-        var descricoesFeriados1NaData = feriados1.filter(f => f.data.isEqualTo(data)).map(f => f.descricao);
-        var descricoesFeriados2NaData = feriados2.filter(f => f.data.isEqualTo(data)).map(f => f.descricao);
-        var descricaoFeriadosNaData = filtrarApenasDistintos(descricoesFeriados1NaData.concat(descricoesFeriados2NaData));
+                // se for a mesma data e mesma descrição,
+                // então apenas um feriado comum será adicionado.
 
-        var cidadesBarraEstados = [];
-        cidadesBarraEstados.push(cidadeEstado1);
-        if (cidadeEstado2 != null && cidadeEstado2 != undefined) {
-            cidadesBarraEstados.push(cidadeEstado2);
+                // senão, dois feriados comuns serão adicionados.
+                // ex.: Aniversário de Boa Vista / RR e Revolução Constitucionalista de 1932 em SP
+                // (ambos em 9 de julho), serão considerados feriados separados.
+
+                if (f1.descricao == f2.descricao) {
+                    feriadosComuns.push({ grupo: "comum", ...f1, local: nomearLocalComoAmbas ? "Ambas" : (municipio1 + " e " + municipio2) });
+                } else {
+                    feriadosComuns.push({ grupo: "comum", ...f1, local: municipio1 });
+                    feriadosComuns.push({ grupo: "comum", ...f2, local: municipio2 });
+                }
+                break;
+            }
         }
-
-        var fc = {
-            grupo: "comum",
-            data: data,
-            tipo: undefined,
-            cidadeBarraEstado: cidadesBarraEstados,
-            descricao: descricaoFeriadosNaData
-        };
-
-        feriadosComuns.push(fc);
     }
 
     for (var i = 0; i < feriados1.length; i++) {
-        var f = feriados1[i];
-        var fc = feriadosComuns.find(x => x.data.isEqualTo(f.data));
-        if (fc === undefined) {
-            feriadosApenasEm1.push({ ...f, grupo: "apenasEm1", descricao: [f.descricao], cidadeBarraEstado: [cidadeEstado1] });
+        f1 = feriados1[i];
+        var ehFeriadoComum = feriadosComuns.find(x => x.data.isEqualTo(f1.data) && x.descricao == f1.descricao);
+        if (!ehFeriadoComum) {
+            feriadosApenasEm1.push({ ...f1, grupo: "apenasEm1", local: municipio1 });
         }
     }
 
     for (var i = 0; i < feriados2.length; i++) {
-        var f = feriados2[i];
-        var fc = feriadosComuns.find(x => x.data.isEqualTo(f.data));
-        if (fc === undefined) {
-            feriadosApenasEm2.push({ ...f, grupo: "apenasEm2", descricao: [f.descricao], cidadeBarraEstado: [cidadeEstado2] });
+        f2 = feriados2[i];
+        var ehFeriadoComum = feriadosComuns.find(x => x.data.isEqualTo(f2.data) && x.descricao == f2.descricao);
+        if (!ehFeriadoComum) {
+            feriadosApenasEm2.push({ ...f2, grupo: "apenasEm2", local: municipio2 });
         }
     }
 
@@ -506,6 +543,11 @@ function obterCidadeBarraEstadoSelecionados(numSelecao) {
     return obterCidadeSelecionada(numSelecao) + "/" + obterEstadoSelecionado(numSelecao);
 }
 
+function obterFormatoExportacaoSelecionado() {
+    const slFormatoExportacao = document.getElementById("slFormatoExportacao");
+    return slFormatoExportacao.options[slFormatoExportacao.selectedIndex].value;
+}
+
 function mapearTipoFeriadoPorExtenso(tipo) {
     switch (tipo) {
         case "NACIONAL":
@@ -519,24 +561,6 @@ function mapearTipoFeriadoPorExtenso(tipo) {
     }
 }
 
-// tem que ser por método normal ao invés de método de extensão (prototype),
-// senão, conflita com a lib de calendário por algum motivo
-function filtrarApenasDistintos(arr) {
-    return arr.filter(function (x, i, a) {
-        return a.indexOf(x) == i;
-    });
-}
-
-function filtrarApenasDatasDistintas(arr) {
-    var ret = [];
-    arr.forEach(x => {
-        if (ret.find(y => y.isEqualTo(x)) == undefined) {
-            ret.push(x);
-        }
-    });
-    return ret;
-}
-
 function exportarFeriadosParaArquivoJson(feriados, ano, cidadeEstado1, cidadeEstado2) {
     const nomeArquivo = gerarNomeDoArquivoExportacao(".json", ano, cidadeEstado1, cidadeEstado2);
     const conteudoStringArquivo = JSON.stringify(feriados, null, 2);
@@ -544,15 +568,29 @@ function exportarFeriadosParaArquivoJson(feriados, ano, cidadeEstado1, cidadeEst
     exportarParaArquivo(nomeArquivo, conteudoStringArquivo, mimeType);
 }
 
-function exportarFeriadosParaArquivoCsv(feriados, ano, cidadeEstado1, cidadeEstado2) {
+function exportarFeriadosParaArquivoCsvExcel(feriados, ano, cidadeEstado1, cidadeEstado2) {
     const nomeArquivo = gerarNomeDoArquivoExportacao(".csv", ano, cidadeEstado1, cidadeEstado2);
-    const conteudoStringArquivo = converterJsonFeriadosParaCsv(feriados);
+    const conteudoStringArquivo = converterJsonFeriadosParaCsvExcel(feriados);
     const mimeType = "text/csv";
     exportarParaArquivo(nomeArquivo, conteudoStringArquivo, mimeType);
 }
 
-function converterJsonFeriadosParaCsv(feriados) {
-    var csv = "\"tipo\";\"grupo\";\"data\";\"descricao\";\"cidadeEstado1\";\"cidadeEstado2\";\n";
+function exportarFeriadosParaArquivoICalendar(feriados, ano, cidadeEstado1, cidadeEstado2) {
+    const nomeArquivo = gerarNomeDoArquivoExportacao(".ics", ano, cidadeEstado1, cidadeEstado2);
+    const conteudoStringArquivo = converterJsonFeriadosParaICalendar(feriados);
+    const mimeType = "text/calendar";
+    exportarParaArquivo(nomeArquivo, conteudoStringArquivo, mimeType);
+}
+
+function exportarFeriadosParaArquivoCsvGoogleCalendar(feriados, ano, cidadeEstado1, cidadeEstado2) {
+    const nomeArquivo = gerarNomeDoArquivoExportacao(".csv", ano, cidadeEstado1, cidadeEstado2);
+    const conteudoStringArquivo = converterJsonFeriadosParaCsvGoogleCalendar(feriados);
+    const mimeType = "text/csv";
+    exportarParaArquivo(nomeArquivo, conteudoStringArquivo, mimeType);
+}
+
+function converterJsonFeriadosParaCsvExcel(feriados) {
+    var csv = "\"tipo\";\"grupo\";\"data\";\"feriado\";\"local\";\n";
 
     const converterDataParaString = (data) => {
         const offset = data.getTimezoneOffset();
@@ -561,15 +599,115 @@ function converterJsonFeriadosParaCsv(feriados) {
     };
 
     feriados.forEach(f => {
-        var cidadeEstado1 = f.cidadeBarraEstado[0];
-        var cidadeEstado2 = f.cidadeBarraEstado.length > 1 ? f.cidadeBarraEstado[1] : "";
-
         csv += "\"" + (f.tipo || "") + "\";";
         csv += "\"" + (f.grupo || "") + "\";";
         csv += "\"" + converterDataParaString(f.data) + "\";";
-        csv += "\"" + f.descricao + "\";";
-        csv += "\"" + (f.grupo == "apenasEm2" ? "" : cidadeEstado1) + "\";";
-        csv += "\"" + (f.grupo == "apenasEm2" ? cidadeEstado1 : cidadeEstado2) + "\";";
+        csv += "\"" + (f.descricao || "") + "\";";
+        csv += "\"" + (f.local || "") + "\";";
+        csv += "\n";
+    });
+
+    return csv;
+}
+
+function converterJsonFeriadosParaICalendar(feriados) {
+
+    const formatarDataParaICalendar = function (date) {
+        const pad = function (i) {
+            return i < 10 ? `0${i}` : `${i}`;
+        }
+        const year = date.getUTCFullYear();
+        const month = pad(date.getUTCMonth() + 1);
+        const day = pad(date.getUTCDate());
+        return `${year}${month}${day}`;
+    }
+
+    const formatarDataHoraParaICalendar = function (date) {
+        const pad = function (i) {
+            return i < 10 ? `0${i}` : `${i}`;
+        }
+        const year = date.getUTCFullYear();
+        const month = pad(date.getUTCMonth() + 1);
+        const day = pad(date.getUTCDate());
+        const hour = pad(date.getUTCHours());
+        const minute = pad(date.getUTCMinutes());
+        const second = pad(date.getUTCSeconds());
+        return `${year}${month}${day}T${hour}${minute}${second}Z`;
+    }
+
+    const normalizarEJuntarTextoAscii = function (str) {
+        return str
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .replaceAll(/[\(\)\,]/gi, "")
+            .replaceAll(/ /g, "_");
+    }
+
+    const gerarUIDEvento = (feriado) => {
+        const anoEvento = feriado.data.getUTCFullYear();
+        const nomeEvento = normalizarEJuntarTextoAscii(feriado.descricao);
+        const nomeLocal = normalizarEJuntarTextoAscii(feriado.local);
+        return nomeEvento + "@" + anoEvento + "@" + nomeLocal;
+    };
+
+    const agora = new Date();
+    var txt = "";
+    txt += "BEGIN:VCALENDAR\n";
+    txt += "VERSION:2.0\n";
+    txt += "PRODID:-//AlexandreHTRB//Feriados do Brasil//PT\n";
+    txt += "CALSCALE:GREGORIAN\n";
+    txt += "METHOD:PUBLISH\n";
+
+    feriados.forEach(f => {
+        txt += "BEGIN:VEVENT\n";
+        txt += "UID:" + gerarUIDEvento(f) + "\n"; // data de criação do evento
+        txt += "DTSTAMP:" + formatarDataHoraParaICalendar(agora) + "\n"; // data de criação do evento
+        txt += "DTSTART;VALUE=DATE:" + formatarDataParaICalendar(f.data) + "\n"; // data de início do evento
+        txt += "DTEND;VALUE=DATE:" + formatarDataParaICalendar(f.data.addDays(1)) + "\n"; // data de fim do evento (+1 dia)
+        //txt += "DURATION:P1D\n"; // 1 dia de duração; quando tem DURATION, não precisa de DTEND
+        txt += "SUMMARY:" + f.descricao + "\n"; // título / nome
+        txt += "DESCRIPTION:Feriado " + f.tipo.toLowerCase() + " em " + f.local + "\n"; // tipo do feriado
+        txt += "PRIORITY:1\n"; // prioridade 1 (máxima)
+        txt += "TRANSP:OPAQUE\n"; // transparência opaca -> o evento ocupa tempo
+        txt += "CATEGORIES:HOLIDAYS,FERIADOS\n"; // categorias
+        txt += "END:VEVENT\n";
+    });
+
+    txt += "END:VCALENDAR";
+    return txt;
+}
+
+function converterJsonFeriadosParaCsvGoogleCalendar(feriados) {
+    var csv = "Subject,Start Date,Start Time,End Date,End Time,All day event,Description,Location,\n";
+
+    const formatarNome = (feriado) => {
+        return feriado.descricao.replaceAll(",", "");
+    }
+
+    const formatarDescricao = (feriado) => {
+        // tipo: nacional, estadual, municipal
+        return "Feriado " + feriado.tipo.toLowerCase() + " em " + feriado.local;
+    }
+
+    const formatarData = (feriado) => {
+        // dd/MM/yyyy, precisa ser assim senão o Google Calendar 
+        // configurado para Brasil entende errado
+        return feriado.data.toLocaleDateString('pt-BR');
+    }
+
+    const formatarLocal = (feriado) => {
+        return feriado.local;
+    }
+
+    feriados.forEach(f => {
+        csv += formatarNome(f) + ",";
+        csv += formatarData(f) + ",";
+        csv += "07:00 AM,";
+        csv += formatarData(f) + ",";
+        csv += "10:00 PM,";
+        csv += "TRUE,"; // Dia inteiro
+        csv += formatarDescricao(f) + ",";
+        csv += formatarLocal(f) + ",";
         csv += "\n";
     });
 
@@ -579,8 +717,7 @@ function converterJsonFeriadosParaCsv(feriados) {
 function gerarNomeDoArquivoExportacao(extensaoComPonto, ano, cidadeEstado1, cidadeEstado2) {
     if (cidadeEstado2 == null || cidadeEstado2 == undefined) {
         return "feriados_" + ano + "_" + (cidadeEstado1.replace("/", "-")) + extensaoComPonto;
-    }
-    else {
+    } else {
         return "feriados_" + ano + "_" + (cidadeEstado1.replace("/", "-")) + "_" + (cidadeEstado2.replace("/", "-")) + extensaoComPonto;
     }
 }

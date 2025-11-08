@@ -118,15 +118,12 @@
     
     <div class="row row-cols-lg-auto g-3 align-items-center" style="margin-top:4px;">
       <div class="col-12">
-        <button id="btnExportarParaJson" class="btn btn-outline-dark" type="button">
-          Exportar para JSON
-        </button>
+        <button id="btnExportar" class="btn btn-outline-dark" type="button">Exportar</button>
       </div>
-      <div class="col-12">
-        <button id="btnExportarParaCsv" class="btn btn-outline-dark" type="button">
-          Exportar para CSV / Excel
-        </button>
-      </div>    
+      <div class="col-12" id="divFormatoExportacao">
+          <label class="visually-hidden" for="slFormatoExportacao">Formato de exportação</label>
+          <select class="form-select" style="max-width: 240px;" id="slFormatoExportacao"></select>
+        </div>    
     </div>
   </div>
 
