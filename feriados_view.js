@@ -5,13 +5,15 @@ let periodo1 = null;
 let periodo2 = null;
 let periodo3 = null;
 
+function parametroNaoEhVazio (p) {
+    return p != undefined && p != null && p != "";
+}
+
 function setupView(tela) {
     const slEstado = document.getElementById("slEstado"),
         slEstado2 = document.getElementById("slEstado2"),
         slCidade = document.getElementById("slCidade"),
         slCidade2 = document.getElementById("slCidade2"),
-        divEstado2 = document.getElementById("divEstado2"),
-        divCidade2 = document.getElementById("divCidade2"),
         inpAno = document.getElementById("inpAno"),
         inpMarcarEmendas = document.getElementById("inpMarcarEmendas"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
@@ -22,7 +24,8 @@ function setupView(tela) {
         divPeriodoSelecionado3 = document.getElementById("divPeriodoSelecionado3"),
         btPeriodoSelecionado1 = document.getElementById("btPeriodoSelecionado1"),
         btPeriodoSelecionado2 = document.getElementById("btPeriodoSelecionado2"),
-        btPeriodoSelecionado3 = document.getElementById("btPeriodoSelecionado3");
+        btPeriodoSelecionado3 = document.getElementById("btPeriodoSelecionado3"),
+        qryParams = lerQueryParametersDaUrl();
 
     // setup para ambas as telas: calendário e tabela
     atualizarListaDeEstados(1);
@@ -32,19 +35,24 @@ function setupView(tela) {
     atualizarAnoInicial();
 
     slEstado.addEventListener('change', function () {
+        salvarQueryParametersNaUrl();
         atualizarListaDeCidades(1);
         validarECalcularFeriados(tela);
     });
     slCidade.addEventListener('change', function () {
+        salvarQueryParametersNaUrl();
         validarECalcularFeriados(tela);
     });
     slEstado2.addEventListener('change', function () {
+        salvarQueryParametersNaUrl();
         atualizarListaDeCidades(2);
     });
     slCidade2.addEventListener('change', function () {
+        salvarQueryParametersNaUrl();
         validarECalcularFeriados(tela);
     });
     inpAno.addEventListener('change', function () {
+        salvarQueryParametersNaUrl();
         if (tela == "calendario") {
             atualizarCalendarioComAnoSelecionado();
         }
@@ -108,7 +116,72 @@ function setupView(tela) {
         });
     }
 
+    // recuperação de parâmetros vindo via URL query parameters
+    if (parametroNaoEhVazio(qryParams.ano)) {
+        inpAno.value = parseInt(qryParams.ano, 10);
+        if (tela == "calendario") {
+            atualizarCalendarioComAnoSelecionado();
+        }
+    }
+    if (parametroNaoEhVazio(qryParams.estado) && (estados.find(x => x.acronimo == qryParams.estado) != undefined)) {
+        slEstado.value = qryParams.estado;
+        atualizarListaDeCidades(1);
+    }
+    if (parametroNaoEhVazio(qryParams.cidade) && obterCidadesDoEstado(qryParams.estado).includes(qryParams.cidade)) {
+        slCidade.value = qryParams.cidade;
+    }
+    if (parametroNaoEhVazio(qryParams.estado2) && (estados.find(x => x.acronimo == qryParams.estado2) != undefined)) {        
+        btnIncluirOutraCidade.click();
+        slEstado2.value = qryParams.estado2;
+        atualizarListaDeCidades(2);
+    }
+    if (parametroNaoEhVazio(qryParams.cidade2) && obterCidadesDoEstado(qryParams.estado2).includes(qryParams.cidade2)) {
+        slCidade2.value = qryParams.cidade2;
+    }
+
     validarECalcularFeriados(tela);
+}
+
+function lerQueryParametersDaUrl() {
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+        get: (searchParams, prop) => searchParams.get(prop),
+    });
+    return params;
+}
+
+function montarQueryParametersAtuais(urlSearchParams) {
+    const ano = obterAnoSelecionado();
+    const uf = obterEstadoSelecionado(1);
+    const cidade = obterCidadeSelecionada(1);
+    const uf2 = obterEstadoSelecionado(2);
+    const cidade2 = obterCidadeSelecionada(2);
+
+    if (ano != new Date().getFullYear()) urlSearchParams.set('ano', ano.toString());
+    if (parametroNaoEhVazio(uf)) urlSearchParams.set('estado', uf);
+    if (parametroNaoEhVazio(cidade)) urlSearchParams.set('cidade', cidade);
+    if (parametroNaoEhVazio(uf2)) urlSearchParams.set('estado2', uf2);
+    if (parametroNaoEhVazio(cidade2)) urlSearchParams.set('cidade2', cidade2);
+}
+
+function salvarQueryParametersNaUrl() {
+    const url = new URL(window.location);
+    montarQueryParametersAtuais(url.searchParams);
+    window.history.pushState({}, '', url);
+}
+
+function alternarModo(modo) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    montarQueryParametersAtuais(urlSearchParams);
+    let urlSearchParamsStr = urlSearchParams.toString();
+    if (parametroNaoEhVazio(urlSearchParamsStr)) {
+        urlSearchParamsStr = "?" + urlSearchParamsStr;
+    }
+
+    if (modo == "calendario") {
+        window.location.href = "index.html" + urlSearchParamsStr;
+    } else if (modo == "tabela") {
+        window.location.href = "tabela.html" + urlSearchParamsStr;
+    }
 }
 
 function construirCalendario() {
