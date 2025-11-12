@@ -169,21 +169,6 @@ function salvarQueryParametersNaUrl() {
     window.history.pushState({}, '', url);
 }
 
-function alternarModo(modo) {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    montarQueryParametersAtuais(urlSearchParams);
-    let urlSearchParamsStr = urlSearchParams.toString();
-    if (parametroNaoEhVazio(urlSearchParamsStr)) {
-        urlSearchParamsStr = "?" + urlSearchParamsStr;
-    }
-
-    if (modo == "calendario") {
-        window.location.href = "index.html" + urlSearchParamsStr;
-    } else if (modo == "tabela") {
-        window.location.href = "tabela.html" + urlSearchParamsStr;
-    }
-}
-
 function construirCalendario() {
     calendar = new Calendar('#calendar', {
         style: 'background',
