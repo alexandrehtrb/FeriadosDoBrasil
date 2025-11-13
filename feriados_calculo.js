@@ -873,10 +873,36 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Belford Roxo",
+        feriados: [
+          // https://www.transportal.com.br/feriados/rj/belford-roxo/
+          aniversarioDaCidade(ABRIL, 3),
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao,
+        ]
+      },
+      {
+        nome: "Campos dos Goytacazes",
+        feriados: [
+          // https://sindivarejocampos.com.br/calendario
+          ff(JANEIRO, 15, "Dia de Santo Amaro"),
+          diaDeCorpusChristi,
+          ff(AGOSTO, 6, "Dia de São Salvador"),
+        ]
+      },
+      {
         nome: "Duque de Caxias",
         feriados: [
           diaDeCorpusChristi,
           diaDeSantoAntonio,
+        ]
+      },
+      {
+        nome: "Niterói",
+        feriados: [
+          // https://consultaniteroi.siscam.com.br/Arquivos//Materias/Proposituras/ProjLei/15c045aa-8713-4c04-a6e6-54f23cb49858.html
+          // https://www.jusbrasil.com.br/noticias/feriado-municipal-de-niteroi-e-extinto/2827457335
+          diaDeSaoJoao
         ]
       },
       {
