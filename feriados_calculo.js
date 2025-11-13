@@ -1089,6 +1089,14 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Americana",
+        feriados: [
+          // https://www.americana.sp.gov.br/legislacao/lei_939_1969.html
+          diaDeCorpusChristi,
+          diaDeSantoAntonio
+        ]
+      },
+      {
         nome: "Araraquara",
         feriados: [
           // https://www.camara-arq.sp.gov.br/Pagina/Listar/709
@@ -1096,6 +1104,23 @@ const estados = [
           diaDeCorpusChristi,
           ff(JULHO, 11, "Dia de São Bento"),
           ff(AGOSTO, 22, "Imaculado Coração de Maria")
+        ]
+      },
+      {
+        nome: "Barretos",
+        feriados: [
+          // https://consulta.camarabarretos.sp.gov.br/Documentos/Documento/276091
+          diaDeCorpusChristi,
+          ff(AGOSTO, 25, "Dia de São Luís"),
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2009) // LEI ORDINÁRIA Nº 4151
+        ]
+      },
+      {
+        nome: "Bauru",
+        feriados: [
+          // https://www2.bauru.sp.gov.br/feriados.aspx
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 1),
         ]
       },
       {
@@ -1128,6 +1153,15 @@ const estados = [
         ]
       },
       {
+        nome: "Botucatu",
+        feriados: [
+          // https://sistemas.botucatu.sp.gov.br/transparencia/decretos/view.php?file=2025%2F13681+feriados+e+pontos+facultativos+2026.pdf
+          aniversarioDaCidade(ABRIL, 14),          
+          diaDeCorpusChristi,
+          diaDeSantAnna
+        ]
+      },
+      {
         nome: "Campinas",
         feriados: [
           // Dia da Consciência Negra -> Lei nº 11128 de 14 de janeiro de 2002
@@ -1155,6 +1189,31 @@ const estados = [
         ]
       },
       {
+        nome: "Carapicuíba",
+        feriados: [
+          // https://www.carapicuiba.sp.gov.br/uploads/legislacao/27842/bVWX-rXlmOUuH8yZKZEyA2jhX9_jNc45.pdf
+          ff(MARCO, 26, "Emancipação do município"),
+          diaDeSaoPedro,
+        ],
+        excecoes: [
+          {
+            // https://www.aciccarapicuiba.com.br/site/noticias:antecipacao-de-feriados-em-carapicuiba
+            ano: 2021,
+            removidos: [
+              "Emancipação do município",
+              "Dia de São Pedro",
+              "Dia da Consciência Negra"
+            ],
+            adicionados: [
+              // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020
+              ff(MARCO, 29, "Emancipação do município (postergado pela pandemia)"),
+              ff(MARCO, 30, "Dia de São Pedro (adiantado pela pandemia)"),
+              ff(MARCO, 31, "Dia da Consciência Negra (adiantado pela pandemia)")
+            ]
+          }
+        ]
+      },
+      {
         nome: "Cubatão",
         feriados: [
           // https://diariooficial.cubatao.sp.gov.br/search_sres.php?id=MTYzMg==
@@ -1164,9 +1223,78 @@ const estados = [
         ]
       },
       {
+        nome: "Diadema",
+        feriados: [
+          // https://portal.diadema.sp.gov.br/feriados-municipais/
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao,
+        ]
+      },
+      {
+        nome: "Franca",
+        feriados: [
+          // https://www3.franca.sp.gov.br/noticia/31843/feriados.html
+          diaDeCorpusChristi,
+          aniversarioDaCidade(NOVEMBRO, 28),
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
         nome: "Guarulhos",
         feriados: [
           diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Guarujá",
+        feriados: [
+          // https://www.guaruja.sp.gov.br/plataforma/wp-content/uploads/2024/10/12-1xD3QW36c0-2024.pdf
+          ff(JANEIRO, 15, "Dia de Santo Amaro"),
+          diaDeCorpusChristi,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2009),
+        ]
+      },
+      {
+        nome: "Itaquaquecetuba",
+        feriados: [
+          // https://www.itaquaquecetuba.sp.gov.br/diariooficial/index.php/prefeitura/decreto-8438-feriados-pontos-facultativos-19-11-24/viewdocument
+          diaDeCorpusChristi,
+          aniversarioDaCidade(SETEMBRO, 8),
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2014),
+        ]
+      },
+      {
+        nome: "Jundiaí",
+        feriados: [
+          // DECRETO Nº 34.592, DE 06 DE NOVEMBRO DE 2024.
+          // https://jundiai.sp.gov.br/a-cidade/feriados-e-pontos-facultativos/
+          diaDeCorpusChristi,
+          ff(AGOSTO, 15, "Dia de Nossa Senhora do Desterro")
+        ]
+      },
+      {
+        nome: "Limeira",
+        feriados: [
+          // https://www.limeira.sp.gov.br/secretarias/ceprosom/feriados-municipais-e-pontos-facultativos
+          diaDeCorpusChristi,
+          ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
+        ]
+      },
+      {
+        nome: "Mauá",
+        feriados: [
+          // https://dom.maua.sp.gov.br/public/docs/ea9f8d17580fcfa49b7c52fe4d83e9e9.pdf
+          diaDeCorpusChristi,
+          aniversarioDaCidade(DEZEMBRO, 8),
+        ]
+      },
+      {
+        nome: "Mogi das Cruzes",
+        feriados: [
+          // https://www.mogidascruzes.sp.gov.br/servico/servidor/calendario-administrativo
+          diaDeCorpusChristi,
+          diaDeSantAnna,
+          aniversarioDaCidade(SETEMBRO, 1),
         ]
       },
       {
@@ -1186,11 +1314,38 @@ const estados = [
         ]
       },
       {
+        nome: "Piracicaba",
+        feriados: [
+          // https://piracicaba.sp.gov.br/servicos/calendario-de-feriados-e-pontos-facultativos-2025/
+          diaDeSantoAntonio,
+          diaDeCorpusChristi,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2003),
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Praia Grande",
+        feriados: [
+          // https://www.praiagrande.sp.gov.br/Administracao/leisdecretos_view.asp?codLeis=3345
+          diaDeCorpusChristi,
+          diaDeSaoPedro
+        ]
+      },
+      {
         nome: "Ribeirão Preto",
         feriados: [
           diaDeSaoSebastiao,
           diaDeCorpusChristi,
           ff(JUNHO, 19, "Dia de Santa Juliana Falconieri"),
+        ]
+      },
+      {
+        nome: "Santa Bárbara d'Oeste",
+        feriados: [
+          // http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=51235
+          diaDeCorpusChristi,
+          ff(AGOSTO, 15, "Assunção de Nossa Senhora"),
+          ff(DEZEMBRO, 4, "Dia de Santa Bárbara"),
         ]
       },
       {
@@ -1232,6 +1387,15 @@ const estados = [
           diaDeSaoJose,
           diaDeCorpusChristi,
           aniversarioDaCidade(JULHO, 27),
+        ]
+      },
+      {
+        nome: "São José do Rio Preto",
+        feriados: [
+          // https://riopreto.siscam.com.br/Documentos/Arquivo/386924
+          diaDeSaoJose,
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao,
         ]
       },
       {
@@ -1286,11 +1450,37 @@ const estados = [
         ]
       },
       {
+        nome: "São Vicente",
+        feriados: [
+          // https://www.saovicente.sp.gov.br/institucional/calendario
+          ff(JANEIRO, 22, "Fundação de São Vicente"),
+          diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Sorocaba",
+        feriados: [
+          // DECRETO Nº 29.533, DE 20 DE DEZEMBRO DE 2024.
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 15),
+        ]
+      },
+      {
         nome: "Sumaré",
         feriados: [
           // https://www.sumare.sp.gov.br/pdfDiario.php?edicao=702&pdf=95a5e82515e74b2c82ed35bb9b27fb8b.pdf
           diaDeCorpusChristi,
           aniversarioDaCidade(JULHO, 26),
+        ]
+      },
+      {
+        nome: "Taubaté",
+        feriados: [
+          // https://taubate.sp.gov.br/anexos/FERIADOS_2025.pdf
+          ff(FEVEREIRO, 5, "Elevação de Taubaté à categoria de município"),
+          ff(ABRIL, 21, "Dia de São Benedito"),
+          diaDeCorpusChristi,
+          ff(OUTUBRO, 4, "Dia de São Francisco"),
         ]
       },
       {
