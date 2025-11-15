@@ -915,6 +915,32 @@ const estados = [
         nome: "Rio de Janeiro",
         feriados: [
           diaDeSaoSebastiao,
+        ],
+        excecoes: [
+          {
+            // https://www.sindilojas.rio/2021/03/25/decreto-estadual-antecipa-feriados-e-cria-outros-tres/
+            // TODO: o decreto acima vale para todo o estado do RJ
+            ano: 2021,
+            removidos: [
+              "Tiradentes",
+              "Dia de São Jorge",
+            ],
+            adicionados: [
+              ff(MARCO, 26, "Feriadão excepcional devido à pandemia de COVID-19"),
+              ff(MARCO, 29, "Tiradentes (adiantado pela pandemia)"),
+              ff(MARCO, 30, "Dia de São Jorge (adiantado pela pandemia)"),
+              ff(MARCO, 31, "Feriadão excepcional devido à pandemia de COVID-19"),
+              ff(ABRIL, 1, "Feriadão excepcional devido à pandemia de COVID-19"),
+            ]
+          },
+          {
+            // https://www.sindilojas.rio/2024/10/25/comunicado-sobre-o-feriado-do-g20-decreto-no-55-200-2024/
+            ano: 2024,
+            adicionados: [
+              ff(NOVEMBRO, 18, "Cúpula do G20<br/>(feriado para categorias não-essenciais)"),
+              ff(NOVEMBRO, 19, "Cúpula do G20<br/>(feriado para categorias não-essenciais)"),
+            ]
+          }
         ]
       },
       {
