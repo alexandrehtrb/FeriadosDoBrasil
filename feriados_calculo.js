@@ -338,6 +338,16 @@ const estados = [
         ]
       },
       {
+        nome: "Vitória da Conquista",
+        feriados: [
+          // https://www.pmvc.ba.gov.br/feriados-municipais/
+          diaDeCorpusChristi,
+          diaDeSaoJoao,
+          ff(AGOSTO, 15, "Dia de Nossa Senhora das Vitórias"),
+          aniversarioDaCidade(NOVEMBRO, 9)
+        ]
+      },
+      {
         nome: "Xique-Xique",
         feriados: [
           // https://xiquexique.ba.gov.br/prefeitura-de-xique-xique-divulga-calendario-de-feriados-do-municipio
@@ -1149,6 +1159,15 @@ const estados = [
         ]
       },
       {
+        nome: "Amparo",
+        feriados: [
+          // https://www.amparo.sp.gov.br/wp-content/uploads/2025/05/CALENDARIO-2025.pdf
+          aniversarioDaCidade(ABRIL, 8),
+          diaDeCorpusChristi,
+          ff(SETEMBRO, 8, "Dia de Nossa Senhora do Amparo")
+        ]
+      },
+      {
         nome: "Araraquara",
         feriados: [
           // https://www.camara-arq.sp.gov.br/Pagina/Listar/709
@@ -1304,6 +1323,23 @@ const estados = [
           ff(JANEIRO, 15, "Dia de Santo Amaro"),
           diaDeCorpusChristi,
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2009),
+        ]
+      },
+      {
+        nome: "Holambra",
+        feriados: [
+          // https://camaraholambra.sp.gov.br/Noticia/Visualizar/4560
+          ff(MAIO, 25, "Divino Espírito Santo"),
+          diaDeCorpusChristi,
+          aniversarioDaCidade(OUTUBRO, 27),
+        ]
+      },
+      {
+        nome: "Hortolândia",
+        feriados: [
+          // https://www.hortolandia.sp.gov.br/servidor-municipal/prefeitura-de-hortolandia-oficializa-calendario-de-feriados-para-2025/
+          aniversarioDaCidade(MAIO, 19),
+          diaDeCorpusChristi
         ]
       },
       {
