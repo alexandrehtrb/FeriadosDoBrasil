@@ -643,6 +643,15 @@ const estados = [
         ]
       },
       {
+        nome: "Ipatinga",
+        feriados: [
+          // https://www.ipatinga.mg.gov.br/arquivo/download/26229/categoria/219/feriados_federais_e_municipais2025
+          ff(ABRIL, 29, "Emancipação política da cidade"),
+          diaDeCorpusChristi,
+          ff(AGOSTO, 15, "Assunção de Nossa Senhora"),
+        ]
+      },
+      {
         nome: "Itajubá",
         feriados: [
           // https://www.itajuba.mg.gov.br/abrir_arquivo.aspx/Portaria_183_2021?cdLocal=2&arquivo={4764771E-E70C-AA0B-6BAC-CD88BEDDBDD8}.pdf#search=feriados
@@ -658,6 +667,14 @@ const estados = [
           diaDeCorpusChristi,
           ff(AGOSTO, 15, "Dia de Nossa Senhora do Pilar"),
           diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Poços de Caldas",
+        feriados: [
+          // https://pocosdecaldas.mg.gov.br/noticias/decreto-municipal-estabelece-pontos-facultativos-para-o-ano-de-2025-em-pocos/
+          ff(MAIO, 12, "Festa de São Benedito"),
+          diaDeCorpusChristi
         ]
       },
       {
@@ -922,6 +939,14 @@ const estados = [
         ]
       },
       {
+        nome: "Paraty",
+        feriados: [
+          // https://paraty.rj.leg.br/site/wp-content/uploads/2021/07/projeto_lei_042_2021269.pdf
+          diaDeCorpusChristi,
+          ff(SETEMBRO, 8, "Dia de Nossa Senhora dos Remédios")
+        ]
+      },
+      {
         nome: "Rio de Janeiro",
         feriados: [
           diaDeSaoSebastiao,
@@ -958,6 +983,15 @@ const estados = [
         feriados: [
           ff(JANEIRO, 10, "Dia de São Gonçalo"),
           aniversarioDaCidade(SETEMBRO, 22),
+        ]
+      },
+      {
+        nome: "Volta Redonda",
+        feriados: [
+          // https://sapl.voltaredonda.rj.leg.br/media/sapl/public/normajuridica/2018/4025/4025_texto_integral.pdf
+          diaDeCorpusChristi,
+          diaDeSantoAntonio,
+          aniversarioDaCidade(JULHO, 17)
         ]
       }
     ]
@@ -1191,7 +1225,7 @@ const estados = [
         feriados: [
           // https://www2.bauru.sp.gov.br/feriados.aspx
           diaDeCorpusChristi,
-          aniversarioDaCidade(AGOSTO, 1),
+          aniversarioDaCidade(AGOSTO, 1)
         ]
       },
       {
@@ -1257,6 +1291,15 @@ const estados = [
               ff(MAIO, 27, "Dia da Consciência Negra (adiantado pela pandemia)"),
             ]
           }
+        ]
+      },
+      {
+        nome: "Campos do Jordão",
+        feriados: [
+          // https://www.instagram.com/p/DEYQL1wvW-5/
+          aniversarioDaCidade(ABRIL, 29),
+          diaDeCorpusChristi,
+          ff(OUTUBRO, 1, "Dia de Santa Teresinha")
         ]
       },
       {
@@ -1428,6 +1471,14 @@ const estados = [
         ]
       },
       {
+        nome: "Rio Claro",
+        feriados: [
+          // https://cespro.com.br/visualizarDiploma.php?cdMunicipio=9320&cdDiploma=19701158&NroLei=1.158&Word=&Word2=
+          diaDeCorpusChristi,
+          diaDeSaoJoao,
+        ]
+      },
+      {
         nome: "Santa Bárbara d'Oeste",
         feriados: [
           // http://www2.camarasantabarbara.sp.gov.br/Sino.Siave/arquivo?Id=51235
@@ -1535,6 +1586,13 @@ const estados = [
               "Dia da Consciência Negra",
             ]
           }
+        ]
+      },
+      {
+        nome: "São Sebastião",
+        feriados: [
+          // https://www.saosebastiao.sp.gov.br/noticia.asp?id=N1512024162324
+          diaDeCorpusChristi,
         ]
       },
       {
