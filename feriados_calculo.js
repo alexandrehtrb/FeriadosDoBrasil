@@ -41,6 +41,14 @@ function calcularNossaSenhoraDaPenha(ano) {
   return calcularDomingoDePascoa(ano).addDays(8);
 }
 
+function calcularAscensaoDoSenhor(ano) {
+  return calcularDomingoDePascoa(ano).addDays(39);
+}
+
+function calcularJubileuNossaSenhoraDasDores(ano) {
+  return calcularDomingoDePascoa(ano).addDays(-9);
+}
+
 function calcularDiaDaFestaDeSantaAna(ano) {
   // https://pt.wikipedia.org/wiki/Festa_de_Sant%27Ana_de_Caic%C3%B3
   // O dia de Sant'Ana é 26 de julho,
@@ -113,6 +121,8 @@ const diaDeSaoSebastiao = ff(JANEIRO, 20, "Dia de São Sebastião");
 const diaDeSaoJose = ff(MARCO, 19, "Dia de São José");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
+const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
+const diaDeJubileuDeNsaSraDasDores = fm(calcularJubileuNossaSenhoraDasDores, "Jubileu de Nossa Senhora das Dores");
 const diaDeSantoAntonio = ff(JUNHO, 13, "Dia de Santo Antônio");
 const diaDeSaoJoao = ff(JUNHO, 24, "Dia de São João");
 const diaDeSaoPedro = ff(JUNHO, 29, "Dia de São Pedro");
@@ -634,6 +644,23 @@ const estados = [
         ]
       },
       {
+        nome: "Betim",
+        feriados: [
+          // https://www.betim.mg.gov.br/portal/noticias/0/3/14663/prefeitura-de-betim-divulga-calendario-de-feriados-e-pontos-facultativos-para-2026
+          diaDeCorpusChristi,
+          ff(JULHO, 16, "Dia de Nossa Senhora do Carmo")
+        ]
+      },
+      {
+        nome: "Contagem",
+        feriados: [
+          // https://www.portal.contagem.mg.gov.br/uploads/5482doc-e_19050814.pdf
+          diaDeJubileuDeNsaSraDasDores,          
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 30)
+        ]
+      },
+      {
         nome: "Governador Valadares",
         feriados: [
           // https://www.valadares.mg.gov.br/detalhe-da-legislacao/info/lei-ordinaria-3831-1993/2389
@@ -658,6 +685,22 @@ const estados = [
           diaDeSaoJose,
           diaDeCorpusChristi,
           ff(AGOSTO, 15, "Dia de Nossa Senhora da Piedade"),
+        ]
+      },
+      {
+        nome: "Juiz de Fora",
+        feriados: [
+          // https://www.pjf.mg.gov.br/secretarias/sarh/servicos/feriados.php
+          diaDeSantoAntonio,
+          diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Montes Claros",
+        feriados: [
+          // https://portal.montesclaros.mg.gov.br/noticia/programe-se-definido-o-calendario-oficial-de-feriados-e-pontos-facultativos-em-montes-claros-no-ano-de-2026
+          diaDeCorpusChristi,
+          aniversarioDaCidade(JULHO, 3)
         ]
       },
       {
@@ -1038,10 +1081,27 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Canela",
+        feriados: [
+          // https://canela.rs.gov.br/sitenovo/gabinete-do-prefeito/feriados-municipais/
+          ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio"),
+          diaDeAscensaoDoSenhor,
+          diaDeCorpusChristi
+        ]
+      },
+      {
         nome: "Chuí",
         feriados: [
           // https://chui.rs.gov.br/o-municipio/sobre-o-municipio/
           aniversarioDaCidade(OUTUBRO, 22)
+        ]
+      },
+      {
+        nome: "Gramado",
+        feriados: [
+          // https://ecrie.com.br/sistema/conteudos/arquivo/a_160_0_1_17112023163950.pdf
+          diaDeAscensaoDoSenhor,
+          diaDeCorpusChristi
         ]
       },
       {
