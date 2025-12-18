@@ -68,6 +68,13 @@ function calcularDiaDoComercio(ano) {
   return terceiraSegundaFeiraOutubro;
 }
 
+function calcularDiaDaBiblia(ano) {
+  var primeiroDiaDezembro = new Date(ano, DEZEMBRO, 1);
+  var primeiroDomingoDezembro = primeiroDiaDezembro.getNextWeekday(DOMINGO);
+  var segundoDomingoDezembro = primeiroDomingoDezembro.addDays(7);
+  return segundoDomingoDezembro;
+}
+
 function deslocarFeriadoEstadualDoAcre(feriado) {
   /*
   Por meio da lei estadual nº 2.247/2009, os feriados estaduais que caírem entre as terças e quintas-feiras
@@ -119,6 +126,7 @@ const aniversarioDaCidade = function (mes, dia) { return ff(mes, dia, "Aniversá
 const tercaFeiraDeCarnaval = fm(calcularTercaFeiraDeCarnaval, "Terça-feira de Carnaval");
 const diaDeSaoSebastiao = ff(JANEIRO, 20, "Dia de São Sebastião");
 const diaDeSaoJose = ff(MARCO, 19, "Dia de São José");
+const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
@@ -330,6 +338,16 @@ const estados = [
         ]
       },
       {
+        nome: "Ilhéus",
+        feriados: [
+          // https://www.ilheus.ba.gov.br/abrir_arquivo.aspx?cdLocal=12&arquivo=%7BDCBB2AC5-DDBE-B7DC-D41B-AC24CE48C8B1%7D.pdf
+          diaDeSaoJorge,
+          diaDeSaoJoao,
+          aniversarioDaCidade(JUNHO, 28),
+          ff(AGOSTO, 15, "Dia de Nossa Senhora da Vitória")
+        ]
+      },
+      {
         nome: "Luís Eduardo Magalhães",
         feriados: [
           // https://sai.io.org.br/HandlerPublicacao.ashx?mixed=ZG9jdW1lbnRvc1NFUC80NjkvMjAyNC8xLzE2LzI3MTg3MzQucGRm
@@ -337,6 +355,16 @@ const estados = [
           diaDeCorpusChristi,
           diaDeSaoJoao,
           ff(AGOSTO, 2, "Dia do Evangélico"),
+        ]
+      },
+      {
+        nome: "Porto Seguro",
+        feriados: [
+          // https://www.acessoinformacao.com.br/ba/portoseguro/wp-includes/ExternalApps/downloader.php?hurl=aHR0cDovL2RvZW0ub3JnLmJyL2JhL3BvcnRvc2VndXJvL2FycXVpdm9zL2Rvd25sb2FkLzdkM2NmZDM1Y2I1NDlmOTNkMTkwMjQyODE3OTVkZGMxL0RFQ1JFVE8gMTEuNjEwIC0gQ0FMRU5EQVJJTyBERSBGRVJJQURPUy5wZGY%3D
+          ff(ABRIL, 22, "Aniversário do Brasil"),
+          ff(JUNHO, 30, "Elevação da Vila de Porto Seguro à categoria de cidade"),
+          ff(AGOSTO, 15, "Padroeira Nossa Senhora D'Ajuda"),
+          ff(SETEMBRO, 8, "Dia de Nossa Senhora da Pena")
         ]
       },
       {
@@ -937,7 +965,7 @@ const estados = [
     feriadosEstaduais: [
       // Dia da Consciência Negra -> LEI Nº 1929, DE 26 DE DEZEMBRO DE 1991.
       tercaFeiraDeCarnaval,
-      ff(ABRIL, 23, "Dia de São Jorge"),
+      diaDeSaoJorge,
       fm(calcularDiaDoComercio, "Dia do Comércio (apenas para comerciantes e trabalhadores da construção civil)"),
       ff(NOVEMBRO, 20, "Dia da Consciência Negra", 1992)
     ],
@@ -990,6 +1018,15 @@ const estados = [
         ]
       },
       {
+        nome: "Petrópolis",
+        feriados: [
+          // https://www.petropolis.rj.gov.br/pmp/index.php/cidade/33-feriados-do-municipio
+          aniversarioDaCidade(MARCO, 16),
+          diaDeCorpusChristi,
+          ff(JUNHO, 29, "Chegada dos Primeiros Colonos Alemães a Petrópolis")
+        ]
+      },
+      {
         nome: "Rio de Janeiro",
         feriados: [
           diaDeSaoSebastiao,
@@ -1019,6 +1056,17 @@ const estados = [
               ff(NOVEMBRO, 19, "Cúpula do G20<br/>(feriado para categorias não-essenciais)"),
             ]
           }
+        ]
+      },
+      {
+        nome: "Saquarema",
+        feriados: [
+          // https://transparencia.saquarema.rj.gov.br/wp-content/uploads/2018/01/LO-567-2001.pdf
+          // https://www.transparencia.saquarema.rj.leg.br/arquivos/1673/818.pdf
+          ff(MAIO, 8, "Emancipação política do município"),
+          ff(SETEMBRO, 8, "Dia de Nossa Senhora de Nazareth"),
+          diaDeSantoAntonio,
+          fm(calcularDiaDaBiblia, "Dia da Bíblia")
         ]
       },
       {
