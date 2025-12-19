@@ -543,6 +543,14 @@ const estados = [
         ]
       },
       {
+        nome: "Santo Antônio dos Lopes",
+        feriados: [
+          // https://www.stoantoniodoslopes.ma.gov.br/DOM/DOM20240112.pdf
+          diaDeSantoAntonio,
+          aniversarioDaCidade(DEZEMBRO, 30)
+        ]
+      },
+      {
         nome: "São José de Ribamar",
         feriados: [
           // https://www.saojosederibamar.ma.gov.br/arquivo/legislacao/decreto_1127_2016
@@ -669,6 +677,14 @@ const estados = [
           diaDeCorpusChristi,
           ff(AGOSTO, 15, "Dia de Nossa Senhora da Boa Viagem"),
           diaDeNossaSenhoraDaConceicao,
+        ]
+      },
+      {
+        nome: "Barbacena",
+        feriados: [
+          // https://barbacena.portaldacidade.com/noticias/cidade/saiba-quais-sao-os-feriados-e-pontos-facultativos-de-2025-em-minas-gerais-3858
+          aniversarioDaCidade(AGOSTO, 14),
+          diaDeNossaSenhoraDaConceicao
         ]
       },
       {
@@ -1500,6 +1516,22 @@ const estados = [
           diaDeCorpusChristi,
           aniversarioDaCidade(SETEMBRO, 8),
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2014),
+        ]
+      },
+      {
+        nome: "Itu",
+        feriados: [
+          // https://itu.sp.gov.br/a-cidade/dados-gerais/
+          ff(FEVEREIRO, 2, "Dia de Nossa Senhora da Candelária"),
+          diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Itupeva",
+        feriados: [
+          // https://itupeva.sp.gov.br/itupeva/feriados-e-pontos-facultativos
+          diaDeSaoSebastiao,
+          diaDeCorpusChristi,
         ]
       },
       {
