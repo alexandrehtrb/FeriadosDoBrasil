@@ -429,7 +429,7 @@ const estados = [
           // https://www.calendariox.com.br/feriados-juazeiro-do-norte-ce.html
           ff(MARCO, 24, "Aniversário de Padre Cícero"),
           aniversarioDaCidade(JULHO, 22),
-          aniversarioDaCidade(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
+          ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
         ]
       }
     ]
@@ -699,7 +699,7 @@ const estados = [
         nome: "Contagem",
         feriados: [
           // https://www.portal.contagem.mg.gov.br/uploads/5482doc-e_19050814.pdf
-          diaDeJubileuDeNsaSraDasDores,          
+          diaDeJubileuDeNsaSraDasDores,
           diaDeCorpusChristi,
           aniversarioDaCidade(AGOSTO, 30)
         ]
@@ -1309,6 +1309,14 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Águas de Lindóia",
+        feriados: [
+          // https://www.aguasdelindoia.sp.gov.br/public/admin/globalarq/diario-oficial/fdaaaae04702d743e8515620ab96df0f.pdf
+          aniversarioDaCidade(JULHO, 2),
+          ff(NOVEMBRO, 16, "Emancipação político-administrativa")
+        ]
+      },
+      {
         nome: "Americana",
         feriados: [
           // https://www.americana.sp.gov.br/legislacao/lei_939_1969.html
@@ -1385,9 +1393,18 @@ const estados = [
         nome: "Botucatu",
         feriados: [
           // https://sistemas.botucatu.sp.gov.br/transparencia/decretos/view.php?file=2025%2F13681+feriados+e+pontos+facultativos+2026.pdf
-          aniversarioDaCidade(ABRIL, 14),          
+          aniversarioDaCidade(ABRIL, 14),
           diaDeCorpusChristi,
           diaDeSantAnna
+        ]
+      },
+      {
+        nome: "Brotas",
+        feriados: [
+          // https://www.camarabrotas.sp.gov.br//temp/26122025132731download_lei_5.pdf
+          ff(MAIO, 3, "Festa da Cruz de Maio"),
+          diaDeCorpusChristi,
+          ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
         ]
       },
       {
@@ -1535,6 +1552,15 @@ const estados = [
         ]
       },
       {
+        nome: "Jaguariúna",
+        feriados: [
+          // https://jaguariuna.sp.leg.br/wp-content/uploads/2020/09/LEI-1567.pdf
+          diaDeCorpusChristi,
+          ff(SETEMBRO, 12, "Santíssimo Nome de Maria"),
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2005)
+        ]
+      },
+      {
         nome: "Jundiaí",
         feriados: [
           // DECRETO Nº 34.592, DE 06 DE NOVEMBRO DE 2024.
@@ -1549,6 +1575,17 @@ const estados = [
           // https://www.limeira.sp.gov.br/secretarias/ceprosom/feriados-municipais-e-pontos-facultativos
           diaDeCorpusChristi,
           ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
+        ]
+      },
+      {
+        nome: "Lindóia",
+        feriados: [
+          // https://ecrie.com.br/sistema/conteudos/arquivo/a_201_0_1_08012024152427.pdf
+          // https://lindoia.sp.gov.br/lindoia-oficializa-data-de-fundacao-do-municipio
+          // https://www.transportal.com.br/feriados/sp/lindoia/
+          ff(MARCO, 21, "Emancipação político-administrativa do município"),
+          ff(SETEMBRO, 8, "Natividade de Nossa Senhora"),
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2010)
         ]
       },
       {
@@ -1569,6 +1606,15 @@ const estados = [
         ]
       },
       {
+        nome: "Monte Alegre do Sul",
+        feriados: [
+          // https://www.montealegredosul.sp.gov.br/up/anexo/1723751226.pdf
+          diaDeCorpusChristi,
+          ff(AGOSTO, 6, "Dia do Senhor Bom Jesus"),
+          ff(DEZEMBRO, 24, "Emancipação política do município")
+        ]
+      },
+      {
         nome: "Osasco",
         feriados: [
           aniversarioDaCidade(FEVEREIRO, 19),
@@ -1582,6 +1628,15 @@ const estados = [
           // https://www.paulinia.sp.gov.br/feriados2025/
           aniversarioDaCidade(FEVEREIRO, 28),
           diaDoSagradoCoracaoDeJesus,
+        ]
+      },
+      {
+        nome: "Pedreira",
+        feriados: [
+          // https://pedreira.sp.gov.br/noticias/governo/31-de-outubro-aniversario-de-pedreira-e-feriado-municipal
+          diaDeCorpusChristi,
+          diaDeSantAnna,
+          aniversarioDaCidade(OUTUBRO, 31)
         ]
       },
       {
@@ -1741,6 +1796,26 @@ const estados = [
           // https://www.saovicente.sp.gov.br/institucional/calendario
           ff(JANEIRO, 22, "Fundação de São Vicente"),
           diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Serra Negra",
+        feriados: [
+          // https://serranegra.sp.gov.br/noticias/nao-havera-expediente-na-prefeitura-de-serra-negra-nos-dias-31-de-outubro-1-e-2-de-novembro
+          // https://ecrie.com.br/sistema/conteudos/arquivo/a_107_0_1_24072025090113.pdf
+          // O calendário de Serra Negra erroneamente informa Corpus Christi como feriado nacional
+          diaDeCorpusChristi,
+          ff(NOVEMBRO, 1, "Dia de Nossa Senhora do Rosário"),
+          aniversarioDaCidade(SETEMBRO, 23)
+        ]
+      },
+      {
+        nome: "Socorro",
+        feriados: [
+          // https://www.socorro.sp.gov.br/feriados
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 9),
+          ff(AGOSTO, 15, "Dia de Nossa Senhora do Perpétuo Socorro")
         ]
       },
       {
