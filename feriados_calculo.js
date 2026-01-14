@@ -37,6 +37,10 @@ function calcularSagradoCoracaoDeJesus(ano) {
   return calcularQuintaFeiraDeCorpusChristi(ano).addDays(8);
 }
 
+function calcularDomingoDePentecostes(ano) {
+  return calcularDomingoDePascoa(ano).addDays(49);
+}
+
 function calcularNossaSenhoraDaPenha(ano) {
   return calcularDomingoDePascoa(ano).addDays(8);
 }
@@ -73,6 +77,10 @@ function calcularDiaDaBiblia(ano) {
   var primeiroDomingoDezembro = primeiroDiaDezembro.getNextWeekday(DOMINGO);
   var segundoDomingoDezembro = primeiroDomingoDezembro.addDays(7);
   return segundoDomingoDezembro;
+}
+
+function calcularOitavaDaFestaDoDivinoEspiritoSanto(ano) {
+  return calcularDomingoDePentecostes(ano).addDays(1);
 }
 
 function deslocarFeriadoEstadualDoAcre(feriado) {
@@ -903,6 +911,15 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Caruaru",
+        feriados: [
+          // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/12/31/feriados-em-caruaru-pe-2026-veja-data-e-dia-da-semana-de-todos.htm
+          aniversarioDaCidade(MAIO, 18),
+          diaDeSaoPedro,
+          ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores"),
+        ]
+      },
+      {
         nome: "Garanhuns",
         feriados: [
           // https://garanhuns.pe.gov.br/nota-sobre-os-feriados-municipais-de-garanhuns/
@@ -1269,6 +1286,23 @@ const estados = [
         ]
       },
       {
+        nome: "Camboriú",
+        feriados: [
+          // https://static.dom.sc.gov.br/?r=site/atoView&id=4415454
+          aniversarioDaCidade(ABRIL, 5),
+          fm(calcularOitavaDaFestaDoDivinoEspiritoSanto, "Segunda-feira da Festa do Divino Espírito Santo"),
+          diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Chapecó",
+        feriados: [
+          // https://www.chapeco.sc.gov.br/noticia/11694/prefeitura-divulga-calendario-de-feriados-para-o-ano-de-2026
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 25),
+        ]
+      },
+      {
         nome: "Florianópolis",
         feriados: [
           diaDeCorpusChristi,
@@ -1295,6 +1329,17 @@ const estados = [
         feriados: [
           aniversarioDaCidade(MARCO, 9),
           diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Urupema",
+        feriados: [
+          // https://urupema.sc.gov.br/legislacao/norma-368067/
+          // https://urupema.sc.gov.br/legislacao/norma-370634/
+          // https://urupema.sc.gov.br/legislacao/norma-427760/
+          aniversarioDaCidade(JUNHO, 1),
+          diaDeCorpusChristi,
+          diaDeSantAnna
         ]
       }
     ]
