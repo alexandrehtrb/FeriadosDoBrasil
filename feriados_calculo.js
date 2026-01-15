@@ -867,6 +867,13 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Cascavel",
+        feriados: [
+          // https://leismunicipais.com.br/a1/pr/c/cascavel/decreto/2025/1925/19241/decreto-n-19241-2025
+          aniversarioDaCidade(NOVEMBRO, 14)
+        ]
+      },
+      {
         nome: "Curitiba",
         feriados: [
           diaDeCorpusChristi,
@@ -1004,6 +1011,16 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Angra dos Reis",
+        feriados: [
+          // https://portaldoservidor.angra.rj.gov.br/arquivos/calendario/calendario-2026.pdf
+          aniversarioDaCidade(JANEIRO, 6),
+          ff(ABRIL, 6, "Dia de São Benedito"),
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao,
+        ]
+      },
+      {
         nome: "Belford Roxo",
         feriados: [
           // https://www.transportal.com.br/feriados/rj/belford-roxo/
@@ -1107,6 +1124,15 @@ const estados = [
         feriados: [
           ff(JANEIRO, 10, "Dia de São Gonçalo"),
           aniversarioDaCidade(SETEMBRO, 22),
+        ]
+      },
+      {
+        nome: "Teresópolis",
+        feriados: [
+          // https://www.instagram.com/p/DGilO7NuS4_/?img_index=4
+          diaDeSantoAntonio,
+          aniversarioDaCidade(JULHO, 6),
+          ff(OUTUBRO, 15, "Dia de Santa Teresa D'Ávila"),
         ]
       },
       {
@@ -1569,6 +1595,14 @@ const estados = [
           // https://www.hortolandia.sp.gov.br/servidor-municipal/prefeitura-de-hortolandia-oficializa-calendario-de-feriados-para-2025/
           aniversarioDaCidade(MAIO, 19),
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Ilha Solteira",
+        feriados: [
+          // https://ilhasolteira.sp.gov.br/wp-content/uploads/2026/01/Calendario-2026.pdf
+          ff(OUTUBRO, 4, "Dia de São Francisco de Assis"),
+          aniversarioDaCidade(OUTUBRO, 15)
         ]
       },
       {
