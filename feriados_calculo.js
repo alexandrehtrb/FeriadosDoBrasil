@@ -135,6 +135,7 @@ const tercaFeiraDeCarnaval = fm(calcularTercaFeiraDeCarnaval, "Terça-feira de C
 const diaDeSaoSebastiao = ff(JANEIRO, 20, "Dia de São Sebastião");
 const diaDeSaoJose = ff(MARCO, 19, "Dia de São José");
 const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
+const diaDaSantaCruzDeMaio = ff(MAIO, 3, "Festa da Cruz de Maio");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
@@ -467,11 +468,29 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Aracruz",
+        feriados: [
+          // https://www.aracruz.es.gov.br/pagina/funcionamento-das-reparticoes-publicas-da-administracao-direta-e-autarquias-de-aracruz-39
+          ff(ABRIL, 3, "Emancipação política do município"),
+          diaDeCorpusChristi,
+          diaDeSaoJoao
+        ]
+      },
+      {
         nome: "Cariacica",
         feriados: [
           // https://www.cariacica.es.gov.br/noticia/ler/89845/-/popup
           diaDeCorpusChristi,
           diaDeSaoJoao
+        ]
+      },
+      {
+        nome: "Colatina",
+        feriados: [
+          // https://colatina.es.gov.br/wp-content/uploads/2021/03/lei_3.336_1988.pdf
+          diaDeCorpusChristi,
+          diaDoSagradoCoracaoDeJesus,
+          aniversarioDaCidade(AGOSTO, 22)
         ]
       },
       {
@@ -647,6 +666,15 @@ const estados = [
         ]
       },
       {
+        nome: "Chapadão do Sul",
+        feriados: [
+          // https://www.chapadaodosul.ms.gov.br/portal/servicos/1016/feriado-e-pontos-facultativos/
+          diaDeCorpusChristi,
+          diaDeSaoPedro,
+          aniversarioDaCidade(OUTUBRO, 23),
+        ]
+      },
+      {
         nome: "Dourados",
         feriados: [
           // https://www.calendariox.com.br/feriados-dourados-ms.html
@@ -770,6 +798,16 @@ const estados = [
           // https://pocosdecaldas.mg.gov.br/noticias/decreto-municipal-estabelece-pontos-facultativos-para-o-ano-de-2025-em-pocos/
           ff(MAIO, 12, "Festa de São Benedito"),
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Serranópolis de Minas",
+        feriados: [
+          // https://www.serranopolisdeminas.mg.gov.br/a-cidade/feriados-municipais
+          diaDaSantaCruzDeMaio,
+          diaDeSaoJoao,
+          diaDeNossaSenhoraDaConceicao,
+          aniversarioDaCidade(DEZEMBRO, 21)
         ]
       },
       {
@@ -1473,7 +1511,7 @@ const estados = [
         nome: "Brotas",
         feriados: [
           // https://www.camarabrotas.sp.gov.br//temp/26122025132731download_lei_5.pdf
-          ff(MAIO, 3, "Festa da Cruz de Maio"),
+          diaDaSantaCruzDeMaio,
           diaDeCorpusChristi,
           ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
         ]
@@ -1628,6 +1666,14 @@ const estados = [
           // https://itupeva.sp.gov.br/itupeva/feriados-e-pontos-facultativos
           diaDeSaoSebastiao,
           diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Jacareí",
+        feriados: [
+          // https://egov.jacarei.sp.gov.br/pmjacarei/websis/siapegov/administrativo/aacw/aac_calendario_feriados.php
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao,
         ]
       },
       {
