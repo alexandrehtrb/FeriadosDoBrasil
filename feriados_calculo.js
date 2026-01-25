@@ -131,11 +131,13 @@ function fm(funcCalcDia, desc) {
 }
 // feriados mais comuns
 const aniversarioDaCidade = function (mes, dia) { return ff(mes, dia, "Aniversário da cidade") };
+const emancipacaoDoMunicipio = function (mes, dia) { return ff(mes, dia, "Emancipação política do município") };
 const tercaFeiraDeCarnaval = fm(calcularTercaFeiraDeCarnaval, "Terça-feira de Carnaval");
 const diaDeSaoSebastiao = ff(JANEIRO, 20, "Dia de São Sebastião");
 const diaDeSaoJose = ff(MARCO, 19, "Dia de São José");
 const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
 const diaDaSantaCruzDeMaio = ff(MAIO, 3, "Festa da Cruz de Maio");
+const diaDeNossaSenhoraDeCaravaggio = ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
@@ -221,7 +223,7 @@ const estados = [
         feriados: [
           ff(FEVEREIRO, 2, "Dia de Nossa Senhora do Bom Conselho"),
           diaDeCorpusChristi,
-          ff(OUTUBRO, 30, "Emancipação Política de Arapiraca")
+          emancipacaoDoMunicipio(OUTUBRO, 30)
         ]
       },
       {
@@ -334,7 +336,7 @@ const estados = [
           // https://arquivos.camacari.ba.gov.br/legislacao/Lei%202809.pdf
           ff(JANEIRO, 7, "Dia de São Tomaz da Cantuária", 1995),
           diaDeSaoJoao,
-          ff(SETEMBRO, 28, "Emancipação do município")
+          emancipacaoDoMunicipio(SETEMBRO, 28)
         ]
       },
       {
@@ -401,7 +403,7 @@ const estados = [
           aniversarioDaCidade(JUNHO, 13),
           diaDeCorpusChristi,
           diaDeSaoJoao,
-          ff(JULHO, 6, "Emancipação Política de Xique-Xique"),
+          emancipacaoDoMunicipio(JULHO, 6),
           diaDeNossaSenhoraDaConceicao
         ]
       }
@@ -471,7 +473,7 @@ const estados = [
         nome: "Aracruz",
         feriados: [
           // https://www.aracruz.es.gov.br/pagina/funcionamento-das-reparticoes-publicas-da-administracao-direta-e-autarquias-de-aracruz-39
-          ff(ABRIL, 3, "Emancipação política do município"),
+          emancipacaoDoMunicipio(ABRIL, 3),
           diaDeCorpusChristi,
           diaDeSaoJoao
         ]
@@ -583,7 +585,7 @@ const estados = [
           // https://www.saojosederibamar.ma.gov.br/arquivo/legislacao/decreto_1127_2016
           diaDeSaoJose,
           diaDeCorpusChristi,
-          ff(SETEMBRO, 24, "Emancipação Política do Município"),
+          emancipacaoDoMunicipio(SETEMBRO, 24),
           aniversarioDaCidade(DEZEMBRO, 16)
         ]
       },
@@ -627,7 +629,7 @@ const estados = [
         feriados: [
           // DECRETO Nº 2.538, DE 07 DE FEVEREIRO DE 2025
           tercaFeiraDeCarnaval,
-          ff(MAIO, 13, "Emancipação de Primavera do Leste"),
+          emancipacaoDoMunicipio(MAIO, 13),
           diaDeCorpusChristi,
           ff(JULHO, 25, "Dia de São Cristóvão")
         ]
@@ -657,6 +659,14 @@ const estados = [
       ff(OUTUBRO, 11, "Criação do estado"),
     ],
     cidades: [
+      {
+        nome: "Aquidauana",
+        feriados: [
+          // https://www.mpms.mp.br/feriados/2026
+          aniversarioDaCidade(AGOSTO, 15),
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
       {
         nome: "Campo Grande",
         feriados: [
@@ -732,6 +742,15 @@ const estados = [
         ]
       },
       {
+        nome: "Capitólio",
+        feriados: [
+          // https://sinimbu.cespro.com.br/visualizarDiploma.php?cdMunicipio=2821&cdDiploma=19910874&NroLei=874
+          diaDeSaoSebastiao,
+          diaDeNossaSenhoraDaConceicao,
+          aniversarioDaCidade(DEZEMBRO, 27)
+        ]
+      },
+      {
         nome: "Contagem",
         feriados: [
           // https://www.portal.contagem.mg.gov.br/uploads/5482doc-e_19050814.pdf
@@ -753,7 +772,7 @@ const estados = [
         nome: "Ipatinga",
         feriados: [
           // https://www.ipatinga.mg.gov.br/arquivo/download/26229/categoria/219/feriados_federais_e_municipais2025
-          ff(ABRIL, 29, "Emancipação política da cidade"),
+          emancipacaoDoMunicipio(ABRIL, 29),
           diaDeCorpusChristi,
           ff(AGOSTO, 15, "Assunção de Nossa Senhora"),
         ]
@@ -793,6 +812,25 @@ const estados = [
         ]
       },
       {
+        nome: "Ouro Preto",
+        feriados: [
+          // https://www.tjmg.jus.br/data/files/42/75/15/30/A671C710078C21C75ECB08A8/feriados%20municipais%202021.pdf
+          diaDeCorpusChristi,
+          ff(JULHO, 8, "Dia de Nossa Senhora do Pilar"), // MESMO NOME, DATA DIFERENTE!!!!!!
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Patos de Minas",
+        feriados: [
+          // https://camarapatos.mg.gov.br/index.php/post-formats/noticias/455-feriados-e-pontos-facultativos-nacionais-e-feriados-do-municipio-de-patos-de-minas
+          aniversarioDaCidade(MAIO, 24),
+          diaDeSantoAntonio,
+          diaDeCorpusChristi,
+          ff(AGOSTO, 15, "Dia de Nossa Senhora da Abadia")
+        ]
+      },
+      {
         nome: "Poços de Caldas",
         feriados: [
           // https://pocosdecaldas.mg.gov.br/noticias/decreto-municipal-estabelece-pontos-facultativos-para-o-ano-de-2025-em-pocos/
@@ -808,6 +846,14 @@ const estados = [
           diaDeSaoJoao,
           diaDeNossaSenhoraDaConceicao,
           aniversarioDaCidade(DEZEMBRO, 21)
+        ]
+      },
+      {
+        nome: "Três Corações",
+        feriados: [
+          // https://www.tjmg.jus.br/data/files/42/75/15/30/A671C710078C21C75ECB08A8/feriados%20municipais%202021.pdf
+          diaDeCorpusChristi,
+          aniversarioDaCidade(SETEMBRO, 23)
         ]
       },
       {
@@ -892,7 +938,7 @@ const estados = [
         feriados: [
           // https://www.ifpb.edu.br/patos/ensino/calendarios-2020/calendario-2025/tecnicos-integrados/integ2025.pdf
           ff(SETEMBRO, 24, "Dia de Nossa Senhora da Guia"),
-          ff(OUTUBRO, 24, "Emancipação Política de Patos")
+          emancipacaoDoMunicipio(OUTUBRO, 24)
         ]
       }
     ]
@@ -1151,7 +1197,7 @@ const estados = [
         feriados: [
           // https://transparencia.saquarema.rj.gov.br/wp-content/uploads/2018/01/LO-567-2001.pdf
           // https://www.transparencia.saquarema.rj.leg.br/arquivos/1673/818.pdf
-          ff(MAIO, 8, "Emancipação política do município"),
+          emancipacaoDoMunicipio(MAIO, 8),
           ff(SETEMBRO, 8, "Dia de Nossa Senhora de Nazareth"),
           diaDeSantoAntonio,
           fm(calcularDiaDaBiblia, "Dia da Bíblia")
@@ -1229,9 +1275,18 @@ const estados = [
         nome: "Canela",
         feriados: [
           // https://canela.rs.gov.br/sitenovo/gabinete-do-prefeito/feriados-municipais/
-          ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio"),
+          diaDeNossaSenhoraDeCaravaggio,
           diaDeAscensaoDoSenhor,
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Caxias do Sul",
+        feriados: [
+          // https://www.camaracaxias.rs.gov.br/noticias/index/10388
+          // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/12/31/feriados-em-caxias-do-sul-rs-2026-veja-data-e-dia-da-semana-de-todos.htm
+          diaDeNossaSenhoraDeCaravaggio,
+          aniversarioDaCidade(JUNHO, 20)
         ]
       },
       {
@@ -1262,6 +1317,15 @@ const estados = [
           aniversarioDaCidade(MAIO, 17),
           diaDeCorpusChristi,
           diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "São José dos Ausentes",
+        feriados: [
+          // https://www.saojosedosausentes.rs.gov.br/wp-content/uploads/2021/03/Decreto-019.pdf
+          // https://www.saojosedosausentes.rs.gov.br/wp-content/uploads/2025/01/CALENDARIO-ESCOLAR.pdf
+          diaDeSaoJose,
+          emancipacaoDoMunicipio(MARCO, 20)
         ]
       },
       {
@@ -1422,7 +1486,7 @@ const estados = [
         feriados: [
           // https://www.aguasdelindoia.sp.gov.br/public/admin/globalarq/diario-oficial/fdaaaae04702d743e8515620ab96df0f.pdf
           aniversarioDaCidade(JULHO, 2),
-          ff(NOVEMBRO, 16, "Emancipação político-administrativa")
+          emancipacaoDoMunicipio(NOVEMBRO, 16)
         ]
       },
       {
@@ -1556,7 +1620,7 @@ const estados = [
         nome: "Carapicuíba",
         feriados: [
           // https://www.carapicuiba.sp.gov.br/uploads/legislacao/27842/bVWX-rXlmOUuH8yZKZEyA2jhX9_jNc45.pdf
-          ff(MARCO, 26, "Emancipação do município"),
+          emancipacaoDoMunicipio(MARCO, 26),
           diaDeSaoPedro,
         ],
         excecoes: [
@@ -1564,13 +1628,13 @@ const estados = [
             // https://www.aciccarapicuiba.com.br/site/noticias:antecipacao-de-feriados-em-carapicuiba
             ano: 2021,
             removidos: [
-              "Emancipação do município",
+              "Emancipação política do município",
               "Dia de São Pedro",
               "Dia da Consciência Negra"
             ],
             adicionados: [
               // TODO: 9 de julho foi adiantado em todo o estado de SP em 2020
-              ff(MARCO, 29, "Emancipação do município (postergado pela pandemia)"),
+              ff(MARCO, 29, "Emancipação política do município<br/>(postergado pela pandemia)"),
               ff(MARCO, 30, "Dia de São Pedro (adiantado pela pandemia)"),
               ff(MARCO, 31, "Dia da Consciência Negra (adiantado pela pandemia)")
             ]
@@ -1708,7 +1772,7 @@ const estados = [
           // https://ecrie.com.br/sistema/conteudos/arquivo/a_201_0_1_08012024152427.pdf
           // https://lindoia.sp.gov.br/lindoia-oficializa-data-de-fundacao-do-municipio
           // https://www.transportal.com.br/feriados/sp/lindoia/
-          ff(MARCO, 21, "Emancipação político-administrativa do município"),
+          emancipacaoDoMunicipio(MARCO, 21),
           ff(SETEMBRO, 8, "Natividade de Nossa Senhora"),
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2010)
         ]
@@ -1736,7 +1800,7 @@ const estados = [
           // https://www.montealegredosul.sp.gov.br/up/anexo/1723751226.pdf
           diaDeCorpusChristi,
           ff(AGOSTO, 6, "Dia do Senhor Bom Jesus"),
-          ff(DEZEMBRO, 24, "Emancipação política do município")
+          emancipacaoDoMunicipio(DEZEMBRO, 24)
         ]
       },
       {
@@ -2019,7 +2083,7 @@ const estados = [
           // https://www.socorro.se.gov.br/feriados-municipais
           ff(FEVEREIRO, 2, "Dia de Nossa Senhora do Socorro"),
           diaDeCorpusChristi,
-          ff(JULHO, 7, "Emancipação Política do Município"),
+          emancipacaoDoMunicipio(JULHO, 7),
           ff(AGOSTO, 15, "Dia de Nossa Senhora do Amparo")
         ]
       }
