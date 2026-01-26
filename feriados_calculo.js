@@ -53,6 +53,14 @@ function calcularJubileuNossaSenhoraDasDores(ano) {
   return calcularDomingoDePascoa(ano).addDays(-9);
 }
 
+function calcularFestaDeSaoBeneditoEmAparecida(ano) {
+  return calcularSextaFeiraSanta(ano).addDays(10);
+}
+
+function calcularDiaDeSaoBeneditoEmTaubateEAngra(ano) {
+  return calcularSextaFeiraSanta(ano).addDays(3);
+}
+
 function calcularDiaDaFestaDeSantaAna(ano) {
   // https://pt.wikipedia.org/wiki/Festa_de_Sant%27Ana_de_Caic%C3%B3
   // O dia de Sant'Ana é 26 de julho,
@@ -142,6 +150,8 @@ const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira 
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
 const diaDeJubileuDeNsaSraDasDores = fm(calcularJubileuNossaSenhoraDasDores, "Jubileu de Nossa Senhora das Dores");
+const diaDaFestaDeSaoBeneditoEmAparecida = fm(calcularFestaDeSaoBeneditoEmAparecida, "Festa de São Benedito");
+const diaDeSaoBeneditoEmTaubateEAngra = fm(calcularDiaDeSaoBeneditoEmTaubateEAngra, "Festa de São Benedito");
 const diaDeSantoAntonio = ff(JUNHO, 13, "Dia de Santo Antônio");
 const diaDeSaoJoao = ff(JUNHO, 24, "Dia de São João");
 const diaDeSaoPedro = ff(JUNHO, 29, "Dia de São Pedro");
@@ -834,7 +844,9 @@ const estados = [
         nome: "Poços de Caldas",
         feriados: [
           // https://pocosdecaldas.mg.gov.br/noticias/decreto-municipal-estabelece-pontos-facultativos-para-o-ano-de-2025-em-pocos/
-          ff(MAIO, 12, "Festa de São Benedito"),
+          // https://www.instagram.com/p/DJcmWdSSpfT/
+          // https://pocosdecaldas.siscam.com.br/arquivo?Id=209474
+          ff(MAIO, 13, "Festa de São Benedito"),
           diaDeCorpusChristi
         ]
       },
@@ -1098,8 +1110,9 @@ const estados = [
         nome: "Angra dos Reis",
         feriados: [
           // https://portaldoservidor.angra.rj.gov.br/arquivos/calendario/calendario-2026.pdf
+          // https://portal.angra.rj.gov.br/downloads/SAD/calendario_2025.pdf
           aniversarioDaCidade(JANEIRO, 6),
-          ff(ABRIL, 6, "Dia de São Benedito"),
+          diaDeSaoBeneditoEmTaubateEAngra,
           diaDeCorpusChristi,
           diaDeNossaSenhoraDaConceicao,
         ]
@@ -1504,6 +1517,15 @@ const estados = [
           aniversarioDaCidade(ABRIL, 8),
           diaDeCorpusChristi,
           ff(SETEMBRO, 8, "Dia de Nossa Senhora do Amparo")
+        ]
+      },
+      {
+        nome: "Aparecida do Norte",
+        feriados: [
+          // https://www.aparecida.sp.gov.br/arquivos/decreto_-_calendario_22032957.pdf
+          // https://www.aparecida.sp.gov.br/portal/leis_decretos/21866/
+          diaDaFestaDeSaoBeneditoEmAparecida,
+          aniversarioDaCidade(DEZEMBRO, 17)
         ]
       },
       {
@@ -2027,8 +2049,9 @@ const estados = [
         nome: "Taubaté",
         feriados: [
           // https://taubate.sp.gov.br/anexos/FERIADOS_2025.pdf
+          // https://ecrie.com.br/sistema/conteudos/arquivo/a_241_1_1_08122025144906.pdf
           ff(FEVEREIRO, 5, "Elevação de Taubaté à categoria de município"),
-          ff(ABRIL, 21, "Dia de São Benedito"),
+          diaDeSaoBeneditoEmTaubateEAngra,
           diaDeCorpusChristi,
           ff(OUTUBRO, 4, "Dia de São Francisco"),
         ]
