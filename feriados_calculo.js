@@ -147,6 +147,7 @@ const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
 const diaDaSantaCruzDeMaio = ff(MAIO, 3, "Festa da Cruz de Maio");
 const diaDeNossaSenhoraDeCaravaggio = ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
+const diaDeCorpusChristiFacultativoServidores = fm(calcularQuintaFeiraDeCorpusChristi, "Corpus-Christi<br/>(ponto facultativo para servidores públicos)");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
 const diaDeJubileuDeNsaSraDasDores = fm(calcularJubileuNossaSenhoraDasDores, "Jubileu de Nossa Senhora das Dores");
@@ -340,6 +341,15 @@ const estados = [
       ff(JULHO, 2, "Independência da Bahia"),
     ],
     cidades: [
+      {
+        nome: "Barreiras",
+        feriados: [
+          // https://prefeitura.barreiras.mtransparente.com.br/admin/data/ATOOFICIAL070222121303.pdf?captcha
+          aniversarioDaCidade(MAIO, 26),
+          diaDeSaoJoao,
+          ff(AGOSTO, 2, "Dia do Evangélico")
+        ]
+      },
       {
         nome: "Camaçari",
         feriados: [
@@ -556,6 +566,14 @@ const estados = [
         ]
       },
       {
+        nome: "Caldas Novas",
+        feriados: [
+          // https://www.unimed.coop.br/site/web/caldasnovas/feriados-municipais-caldas-novas
+          ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores"),
+          aniversarioDaCidade(OUTUBRO, 21)
+        ]
+      },
+      {
         nome: "Goiânia",
         feriados: [
           ff(MAIO, 24, "Dia de Nossa Senhora Auxiliadora"),
@@ -618,6 +636,15 @@ const estados = [
       ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2003)
     ],
     cidades: [
+      {
+        nome: "Cáceres",
+        feriados: [
+          // https://amm.diariomunicipal.org/publicacao/1535145/
+          aniversarioDaCidade(OUTUBRO, 6),
+          ff(AGOSTO, 25, "Dia de São Luiz de Cáceres"),
+          diaDeCorpusChristiFacultativoServidores
+        ]
+      },
       {
         nome: "Cuiabá",
         feriados: [
@@ -912,6 +939,16 @@ const estados = [
         ]
       },
       {
+        nome: "Paragominas",
+        feriados: [
+          // https://paragominas.pa.gov.br/wp-content/uploads/2024/01/DECRETO-No-0012024-GPP-FERIADOS-E-PONTOS-FACULTATIVOS.pdf
+          // https://paragominas.pa.gov.br/wp-content/uploads/2022/04/DECRETO-16.2022-GPP-REVOGA-DECRETO-No-11.2022-E-FIXA-CALENDARIO-2022.pdf
+          // Erroneamente marca Corpus Christi como feriado nacional (CONFUSO)
+          aniversarioDaCidade(JANEIRO, 23),
+          diaDeCorpusChristi,
+        ]
+      },
+      {
         nome: "Santarém",
         feriados: [
           // https://santarem.pa.gov.br/notas/governo-e-administracao/prefeitura-divulga-datas-de-feriados-nacionais-estadual-e-municipais-vgjyz7
@@ -962,6 +999,14 @@ const estados = [
       // Desde 2014, por meio da lei estadual 18.384, 19 de dezembro (Emancipação política do estado do Paraná) deixou de ser feriado.
     ],
     cidades: [
+      {
+        nome: "Campo Mourão",
+        feriados: [
+          // https://www.campomourao.pr.leg.br/proposicoes/Portarias/2023/2/0/80490
+          diaDeSaoJose,
+          aniversarioDaCidade(OUTUBRO, 14)
+        ]
+      },
       {
         nome: "Cascavel",
         feriados: [
