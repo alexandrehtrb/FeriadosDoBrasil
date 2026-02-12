@@ -132,9 +132,9 @@ function ff(mes, dia, desc, anoInicioVigencia) {
   }
 }
 // feriado móvel
-function fm(funcCalcDia, desc) {
+function fm(funcCalcDia, desc, anoInicioVigencia) {
   return function (ano) {
-    return { data: funcCalcDia(ano), descricao: desc };
+    return { data: funcCalcDia(ano), descricao: desc, anoInicioVigencia: anoInicioVigencia };
   }
 }
 // feriados mais comuns
@@ -147,6 +147,7 @@ const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
 const diaDaSantaCruzDeMaio = ff(MAIO, 3, "Festa da Cruz de Maio");
 const diaDeNossaSenhoraDeCaravaggio = ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
+const diaDeCorpusChristiAnoInicial = function(anoInicialVigencia) { return fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi", anoInicialVigencia); };
 const diaDeCorpusChristiFacultativoServidores = fm(calcularQuintaFeiraDeCorpusChristi, "Corpus-Christi<br/>(ponto facultativo para servidores públicos)");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
@@ -672,6 +673,16 @@ const estados = [
         ]
       },
       {
+        nome: "Rondonópolis",
+        feriados: [
+          // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/12/31/feriados-em-rondonopolis-mt-2026-veja-data-e-dia-da-semana-de-todos.htm
+          // https://www.rondonopolis.mt.gov.br/cidade/feriados/
+          // https://intranet-mc.tjmt.jus.br/portaldaintranet-arquivos-prod/cms/10_Portaria_1428_Calendario_Forense_7fba1cee7d.pdf
+          diaDeCorpusChristi,
+          aniversarioDaCidade(DEZEMBRO, 10),
+        ]
+      },
+      {
         nome: "Sinop",
         feriados: [
           // https://www.sonoticias.com.br/geral/prefeito-oficializa-lista-de-feriados-e-pontos-facultativos-em-sinop/
@@ -727,6 +738,16 @@ const estados = [
           // https://www.calendariox.com.br/feriados-dourados-ms.html
           diaDeNossaSenhoraDaConceicao,
           aniversarioDaCidade(DEZEMBRO, 20)
+        ]
+      },
+      {
+        nome: "Ladário",
+        feriados: [
+          // https://publicacoes.camaraladario.ms.gov.br/arquivo/251/download
+          // https://www.ladario.ms.gov.br/portal/noticias/0/3/3767/prefeitura-de-ladario-decreta-feriado-municipal-no-dia-de-corpus-christi-19-de-junho-e-ponto-facultativo-em-20-de-junho
+          aniversarioDaCidade(JANEIRO, 31),
+          diaDeCorpusChristiAnoInicial(2025),
+          ff(OUTUBRO, 24, "Dia de Nossa Senhora dos Remédios")
         ]
       },
       {
@@ -912,6 +933,14 @@ const estados = [
           ff(AGOSTO, 15, "Dia de Nossa Senhora da Abadia"),
           ff(AGOSTO, 31, "Dia de São Raimundo")
         ]
+      },
+      {
+        nome: "Viçosa",
+        feriados: [
+          // https://www.folhadamata.com.br/prefeitura-de-vicosa-define-o-feriados-e-pontos-facultativos-de-2026
+          ff(MAIO, 22, "Dia de Santa Rita de Cássia"),
+          aniversarioDaCidade(SETEMBRO, 30)
+        ]
       }
     ]
   },
@@ -1059,12 +1088,33 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Abreu e Lima",
+        feriados: [
+          // https://portal.tjpe.jus.br/servicos/consulta/feriados/feriados-oficiais-nas-comarca-de-pernambuco
+          // TODO: extinção de feriado
+          diaDeSaoJose,
+          aniversarioDaCidade(MAIO, 14),
+          ff(OUTUBRO, 31, "Dia da Consciência Evangélica")
+        ]
+      },
+      {
         nome: "Caruaru",
         feriados: [
           // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/12/31/feriados-em-caruaru-pe-2026-veja-data-e-dia-da-semana-de-todos.htm
           aniversarioDaCidade(MAIO, 18),
           diaDeSaoPedro,
           ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores"),
+        ]
+      },
+      {
+        nome: "Fernando de Noronha",
+        feriados: [
+          // https://www.bardomeionoronha.com/blog/saiba-dos-feriados-em-noronha-2022/
+          // https://portal.tjpe.jus.br/servicos/consulta/feriados/feriados-oficiais-nas-comarca-de-pernambuco
+          // https://www.bardomeionoronha.com/blog/feriados-e-datas-importantes-em-fernando-de-noronha-2024/
+          diaDeSaoPedro,
+          aniversarioDaCidade(AGOSTO, 10),
+          ff(AGOSTO, 29, "Dia de Nossa Senhora dos Remédios"),
         ]
       },
       {
@@ -1109,6 +1159,15 @@ const estados = [
         feriados: [
           ff(JULHO, 16, "Dia de Nossa Senhora do Carmo"),
           diaDeNossaSenhoraDaConceicao,
+        ]
+      },
+      {
+        nome: "Vitória de Santo Antão",
+        feriados: [
+          // https://www.prefeituradavitoria.pe.gov.br/portal/index.php/2026/01/08/confira-os-feriados-e-pontos-facultativos-para-2026-em-vitoria-de-santo-antao/
+          ff(JANEIRO, 17, "Dia de Santo Antão"),
+          aniversarioDaCidade(MAIO, 6),
+          ff(AGOSTO, 3, "Batalha das Tabocas")
         ]
       }
     ]
@@ -1192,6 +1251,7 @@ const estados = [
         feriados: [
           // https://consultaniteroi.siscam.com.br/Arquivos//Materias/Proposituras/ProjLei/15c045aa-8713-4c04-a6e6-54f23cb49858.html
           // https://www.jusbrasil.com.br/noticias/feriado-municipal-de-niteroi-e-extinto/2827457335
+          // TODO: extinção de feriado
           diaDeSaoJoao
         ]
       },
