@@ -139,7 +139,7 @@ function fm(funcCalcDia, desc, anoInicioVigencia) {
 }
 // feriados mais comuns
 const aniversarioDaCidade = function (mes, dia) { return ff(mes, dia, "Aniversário da cidade") };
-const emancipacaoDoMunicipio = function (mes, dia) { return ff(mes, dia, "Emancipação política do município") };
+const emancipacaoDoMunicipio = function (mes, dia, anoInicioVigencia) { return ff(mes, dia, "Emancipação política do município", anoInicioVigencia) };
 const tercaFeiraDeCarnaval = fm(calcularTercaFeiraDeCarnaval, "Terça-feira de Carnaval");
 const diaDeSaoSebastiao = ff(JANEIRO, 20, "Dia de São Sebastião");
 const diaDeSaoJose = ff(MARCO, 19, "Dia de São José");
@@ -147,7 +147,7 @@ const diaDeSaoJorge = ff(ABRIL, 23, "Dia de São Jorge");
 const diaDaSantaCruzDeMaio = ff(MAIO, 3, "Festa da Cruz de Maio");
 const diaDeNossaSenhoraDeCaravaggio = ff(MAIO, 26, "Dia de Nossa Senhora de Caravaggio");
 const diaDeCorpusChristi = fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi");
-const diaDeCorpusChristiAnoInicial = function(anoInicialVigencia) { return fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi", anoInicialVigencia); };
+const diaDeCorpusChristiAnoInicial = function (anoInicialVigencia) { return fm(calcularQuintaFeiraDeCorpusChristi, "Quinta-feira de Corpus-Christi", anoInicialVigencia); };
 const diaDeCorpusChristiFacultativoServidores = fm(calcularQuintaFeiraDeCorpusChristi, "Corpus-Christi<br/>(ponto facultativo para servidores públicos)");
 const diaDoSagradoCoracaoDeJesus = fm(calcularSagradoCoracaoDeJesus, "Sagrado Coração de Jesus");
 const diaDeAscensaoDoSenhor = fm(calcularAscensaoDoSenhor, "Ascensão do Senhor");
@@ -1076,6 +1076,42 @@ const estados = [
           diaDeCorpusChristi,
           ff(AGOSTO, 15, "Dia de Nossa Senhora da Abadia")
         ]
+      },
+      {
+        nome: "Medianeira",
+        feriados: [
+          // https://www.medianeira.pr.gov.br/arquivos/feriados_e_pontos_facultativos_2025.pdf
+          ff(MAIO, 31, "Dia Nossa Senhora Medianeira de Todas as Graças"),
+          aniversarioDaCidade(JULHO, 25),
+          diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Ponta Grossa",
+        feriados: [
+          // https://bntonline.com.br/prefeitura-de-pg-publica-calendario-de-feriados-e-pontos-facultativos-para-2026/
+          diaDeSantAnna,
+          emancipacaoDoMunicipio(SETEMBRO, 15)
+        ]
+      },
+      {
+        nome: "Rolândia",
+        feriados: [
+          // https://www.rolandia.pr.gov.br/noticias_individual/20074
+          emancipacaoDoMunicipio(JANEIRO, 28),
+          diaDeSaoJose,
+          diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Umuarama",
+        feriados: [
+          // https://umuarama.pr.gov.br/files/Atos/arquivo/decreto%20-%201770298375.pdf
+          aniversarioDaCidade(JUNHO, 26),
+          ff(AGOSTO, 15, "Assunção de Nossa Senhora"),
+          ff(OUTUBRO, 4, "Dia de São Francisco de Assis"),
+          emancipacaoDoMunicipio(JANEIRO, 28)
+        ]
       }
     ]
   },
@@ -1390,6 +1426,19 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Anta Gorda",
+        feriados: [
+          // https://antagorda.rs.gov.br/legislacao/download-lei/223/
+          // https://antagorda.rs.gov.br/legislacao/download-lei/808/
+          // Dia de São Carlos Borromeu, em 04/11, deixou de ser feriado em 2015
+          // https://antagorda.rs.gov.br/legislacao/download-lei/691/
+          // TODO: extinção de feriados
+          diaDeCorpusChristi,
+          ff(JULHO, 25, "Dia de São Cristóvão"),
+          emancipacaoDoMunicipio(DEZEMBRO, 26, 2018)
+        ]
+      },
+      {
         nome: "Canela",
         feriados: [
           // https://canela.rs.gov.br/sitenovo/gabinete-do-prefeito/feriados-municipais/
@@ -1420,6 +1469,14 @@ const estados = [
           // https://ecrie.com.br/sistema/conteudos/arquivo/a_160_0_1_17112023163950.pdf
           diaDeAscensaoDoSenhor,
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Não-Me-Toque",
+        feriados: [
+          // https://naometoque.rs.gov.br/2012/10/24/feriados-municipais-e-pontos-facultativos/
+          diaDeCorpusChristi,
+          ff(OUTUBRO, 31, "Dia da Reforma Luterana"),
         ]
       },
       {
