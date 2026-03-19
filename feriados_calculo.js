@@ -21,6 +21,10 @@ function calcularDomingoDePascoa(ano) {
   return new Date(ano, mes - 1, dia);
 }
 
+function calcularQuintaFeiraSanta(ano) {
+  return calcularDomingoDePascoa(ano).addDays(-3);
+}
+
 function calcularSextaFeiraSanta(ano) {
   return calcularDomingoDePascoa(ano).addDays(-2);
 }
@@ -200,6 +204,15 @@ const estados = [
           ff(AGOSTO, 15, "Dia de Nossa Senhora da Glória"),
           ff(SETEMBRO, 27, "Dia da Marcha para Jesus"),
           aniversarioDaCidade(SETEMBRO, 28)
+        ]
+      },
+      {
+        nome: "Marechal Thaumaturgo",
+        feriados: [
+          // https://www.marechalthaumaturgo.ac.gov.br/paginas/feriados-2024
+          fm(calcularQuintaFeiraSanta, "Quinta-feira de Endoenças"),
+          ff(JUNHO, 27, "Dia de Nossa Senhora do Perpétuo Socorro"),
+          ff(DEZEMBRO, 21, "Aniversário do Município de Manoel Urbano")
         ]
       },
       {
@@ -1247,6 +1260,15 @@ const estados = [
     ],
     cidades: [
       {
+        nome: "Armação dos Búzios",
+        feriados: [
+          // https://buzios.rj.gov.br/prefeitura-de-buzios-decreta-ponto-facultativo-nos-dias-13-e-14-de-novembro-devido-ao-feriado-municipal-de-12-de-novembro-aniversario-da-cidade/
+          // https://sapl.armacaodosbuzios.rj.leg.br/norma/5?display#:~:text=Fica%20declarado%20FERIADO%20MUNICIPAL%2C%20o,no%20calend%C3%A1rio%20tur%C3%ADstico%20do%20Munic%C3%ADpio.
+          diaDeSantAnna,
+          emancipacaoDoMunicipio(NOVEMBRO, 12)
+        ]
+      },
+      {
         nome: "Angra dos Reis",
         feriados: [
           // https://portaldoservidor.angra.rj.gov.br/arquivos/calendario/calendario-2026.pdf
@@ -1312,6 +1334,15 @@ const estados = [
           aniversarioDaCidade(MARCO, 16),
           diaDeCorpusChristi,
           ff(JUNHO, 29, "Chegada dos Primeiros Colonos Alemães a Petrópolis")
+        ]
+      },
+      {
+        nome: "Resende",
+        feriados: [
+          // https://www.trf2.jus.br/trf2/atendimento/prazos-suspensos-feriado
+          // no calendário escolar consta Corpus Christi como feriado:
+          // http://educacao.resende.rj.gov.br/wp-content/uploads/2026/02/INFANTILCRECHE-E-PR%C3%89-ESCOLA-E-ENSINO-FUNDAMENTAL.pdf
+          aniversarioDaCidade(SETEMBRO, 29)
         ]
       },
       {
@@ -1504,6 +1535,14 @@ const estados = [
         ]
       },
       {
+        nome: "Teutônia",
+        feriados: [
+          // https://leismunicipais.com.br/a/rs/t/teutonia/lei-ordinaria/1983/3/29/lei-ordinaria-n-29-1983-declara-feriados-municipais-sexta-feira-da-paixao-corpus-cristi-dia-da-reforma-e-dia-de-finados?q=decretos+municipais
+          diaDeCorpusChristi,
+          ff(OUTUBRO, 31, "Dia da Reforma Luterana")
+        ]
+      },
+      {
         nome: "Uruguaiana",
         feriados: [
           // https://www.uruguaiana.rs.gov.br/portal/servicos/1269/feriados/
@@ -1632,6 +1671,14 @@ const estados = [
         feriados: [
           aniversarioDaCidade(MARCO, 9),
           diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "São Joaquim",
+        feriados: [
+          // https://saojoaquim.sc.gov.br/uploads/sites/348/2025/06/Decreto-No-493-2025.pdf
+          aniversarioDaCidade(MAIO, 7),
+          diaDeCorpusChristi
         ]
       },
       {
