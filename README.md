@@ -34,4 +34,4 @@ Esse tipo de informação é importante para planejamento de atividades, de fér
 
 Por isso, pedimos seu apoio. Você pode nos ajudar de diversas formas: inserindo feriados do seu município; contribuindo com o código-fonte; e através de doações em dinheiro.
 
-Aceitamos doações através da chave PIX 🇧🇷: <a href="mailto:alexandrehtrb@outlook.com">alexandrehtrb@outlook.com</a>. Valor sugerido de R$20,00.
+Aceitamos doações através da chave PIX 🇧🇷: <a href="mailto:%61%6C%65%78%61%6E%64%72%65%68%74%72%62%40%6F%75%74%6C%6F%6F%6B%2E%63%6F%6D" target="_blank" rel="noreferrer">alexandrehtrb@<span/>outlook.com</a>. Valor sugerido de R$20,00.
