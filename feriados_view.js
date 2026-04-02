@@ -5,7 +5,7 @@ let periodo1 = null;
 let periodo2 = null;
 let periodo3 = null;
 
-function parametroNaoEhVazio (p) {
+function parametroNaoEhVazio(p) {
     return p != undefined && p != null && p != "";
 }
 
@@ -16,6 +16,7 @@ function setupView(tela) {
         slCidade2 = document.getElementById("slCidade2"),
         inpAno = document.getElementById("inpAno"),
         inpMarcarEmendas = document.getElementById("inpMarcarEmendas"),
+        inpDistinguirCores = document.getElementById("inpDistinguirCores"),
         btnIncluirOutraCidade = document.getElementById("btnIncluirOutraCidade"),
         btnExportar = document.getElementById("btnExportar"),
         slFormatoExportacao = document.getElementById("slFormatoExportacao"),
@@ -60,7 +61,7 @@ function setupView(tela) {
     });
     inpMarcarEmendas.addEventListener('change', function () {
         validarECalcularFeriados(tela);
-    });
+    });    
     btnIncluirOutraCidade.addEventListener('click', function () {
         if (outraCidadeVisivelParaEscolha == false) {
             btnIncluirOutraCidade.innerText = "Esquecer segunda cidade";
@@ -69,6 +70,13 @@ function setupView(tela) {
             divEstado2.style.display = "initial";
             divCidade2.style.visibility = "visible";
             divCidade2.style.display = "initial";
+
+            inpMarcarEmendas.checked = false;
+            inpMarcarEmendas.disabled = true;
+            if (tela == "calendario") {
+                inpDistinguirCores.checked = true;
+                inpDistinguirCores.disabled = true;
+            }
         } else {
             btnIncluirOutraCidade.innerText = "Incluir outra cidade";
             outraCidadeVisivelParaEscolha = false;
@@ -76,6 +84,13 @@ function setupView(tela) {
             divEstado2.style.display = "none";
             divCidade2.style.visibility = "collapse";
             divCidade2.style.display = "none";
+
+            inpMarcarEmendas.checked = false;
+            inpMarcarEmendas.disabled = false;
+            if (tela == "calendario") {
+                inpDistinguirCores.checked = false;
+                inpDistinguirCores.disabled = false;
+            }
         }
         validarECalcularFeriados(tela);
     });
@@ -83,6 +98,9 @@ function setupView(tela) {
     // setup exclusivo para tela de calendário
     if (tela == "calendario") {
         construirCalendario();
+        inpDistinguirCores.addEventListener('change', function () {
+            validarECalcularFeriados(tela);
+        });
         btPeriodoSelecionado1.addEventListener('click', function () {
             divPeriodoSelecionado1.style.visibility = "collapse";
             divPeriodoSelecionado1.style.display = "none";
@@ -130,7 +148,7 @@ function setupView(tela) {
     if (parametroNaoEhVazio(qryParams.cidade) && obterCidadesDoEstado(qryParams.estado).includes(qryParams.cidade)) {
         slCidade.value = qryParams.cidade;
     }
-    if (parametroNaoEhVazio(qryParams.estado2) && (estados.find(x => x.acronimo == qryParams.estado2) != undefined)) {        
+    if (parametroNaoEhVazio(qryParams.estado2) && (estados.find(x => x.acronimo == qryParams.estado2) != undefined)) {
         btnIncluirOutraCidade.click();
         slEstado2.value = qryParams.estado2;
         atualizarListaDeCidades(2);
@@ -235,6 +253,7 @@ function validarECalcularFeriados(saida) {
     }*/
 
     var deveMarcarEmendas = outraCidadeVisivelParaEscolha ? false : obterMarcarEmendas();
+    var deveDistinguirCores = saida == "calendario" ? obterDistinguirCores() : false;
     var feriados1 = obterTodosOsFeriadosParaAno(ano, uf1, cidade1, deveMarcarEmendas);
     var feriados2;
     var cidadeEstado1 = obterCidadeBarraEstadoSelecionados(1);
@@ -263,14 +282,14 @@ function validarECalcularFeriados(saida) {
 
     const mostrarApenasEm1 = (feriados2 == undefined);
     const nomearLocalComoAmbas =
-           saida == "calendario"
+        saida == "calendario"
         || saida == "tabela"
         || saida == "exportarParaJson"
         || saida == "exportarParaCsvExcel";
     const feriados = agruparFeriadosComunsOuDistintos(feriados1, feriados2, nomearLocalComoAmbas);
 
     if (saida == "calendario") {
-        atualizarCalendarioComFeriados(mostrarApenasEm1, feriados);
+        atualizarCalendarioComFeriados(mostrarApenasEm1, feriados, deveDistinguirCores);
     }
     else if (saida == "tabela") {
         montarResumoTabelaDeFeriados(mostrarApenasEm1, feriados);
@@ -461,16 +480,30 @@ function obterPeriodosSelecionadosParaCalendario() {
     });
 }
 
-function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados) {
+function atualizarCalendarioComFeriados(mostrarApenasEm1, feriados, distinguirPorCores) {
     document.getElementById("calendar").style.visibility = "visible";
 
     const escolherCorDoFeriado = function (x) {
         if (x.ehEmenda) return "#e6ffcc";
 
-        switch (x.grupo) {
-            case "comum": return "#9AB8FE";
-            case "apenasEm1": return "#00CC4E";
-            case "apenasEm2": return "#FEDD00";
+        // feriados em só uma cidade, sem distinção de côr: todos de côr verde
+        // feriados em só uma cidade, com distinção de côr: multicôres
+        // feriados em duas cidades: multicôres
+
+        if (!mostrarApenasEm1) {
+            switch (x.grupo) {
+                case "comum": return "#9AB8FE";
+                case "apenasEm1": return "#00CC4E";
+                case "apenasEm2": return "#FEDD00";
+            }
+        } else if (distinguirPorCores) {
+            switch (x.tipo) {
+                case "NACIONAL": return "#00CC4E";
+                case "ESTADUAL": return "#FEDD00";
+                case "MUNICIPAL": return "#9AB8FE";
+            }
+        } else {
+            return "#00CC4E";
         }
     };
 
@@ -560,6 +593,10 @@ function agruparFeriadosComunsOuDistintos(feriados1, feriados2, nomearLocalComoA
 
 function obterMarcarEmendas() {
     return document.getElementById("inpMarcarEmendas").checked;
+}
+
+function obterDistinguirCores() {
+    return document.getElementById("inpDistinguirCores").checked;
 }
 
 function obterAnoSelecionado() {
