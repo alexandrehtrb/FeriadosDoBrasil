@@ -163,6 +163,7 @@ const diaDeSaoJoao = ff(JUNHO, 24, "Dia de São João");
 const diaDeSaoPedro = ff(JUNHO, 29, "Dia de São Pedro");
 const diaDeSantAnna = ff(JULHO, 26, "Dia de Sant'Anna");
 const diaDeNossaSenhoraDaConceicao = ff(DEZEMBRO, 8, "Dia de Nossa Senhora da Conceição");
+const diaDaReformaLuterana = ff(OUTUBRO, 31, "Dia da Reforma Luterana");
 // Várias cidades têm os dias de suas padroeiras celebrados nos dias de 
 // Assunção de Nossa Senhora (15/08) e 
 // Natividade de Nossa Senhora (08/09), 
@@ -974,6 +975,13 @@ const estados = [
         ]
       },
       {
+        nome: "Barcarena",
+        feriados: [
+          // https://barcarena.wdsolucoes.com.br/pdf.view.php?filename=redacao_original&url=uploads/1063.pdf
+          ff(DEZEMBRO, 3, "Festividade de São Francisco Xavier")
+        ]
+      },
+      {
         nome: "Belém",
         feriados: [
           aniversarioDaCidade(JANEIRO, 12),
@@ -1144,6 +1152,15 @@ const estados = [
           diaDeSaoJose,
           aniversarioDaCidade(MAIO, 14),
           ff(OUTUBRO, 31, "Dia da Consciência Evangélica")
+        ]
+      },
+      {
+        nome: "Cabo de Santo Agostinho",
+        feriados: [
+          // https://www.cabo.pe.gov.br/pagina/cidade/
+          diaDeSantoAntonio,
+          aniversarioDaCidade(JULHO, 9),
+          diaDaReformaLuterana
         ]
       },
       {
@@ -1507,7 +1524,7 @@ const estados = [
         feriados: [
           // https://naometoque.rs.gov.br/2012/10/24/feriados-municipais-e-pontos-facultativos/
           diaDeCorpusChristi,
-          ff(OUTUBRO, 31, "Dia da Reforma Luterana"),
+          diaDaReformaLuterana,
         ]
       },
       {
@@ -1539,7 +1556,7 @@ const estados = [
         feriados: [
           // https://leismunicipais.com.br/a/rs/t/teutonia/lei-ordinaria/1983/3/29/lei-ordinaria-n-29-1983-declara-feriados-municipais-sexta-feira-da-paixao-corpus-cristi-dia-da-reforma-e-dia-de-finados?q=decretos+municipais
           diaDeCorpusChristi,
-          ff(OUTUBRO, 31, "Dia da Reforma Luterana")
+          diaDaReformaLuterana
         ]
       },
       {
@@ -1670,6 +1687,15 @@ const estados = [
         nome: "Joinville",
         feriados: [
           aniversarioDaCidade(MARCO, 9),
+          diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Navegantes",
+        feriados: [
+          // https://navegantes.sc.gov.br/feriados-municipais/
+          ff(FEVEREIRO, 2, "Dia de Nossa Senhora dos Navegantes"),
+          aniversarioDaCidade(AGOSTO, 26),
           diaDeCorpusChristi,
         ]
       },
@@ -1809,6 +1835,15 @@ const estados = [
           diaDaSantaCruzDeMaio,
           diaDeCorpusChristi,
           ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
+        ]
+      },
+      {
+        nome: "Cajamar",
+        feriados: [
+          // https://cajamar.sp.gov.br/cidade/feriados/
+          diaDeSaoSebastiao,
+          aniversarioDaCidade(FEVEREIRO, 18),
+          diaDeCorpusChristi
         ]
       },
       {
@@ -2006,6 +2041,15 @@ const estados = [
           emancipacaoDoMunicipio(MARCO, 21),
           ff(SETEMBRO, 8, "Natividade de Nossa Senhora"),
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2010)
+        ]
+      },
+      {
+        nome: "Louveira",
+        feriados: [
+          // https://dosp.com.br/exibe_do.php?i=NzUxNDI5
+          diaDeSaoSebastiao,
+          aniversarioDaCidade(MARCO, 21),
+          diaDeCorpusChristi,
         ]
       },
       {
