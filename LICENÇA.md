@@ -5,6 +5,8 @@ Copyright © `2026` `AlexandreHTRB`
 
 > **ATENÇÃO**: é proibido o uso do código-fonte deste projeto por órgãos públicos e governamentais do Brasil, nas esferas federal, estaduais e municipais. Caso seja de interesse de poder público fazer uso deste projeto, favor entrar em contato com o criador, Alexandre H. T. R. Bonfitto. O uso deste site pelo governo é permitido apenas em caráter consultivo, por exemplo, para consultar feriados de municípios brasileiros.
 
+> **IMPORTANTE**: em caso de uso pessoal ou profissional deste software e de seu código-fonte, você deve exibir de forma visível e relevante que ele foi a fonte de informações e que foi utilizado em seu projeto, indicando também a autoria.
+
 É concedida permissão, livre de cobrança, a qualquer pessoa que obtenha uma cópia deste software e dos arquivos de documentação associados (o "Software"), para lidar com o Software sem restrição, incluindo sem limitação os direitos de usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender cópias do Software e permitir a pessoas a quem o Software é fornecido para tal, sujeito às seguintes condições:
 
 A notificação de copyright acima e esta notificação de permissão deverão ser incluídas em todas as cópias ou porções substanciais do Software
