@@ -1550,6 +1550,16 @@ const estados = [
         ]
       },
       {
+        nome: "Canoas",
+        feriados: [
+          // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2026/01/01/feriados-em-canoas-rs-2026-veja-data-e-dia-da-semana-de-todos.htm
+          // https://portaldoservidor.canoas.rs.gov.br/saiu-a-lista-de-feriados-e-pontos-facultativos-de-2026/
+          ff(FEVEREIRO, 2, "Dia de Nossa Senhora dos Navegantes"),
+          diaDeCorpusChristi,
+          aniversarioDaCidade(JUNHO, 27)
+        ]
+      },
+      {
         nome: "Caxias do Sul",
         feriados: [
           // https://www.camaracaxias.rs.gov.br/noticias/index/10388
@@ -1579,6 +1589,15 @@ const estados = [
           // https://naometoque.rs.gov.br/2012/10/24/feriados-municipais-e-pontos-facultativos/
           diaDeCorpusChristi,
           diaDaReformaLuterana,
+        ]
+      },
+      {
+        nome: "Novo Hamburgo",
+        feriados: [
+          // https://www.novohamburgo.rs.gov.br/feriados
+          emancipacaoDoMunicipio(ABRIL, 5),
+          diaDeAscensaoDoSenhor,
+          diaDeCorpusChristi
         ]
       },
       {
@@ -1913,6 +1932,15 @@ const estados = [
         ]
       },
       {
+        nome: "Caçapava",
+        feriados: [
+          // https://www.cacapava.sp.gov.br/cidade/feriados-municipais
+          ff(ABRIL, 14, "Dia de São Tibúrcio"),
+          diaDeCorpusChristi,
+          diaDeSaoJoao
+        ]
+      },
+      {
         nome: "Cajamar",
         feriados: [
           // https://cajamar.sp.gov.br/cidade/feriados/
@@ -2194,6 +2222,17 @@ const estados = [
           // https://www.praiagrande.sp.gov.br/Administracao/leisdecretos_view.asp?codLeis=3345
           diaDeCorpusChristi,
           diaDeSaoPedro
+        ]
+      },
+      {
+        nome: "Presidente Prudente",
+        feriados: [
+          // https://g1.globo.com/sp/presidente-prudente-regiao/noticia/2025/02/17/presidente-prudente-divulga-novo-calendario-com-15-feriados-e-12-pontos-facultativos-em-2025-veja-a-lista.ghtml
+          // https://www.presidenteprudente.sp.gov.br/site/noticia/66177
+          diaDeSaoSebastiao,
+          diaDeCorpusChristi,
+          aniversarioDaCidade(SETEMBRO, 14),
+          diaDeNossaSenhoraDaConceicao
         ]
       },
       {
