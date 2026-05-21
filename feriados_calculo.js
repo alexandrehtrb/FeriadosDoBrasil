@@ -29,6 +29,10 @@ function calcularSextaFeiraSanta(ano) {
   return calcularDomingoDePascoa(ano).addDays(-2);
 }
 
+function calcularSegundaFeiraDoBrilho(ano) {
+  return calcularDomingoDePascoa(ano).addDays(1);
+}
+
 function calcularTercaFeiraDeCarnaval(ano) {
   return calcularDomingoDePascoa(ano).addDays(-47);
 }
@@ -736,6 +740,15 @@ const estados = [
           // https://site.sorriso.mt.gov.br/noticia/prefeitura-divulga-lista-de-feriados-e-pontos-facultativos-para-2025-67a0f34b30946
           aniversarioDaCidade(MAIO, 13),
           diaDeSaoPedro
+        ]
+      },
+      {
+        nome: "Vila Bela da Santíssima Trindade",
+        feriados: [
+          // https://transparencia.vilabeladasantissimatrindade.mt.gov.br/fotos_downloads/15563.pdf
+          aniversarioDaCidade(MARCO, 19),
+          ff(JULHO, 21, "Festança"),
+          ff(JULHO, 22, "Festança")
         ]
       }
     ]
@@ -1616,6 +1629,14 @@ const estados = [
         ]
       },
       {
+        nome: "Santana do Livramento",
+        feriados: [
+          // https://www.instagram.com/p/DEXoUwtxWdm/?img_index=1
+          ff(FEVEREIRO, 2, "Dia de Iemanjá"),
+          aniversarioDaCidade(JULHO, 30)
+        ]
+      },
+      {
         nome: "São José dos Ausentes",
         feriados: [
           // https://www.saojosedosausentes.rs.gov.br/wp-content/uploads/2021/03/Decreto-019.pdf
@@ -1770,6 +1791,15 @@ const estados = [
           ff(FEVEREIRO, 2, "Dia de Nossa Senhora dos Navegantes"),
           aniversarioDaCidade(AGOSTO, 26),
           diaDeCorpusChristi,
+        ]
+      },
+      {
+        nome: "Pomerode",
+        feriados: [
+          // https://www.cmpomerode.sc.gov.br/proposicoes/Projetos-de-Leis-Ordinarias/0/1/62/3872
+          fm(calcularSegundaFeiraDoBrilho, "Segunda-feira de Páscoa"),
+          diaDeCorpusChristi,
+          diaDaReformaLuterana
         ]
       },
       {
