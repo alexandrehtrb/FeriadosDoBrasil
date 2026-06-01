@@ -499,6 +499,14 @@ const estados = [
           aniversarioDaCidade(JULHO, 22),
           ff(SETEMBRO, 15, "Dia de Nossa Senhora das Dores")
         ]
+      },
+      {
+        nome: "Sobral",
+        feriados: [
+          // https://www.camarasobral.ce.gov.br/arquivos/322/LeiOrdinria23382023.pdf
+          diaDeCorpusChristi,
+          diaDeNossaSenhoraDaConceicao
+        ]
       }
     ]
   },
@@ -1554,6 +1562,14 @@ const estados = [
         ]
       },
       {
+        nome: "Bento Gonçalves",
+        feriados: [
+          // https://www.bentogoncalves.rs.gov.br/publicado-o-decreto-com-os-feriados-e-pontos-facultativos-de-2025/
+          diaDeCorpusChristi,
+          diaDeSantoAntonio
+        ]
+      },
+      {
         nome: "Canela",
         feriados: [
           // https://canela.rs.gov.br/sitenovo/gabinete-do-prefeito/feriados-municipais/
@@ -2243,6 +2259,15 @@ const estados = [
           diaDeSantoAntonio,
           diaDeCorpusChristi,
           ff(NOVEMBRO, 20, "Dia da Consciência Negra", 2003),
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Pirassununga",
+        feriados: [
+          // https://pirassununga.siscam.com.br/arquivo?Id=72522
+          diaDeCorpusChristi,
+          aniversarioDaCidade(AGOSTO, 6),
           diaDeNossaSenhoraDaConceicao
         ]
       },
