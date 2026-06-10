@@ -1,3 +1,14 @@
+/*
+
+Municípios sem lista de feriados disponível em fácil acesso:
+
+RJ / Vassouras
+RJ / São João de Meriti
+RR / Uiramutã
+SP / Araçatuba
+
+*/
+
 /**
  * Calculates Easter in the Gregorian/Western (Catholic and Protestant) calendar 
  * based on the algorithm by Oudin (1940) from http://www.tondering.dk/claus/cal/easter.php
@@ -35,6 +46,10 @@ function calcularSegundaFeiraDoBrilho(ano) {
 
 function calcularTercaFeiraDeCarnaval(ano) {
   return calcularDomingoDePascoa(ano).addDays(-47);
+}
+
+function calcularQuartaFeiraDeCinzas(ano) {
+  return calcularDomingoDePascoa(ano).addDays(-46);
 }
 
 function calcularQuintaFeiraDeCorpusChristi(ano) {
@@ -756,7 +771,7 @@ const estados = [
           // https://transparencia.vilabeladasantissimatrindade.mt.gov.br/fotos_downloads/15563.pdf
           aniversarioDaCidade(MARCO, 19),
           ff(JULHO, 21, "Festança"),
-          ff(JULHO, 22, "Festança")
+          ff(JULHO, 22, "Festança (só até meio-dia)")
         ]
       }
     ]
@@ -1276,6 +1291,15 @@ const estados = [
         ]
       },
       {
+        nome: "Paulista",
+        feriados: [
+          // https://paulista.pe.gov.br/prefeitura-do-paulista-divulga-feriados-e-pontos-facultativos-para-o-ano-de-2026/
+          fm(calcularQuartaFeiraDeCinzas, "Quarta-feira de Cinzas"),
+          diaDeSaoJoao,
+          emancipacaoDoMunicipio(SETEMBRO, 4)
+        ]
+      },
+      {
         nome: "Petrolina",
         feriados: [
           // http://www.pe.portaldatransparencia.com.br/prefeitura/petrolina/?pagina=abreDocumento&arquivo=30EB0A5F
@@ -1627,6 +1651,15 @@ const estados = [
           emancipacaoDoMunicipio(ABRIL, 5),
           diaDeAscensaoDoSenhor,
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Passo Fundo",
+        feriados: [
+          // https://leismunicipais.com.br/a1/rs/p/passo-fundo/lei-ordinaria/1949/10/106/lei-ordinaria-n-106-1949-regulamenta-feriados-religiosos?r=c
+          diaDeCorpusChristi,
+          diaDeSaoPedro,
+          diaDeNossaSenhoraDaConceicao
         ]
       },
       {
@@ -2207,6 +2240,14 @@ const estados = [
           // https://dom.maua.sp.gov.br/public/docs/ea9f8d17580fcfa49b7c52fe4d83e9e9.pdf
           diaDeCorpusChristi,
           aniversarioDaCidade(DEZEMBRO, 8),
+        ]
+      },
+      {
+        nome: "Marília",
+        feriados: [
+          // https://noticias.uol.com.br/cotidiano/ultimas-noticias/2025/12/31/feriados-em-marilia-sp-2026-veja-data-e-dia-da-semana-de-todos.htm
+          aniversarioDaCidade(ABRIL, 4),
+          diaDeNossaSenhoraDaConceicao,
         ]
       },
       {
