@@ -585,6 +585,15 @@ const estados = [
         ]
       },
       {
+        nome: "Venda Nova do Imigrante",
+        feriados: [
+          // https://gedoc.ifes.edu.br/visualizarAnexo/;jsessionid=a68E2EGO1_dLRzgXs75f2Auy.ifes-gedoc01?d=ACF720A6F92EDD07F94C4D33F1A0C043&a=956ED7CFE840FEC25264E7BFACABA2B0&inline
+          aniversarioDaCidade(MAIO, 10),          
+          diaDeCorpusChristi,
+          diaDeSaoPedro
+        ]
+      },
+      {
         nome: "Vila Velha",
         feriados: [
           // https://legislacao.vilavelha.es.gov.br/Arquivo/Documents/legislacao/html/D72025.html?identificador=340039003600310039003A004C00
@@ -1629,6 +1638,13 @@ const estados = [
         ]
       },
       {
+        nome: "Garibaldi",
+        feriados: [
+          // https://www.garibaldi.rs.gov.br/pagina/feriados
+          diaDeCorpusChristi
+        ]
+      },
+      {
         nome: "Gramado",
         feriados: [
           // https://ecrie.com.br/sistema/conteudos/arquivo/a_160_0_1_17112023163950.pdf
@@ -1642,6 +1658,14 @@ const estados = [
           // https://naometoque.rs.gov.br/2012/10/24/feriados-municipais-e-pontos-facultativos/
           diaDeCorpusChristi,
           diaDaReformaLuterana,
+        ]
+      },
+      {
+        nome: "Nova Prata",
+        feriados: [
+          // https://www.trf4.jus.br/trf4/controlador.php?acao=calendario_feriados_listar&selOrgao=2
+          diaDeCorpusChristi,
+          diaDeSaoJoao
         ]
       },
       {
@@ -1692,6 +1716,14 @@ const estados = [
           // https://www.saojosedosausentes.rs.gov.br/wp-content/uploads/2025/01/CALENDARIO-ESCOLAR.pdf
           diaDeSaoJose,
           emancipacaoDoMunicipio(MARCO, 20)
+        ]
+      },
+      {
+        nome: "Serafina Corrêa",
+        feriados: [
+          // https://leismunicipais.com.br/a/rs/s/serafina-correa/lei-ordinaria/1967/16/155/lei-ordinaria-n-155-1967-cria-os-feriados-municipais
+          diaDeCorpusChristi,
+          emancipacaoDoMunicipio(JULHO, 25)
         ]
       },
       {
