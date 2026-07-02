@@ -893,6 +893,31 @@ const estados = [
         ]
       },
       {
+        nome: "Camanducaia",
+        feriados: [
+          // https://ecrie.com.br/sistema/conteudos/arquivo/a_97_61_28_28052026115612.pdf
+          tercaFeiraDeCarnaval,          
+          diaDeCorpusChristi,
+          aniversarioDaCidade(JULHO, 20),
+          diaDeNossaSenhoraDaConceicao,
+          ff(NOVEMBRO, 29, "Aniversário de Monte Verde<br/>(restrito ao distrito apenas)")
+        ],
+        excecoes: [
+          {
+            // https://camanducaia.mg.gov.br/noticias/geral/atencao-para-a-mudanca-do-feriado
+            ano: 2022,
+            removidos: [ "Aniversário da cidade" ],
+            adicionados: [ ff(JULHO, 22, "Aniversário da cidade (alterado)") ]
+          },
+          {
+            // https://www.camanducaia.mg.gov.br/noticias/geral/o-decreto-n-65-de-9-de-maio-de-2023-altera-neste-ano-de-2023
+            ano: 2023,
+            removidos: [ "Aniversário da cidade" ],
+            adicionados: [ ff(JULHO, 21, "Aniversário da cidade (alterado)") ]
+          }
+        ]
+      },
+      {
         nome: "Capitólio",
         feriados: [
           // https://sinimbu.cespro.com.br/visualizarDiploma.php?cdMunicipio=2821&cdDiploma=19910874&NroLei=874
@@ -1205,6 +1230,15 @@ const estados = [
         ]
       },
       {
+        nome: "Prudentópolis",
+        feriados: [
+          // https://prudentopolispr.equiplano.com.br:7443/transparencia/menuCustomizavel/downloadDocumento?formulario.idAnexo=9621
+          diaDeSaoJoao,
+          emancipacaoDoMunicipio(AGOSTO, 12),
+          ff(NOVEMBRO, 12, "Dia de São Josafat")
+        ]
+      },
+      {
         nome: "Rolândia",
         feriados: [
           // https://www.rolandia.pr.gov.br/noticias_individual/20074
@@ -1417,6 +1451,15 @@ const estados = [
         feriados: [
           diaDeCorpusChristi,
           diaDeSantoAntonio,
+        ]
+      },
+      {
+        nome: "Itatiaia",
+        feriados: [
+          // https://itatiaia.rj.gov.br/feriados
+          diaDeSaoJose,
+          diaDeCorpusChristi,
+          emancipacaoDoMunicipio(JUNHO, 1)
         ]
       },
       {
@@ -1889,6 +1932,14 @@ const estados = [
           // https://saojoaquim.sc.gov.br/uploads/sites/348/2025/06/Decreto-No-493-2025.pdf
           aniversarioDaCidade(MAIO, 7),
           diaDeCorpusChristi
+        ]
+      },
+      {
+        nome: "Treze Tílias",
+        feriados: [
+          // https://leis.org/municipais/sc/treze-tilias/lei/decreto/2026/3243/decreto-n-3243-2026-edita-o-calendario-de-feriados-e-pontos-facultativos-para-o-ano-de-2026-para-o-municipio-de-treze-tilias-que
+          diaDeCorpusChristi,
+          ff(OUTUBRO, 13, "Aniversário da Imigração Austríaca")
         ]
       },
       {
