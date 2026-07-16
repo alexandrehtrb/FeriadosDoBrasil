@@ -6,6 +6,7 @@ RJ / Vassouras
 RJ / São João de Meriti
 RR / Uiramutã
 SP / Araçatuba
+GO / Trindade --> Festa do Divino Pai Eterno
 
 */
 
@@ -181,6 +182,7 @@ const diaDeSantoAntonio = ff(JUNHO, 13, "Dia de Santo Antônio");
 const diaDeSaoJoao = ff(JUNHO, 24, "Dia de São João");
 const diaDeSaoPedro = ff(JUNHO, 29, "Dia de São Pedro");
 const diaDeSantAnna = ff(JULHO, 26, "Dia de Sant'Anna");
+const diaDeSaoSalvadorDoMundo = ff(AGOSTO, 6, "Dia de São Salvador do Mundo");
 const diaDeNossaSenhoraDaConceicao = ff(DEZEMBRO, 8, "Dia de Nossa Senhora da Conceição");
 const diaDaReformaLuterana = ff(OUTUBRO, 31, "Dia da Reforma Luterana");
 // Várias cidades têm os dias de suas padroeiras celebrados nos dias de 
@@ -1329,7 +1331,7 @@ const estados = [
         feriados: [
           // https://www.olinda.pe.gov.br/nossa-cidade/feriados-municipais/
           aniversarioDaCidade(MARCO, 12),
-          ff(AGOSTO, 6, "Dia de São Salvador do Mundo"),
+          diaDeSaoSalvadorDoMundo,
           ff(NOVEMBRO, 10, "1º Grito de República no Brasil"),
         ]
       },
@@ -1443,7 +1445,7 @@ const estados = [
           // https://sindivarejocampos.com.br/calendario
           ff(JANEIRO, 15, "Dia de Santo Amaro"),
           diaDeCorpusChristi,
-          ff(AGOSTO, 6, "Dia de São Salvador"),
+          diaDeSaoSalvadorDoMundo,
         ]
       },
       {
@@ -2231,6 +2233,14 @@ const estados = [
         ]
       },
       {
+        nome: "Ibitinga",
+        feriados: [
+          //  https://leismunicipais.com.br/a/sp/i/ibitinga/decreto/2017/417/4164/decreto-n-4164-2017-relaciona-os-feriados-e-estabelece-os-pontos-facultativos-para-o-exercicio-de-2017-no-municipio-de-ibitinga-contados-a-partir-do-mes-de-maio
+          emancipacaoDoMunicipio(JULHO, 4),
+          diaDeSaoSalvadorDoMundo
+        ]
+      },
+      {
         nome: "Ilha Solteira",
         feriados: [
           // https://ilhasolteira.sp.gov.br/wp-content/uploads/2026/01/Calendario-2026.pdf
@@ -2412,6 +2422,16 @@ const estados = [
           diaDeCorpusChristi,
           aniversarioDaCidade(SETEMBRO, 14),
           diaDeNossaSenhoraDaConceicao
+        ]
+      },
+	  {
+        nome: "Registro",
+        feriados: [
+          // https://registro.sp.gov.br/wp-content/uploads/2025/06/1-Lei-Organica-Municipal-Emenda-no-39-2023.pdf
+		  // https://registro.sp.gov.br/wp-content/uploads/2021/10/Lei-1248.pdf
+		  emancipacaoDoMunicipio(NOVEMBRO, 30),
+		  ff(DEZEMBRO, 3, "Dia de São Francisco Xavier"),
+          diaDeCorpusChristi
         ]
       },
       {
