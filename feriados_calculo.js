@@ -2394,6 +2394,27 @@ const estados = [
         ]
       },
       {
+        nome: "Mogi Guaçu",
+        feriados: [
+          // https://mogiguacu.sp.gov.br/calendario-de-feriados-e-pontos-facultativos/
+          aniversarioDaCidade(ABRIL, 9),
+          diaDeCorpusChristi,
+          ff(NOVEMBRO, 20, "Dia da Consciência Negra"),
+          diaDeNossaSenhoraDaConceicao
+        ]
+      },
+      {
+        nome: "Mogi Mirim",
+        feriados: [
+          // https://www.mogimirim.sp.gov.br/uploads/legislacao/26400/EfQvth6gLKfBrL2Vs7Y1Q5frJ_hyCdKC.pdf
+          // https://g1.globo.com/sp/campinas-regiao/noticia/2026/10/20/camara-aprova-feriado-do-dia-do-evangelico-em-mogi-mirim.ghtml
+          diaDeSaoJose,
+          diaDeCorpusChristi,
+          ff(AGOSTO, 17, "Dia do Evangélico", 2027),
+          aniversarioDaCidade(OUTUBRO, 22),
+        ]
+      },
+      {
         nome: "Monte Alegre do Sul",
         feriados: [
           // https://www.montealegredosul.sp.gov.br/up/anexo/1723751226.pdf
@@ -2469,9 +2490,9 @@ const estados = [
         nome: "Registro",
         feriados: [
           // https://registro.sp.gov.br/wp-content/uploads/2025/06/1-Lei-Organica-Municipal-Emenda-no-39-2023.pdf
-		  // https://registro.sp.gov.br/wp-content/uploads/2021/10/Lei-1248.pdf
-		  emancipacaoDoMunicipio(NOVEMBRO, 30),
-		  ff(DEZEMBRO, 3, "Dia de São Francisco Xavier"),
+		     // https://registro.sp.gov.br/wp-content/uploads/2021/10/Lei-1248.pdf
+		     emancipacaoDoMunicipio(NOVEMBRO, 30),
+		     ff(DEZEMBRO, 3, "Dia de São Francisco Xavier"),
           diaDeCorpusChristi
         ]
       },
